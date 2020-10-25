@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class NavigateMenu : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class NavigateMenu : MonoBehaviour
 
     void Start()
     {
+        if (!SceneManager.GetSceneByName("Core").isLoaded)
+            SceneManager.LoadScene("Core", LoadSceneMode.Additive);
+
         menuItems[0].Play(menuInAnimation);
     }
 

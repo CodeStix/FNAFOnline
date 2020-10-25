@@ -1243,17 +1243,17 @@ MonoBehaviour:
   onListRefreshing:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Stx.Net.Unity.UnityVoidEvent, Stx.Net.Unity, Version=1.0.7022.25731,
+    m_TypeName: Stx.Net.Unity.UnityVoidEvent, Stx.Net.Unity, Version=1.0.7041.22058,
       Culture=neutral, PublicKeyToken=null
   onListRefreshed:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Stx.Net.Unity.UnityVoidEvent, Stx.Net.Unity, Version=1.0.7022.25731,
+    m_TypeName: Stx.Net.Unity.UnityVoidEvent, Stx.Net.Unity, Version=1.0.7041.22058,
       Culture=neutral, PublicKeyToken=null
   onJoinFailed:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Stx.Net.Unity.UnityVoidEvent, Stx.Net.Unity, Version=1.0.7022.25731,
+    m_TypeName: Stx.Net.Unity.UnityVoidEvent, Stx.Net.Unity, Version=1.0.7041.22058,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &468332470
 MonoBehaviour:
