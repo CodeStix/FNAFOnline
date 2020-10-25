@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stx.Net.Unity</name>
+    </assembly>
+    <members>
+        <member name="P:Stx.Net.Unity.StxUnityClient.C">
+            <summary>
+            The actual client object, modify its settings here.
+            </summary>
+        </member>
+        <member name="P:Stx.Net.Unity.StxUnityClient.F">
+            <summary>
+            A collection of functions that will send requests to the server.
+            </summary>
+        </member>
+        <member name="P:Stx.Net.Unity.StxUnityClient.You">
+            <summary>
+            Your client identity object; gets downloaded when the connection is established.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4126619449402e42ba59df192b513dd, type: 3}
+  m_Name: PrizeDeath3
+  m_EditorClassIdentifier: 
+  name: Dead3
+  image: {fileID: 21300000, guid: aa14d6a112e0fc246b5edf07d87b243e, type: 3}
+  lockedImage: {fileID: 21300000, guid: f9858b8a86a87c04ea4f9fa9c94848f2, type: 3}
+  color: {r: 0.7924528, g: 0, b: 0, a: 1}
+  information: You died 10 times. Extra RIP
+  lockedInformation: ?????
+  value: 50
+  statName: deaths
+  minStatGrantValue: 10

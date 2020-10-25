@@ -1,0 +1,258 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1823790008881270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224791296174966674}
+  - component: {fileID: 222722094296331032}
+  - component: {fileID: 114717488207037974}
+  - component: {fileID: 114591154415125988}
+  m_Layer: 5
+  m_Name: TextScriptTyper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &224791296174966674
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823790008881270}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.00008, y: 1.00008, z: 1.00008}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -44.075012}
+  m_SizeDelta: {x: -50, y: -138.15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &222722094296331032
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823790008881270}
+  m_CullTransparentMesh: 0
+--- !u!114 &114717488207037974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823790008881270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dff18fa6cd2bf14280c1fc50fae10da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hackerScript: "using Afton.Robotics;\nusing Afton.Movements;\nusing Afton.Movements.Calculator;\nusing
+    Afton.External;\nusing Afton.AI;\nusing Afton.AI.Brains;\n\nnamespace Afton\r\n{\r\n
+    \  interface IRelativeLocated\r\n    {\r\n        float RelativeX { get; set;
+    }\r\n        float RelativeY { get; set; }\r\n    }\r\n\r\n    interface IRelativeLocated3D
+    : IRelativeLocated\r\n    {\r\n        float RelativeZ { get; set; }\r\n    }\r\n\r\n
+    \   interface ICube\r\n    {\r\n        float Width { get; set; }\r\n        float
+    Height { get; set; }\r\n        float Depth { get; set; }\r\n\r\n        float
+    CalculateVolume();\r\n        float CalculateSurface();\r\n    }\r\n\r\n    interface
+    IRoom : ICube, IRelativeLocated\r\n    {\r\n        int WindowCount { get; }\r\n
+    \       int DoorCount { get; }\r\n    }\r\n\r\n    interface IKitchen : IRoom\r\n
+    \   {\r\n        bool? ContainsFurnace { get; }\r\n        int ShelfCount { get;
+    }\r\n    }\r\n\r\n    interface IHall : INamedRoom\r\n    {\r\n        float Length
+    { get; }\r\n    }\r\n\r\n    interface IGameArea : INamedRoom\r\n    {\r\n        bool
+    PinballPresent { get; set; }\r\n        bool CarrouselPresent { get; set; }\r\n
+    \       bool BalloonBoyPresent { get; set; }\r\n    }\r\n\r\n    interface ILivingRoom
+    : INamedRoom\r\n    {\r\n        bool HasTelevision { get; set; }\r\n        bool
+    HasHeater { get; set; }\r\n    }\r\n\r\n    interface ITimedOpenings\r\n    {\r\n
+    \       DateTime OpenTime { get; }\r\n        DateTime CloseTime { get; }\r\n\r\n
+    \       bool IsOpen();\r\n    }\r\n\r\n    interface IEmployee\r\n    {\r\n        DateTime
+    ShiftStart { get; }\r\n        DateTime ShiftEnd { get; }\r\n\r\n        float
+    MoneyPerHour { get; }\r\n    }\r\n\r\n    class Person : IHumanoid, INamedObject\r\n
+    \   {\r\n        public string Name { get; set; }\r\n        public DateTime Born
+    { get; set; }\r\n        \r\n        public Limb LeftLeg { get; }\r\n        public
+    Limb RightLeg { get; }\r\n        public Limb LeftArm { get; }\r\n        public
+    Limb RightArm { get; }\r\n        public Limb Spine { get; }\r\n        public
+    Limb Neck { get; }\r\n        public Limb Skull { get; }\r\n        public Mouth
+    Mouth { get; }\r\n        public Brain Brain { get; }\r\n\r\n        public int
+    Age\r\n        {\r\n            get\r\n            {\r\n                return
+    DateTime.UtcNow.Year - Born.Year;\r\n            }\r\n        }\r\n\r\n        public
+    Person(string name)\r\n        {\r\n            this.Name = name;\r\n        }\r\n\r\n
+    \       public Person(string name, DateTime born)\r\n        {\r\n            this.Name
+    = name;\r\n            this.Born = born;\r\n        }\r\n    }\r\n\r\n    class
+    NightGuard : Person, IEmployee\r\n    {\r\n        public DateTime ShiftEnd {
+    get; set; }\r\n        public DateTime ShiftStart { get; set; }\r\n\r\n        public
+    float MoneyPerHour { get; private set; } = 4.0f;\r\n\r\n        public NightGuard(string
+    name) : base(name)\r\n        { }\r\n\r\n        public NightGuard(string name,
+    DateTime born) : base(name, born)\r\n        { }\r\n    }\r\n\r\n    class Janitor
+    : Person, IEmployee\r\n    {\r\n        public DateTime ShiftEnd { get; set; }\r\n
+    \       public DateTime ShiftStart { get; set; }\r\n\r\n        public float MoneyPerHour
+    { get; private set; } = 6.0f;\r\n\r\n        public Janitor(string name) : base(name)\r\n
+    \       { }\r\n\r\n        public Janitor(string name, DateTime born) : base(name,
+    born)\r\n        { }\r\n    }\r\n\r\n    interface INamedObject\r\n    {\r\n        string
+    Name { get; set; }\r\n    }\r\n\r\n    interface INamedRoom : IRoom, INamedObject\r\n
+    \   { }\r\n\r\n    class Room : INamedRoom\r\n    {\r\n        public float RelativeX
+    { get; set; }\r\n        public float RelativeY { get; set; }\r\n\r\n        public
+    float Depth { get; set; }\r\n        public float Height { get; set; }\r\n        public
+    float Width { get; set; }\r\n\r\n        public int WindowCount { get; set; }\r\n
+    \       public int DoorCount { get; set; }\r\n\r\n        public string Name {
+    get; set; }\r\n\r\n        public Room(string name, float x, float y, float w,
+    float h, float d)\r\n        {\r\n            Name = name;\r\n            RelativeX
+    = x;\r\n            RelativeY = y;\r\n            Width = w;\r\n            Height
+    = h;\r\n            Depth = d;\r\n        }\r\n\r\n        public float CalculateSurface()\r\n
+    \       {\r\n            return Depth * Width;\r\n        }\r\n\r\n        public
+    float CalculateVolume()\r\n        {\r\n            return Depth * Height * Width;\r\n
+    \       }\r\n    }\r\n\r\n    class Establishment : ITimedOpenings, ICube\r\n
+    \   {\r\n        public float Depth { get; set; }\r\n        public float Height
+    { get; set; }\r\n        public float Width { get; set; }\r\n\r\n        public
+    IHall MainHall { get; set; }\r\n        public ILivingRoom MainLivingRoom { get;
+    set; }\r\n        public List<INamedObject> Rooms { get; set; } = new List<INamedObject>();\r\n\r\n
+    \       public DateTime OpenTime { get; set; }\r\n        public DateTime CloseTime
+    { get; set; }\r\n\r\n        public bool IsOpen()\r\n        {\r\n            return
+    DateTime.UtcNow >= OpenTime && DateTime.UtcNow < CloseTime;\r\n        }\r\n\r\n
+    \       public float CalculateSurface()\r\n        {\r\n            return Depth
+    * Width;\r\n        }\r\n\r\n        public float CalculateVolume()\r\n        {\r\n
+    \           return Depth * Height * Width;\r\n        }\r\n    }\r\n\r\n    class
+    Restaurant : Establishment\r\n    {\r\n        public IKitchen Kitchen { get;
+    set; }\r\n\r\n        public bool? ContainsFurnace { get; set; } = null;\r\n        public
+    int ShelfCount { get; set; } = 5;\r\n    }\r\n\r\n    class Freddys : Restaurant\r\n
+    \   {\r\n        public NightGuard guard;\r\n        public Person owner;\r\n
+    \       public Janitor janitor;\r\n        public HumanoidController[] animatronics;\r\n\r\n
+    \       public Freddys()\r\n        {\r\n            Depth = 20.0f;\r\n            Height
+    = 2.0f;\r\n            Width = 20.0f;\r\n\r\n            Room r = new Room(\"1A\",
+    6, 5, 3, 9, 4);\r\n            Room r2 = new Room(\"1C\", 6, 5, 3, 9, 4);\r\n\r\n
+    \           Rooms.Add(r);\r\n            Rooms.Add(r2);\r\n            Rooms.Add(new
+    Room(\"5\", 1, 5, 3, 2, 4));\r\n            Rooms.Add(new Room(\"1B\", 1, 5, 15,
+    1, 9));\r\n            Rooms.Add(new Room(\"7\", 9, 6, 1, 8, 4));\r\n            Rooms.Add(new
+    Room(\"6\", 4, 5, 3, 7, 5));\r\n            Rooms.Add(new Room(\"3\", 7, 5, 3,
+    2, 7));\r\n            Rooms.Add(new Room(\"2A\", 5, 1, 4, 3, 8));\r\n            Rooms.Add(new
+    Room(\"2B\", 5, 5, 4, 2, 9));\r\n            Rooms.Add(new Room(\"4A\", 15, 1,
+    6, 5, 7));\r\n            Rooms.Add(new Room(\"4B\", 15, 5, 9, 5, 4));\r\n            Rooms.Add(new
+    Room(\"O\", 10, 5, 3, 5, 4));\r\n\r\n            OpenTime = DateTime.Parse(\"9:00\");\r\n
+    \           CloseTime = DateTime.Parse(\"18:00\");\r\n\r\n            owner =
+    new Person(Identities.FreddiesOwnerName);\r\n\r\n            guard = new NightGuard(Identities.NightGuardName);\r\n
+    \           guard.ShiftStart = DateTime.Parse(\"0:00\");\r\n            guard.ShiftEnd
+    = DateTime.Parse(\"6:00\");\r\n            guard.ShiftEnd.AddHours(Things.GuardOvertimeHours);\r\n\r\n
+    \           janitor = new Janitor(Identities.JanitorName);\r\n            janitor.ShiftStart
+    = DateTime.Parse(\"6:00\");\r\n            janitor.ShiftEnd = DateTime.Parse(\"9:00\");\r\n\r\n
+    \           animatronics = new HumanoidController[5];\r\n            animatronics[0]
+    = new HumanoidController(new Animatronic(Identities.Robot1, MaterialType.Fur,
+    MaterialColor.Yellow));\r\n            animatronics[1] = new HumanoidController(new
+    Animatronic(Identities.Robot2, MaterialType.Fur, MaterialColor.Purple));\r\n            animatronics[2]
+    = new HumanoidController(new Animatronic(Identities.Robot3, MaterialType.Fur,
+    MaterialColor.Brown));\r\n            animatronics[3] = new HumanoidController(new
+    Animatronic(Identities.Robot4, MaterialType.Fur, MaterialColor.DarkPink));\r\n
+    \           animatronics[4] = new HumanoidController(new Animatronic(Identities.Robot5,
+    MaterialType.Fur, MaterialColor.GoldYellow));\r\n\r\n            for(int i = 0;
+    i < animatronics.Length - 2; i++)\r\n            {\r\n                if (i !=
+    3)\r\n                    animatronics[i].DoMove(r);\r\n                else\r\n
+    \                   animatronics[i].DoMove(r2);\r\n            }\r\n        }\r\n
+    \   }\r\n\r\n    enum MaterialType\r\n    {\r\n        Fur\r\n    }\r\n\r\n    enum
+    MaterialColor\r\n    {\r\n        Yellow,\r\n        Gold,\r\n        Brown,\r\n
+    \       Purple,\r\n        DarkPink,\r\n        GoldYellow\r\n    }\r\n\r\n    interface
+    ISuited\r\n    {\r\n        MaterialType SuitMaterial { get; set; }\r\n        MaterialColor
+    SuitColor { get; set; }\r\n    }\r\n\r\n    class Limb : IRelativeLocated3D, IBiteable\r\n
+    \   {\r\n        public float BreakForce { get; set; } = 5000.0f;\r\n\r\n        public
+    IRelativeLocated3D[] Joints { get; set; }\r\n\r\n        public float RelativeX
+    { get; set; }\r\n        public float RelativeY { get; set; }\r\n        public
+    float RelativeZ { get; set; }\r\n\r\n        public void Break()\r\n        {
+    }\r\n\r\n        public void MoveAnglePivit(int index, float angle)\r\n        {\r\n
+    \           IRelativeLocated3D pivit = Joints[index];\r\n            pivit.RelativeX
+    = (float)Math.Sin(angle) * RelativeX;\r\n            pivit.RelativeY = (float)Math.Cos(angle)
+    * RelativeY;\r\n            pivit.RelativeZ =  RelativeZ;\r\n        }\r\n    }\r\n\r\n
+    \   interface IBiteable\r\n    {\r\n        float BreakForce { get; set; }\r\n
+    \       void Break();\r\n    }\r\n\r\n    interface ICanBite\r\n    {\r\n        float
+    MaxBiteForce { get; set; }\r\n        float MouthOpenHeight { get; set; }\r\n
+    \       float MouthOpenWidth { get; set; }\r\n        bool LimitMaxBiteForce {
+    get; }\r\n    }\r\n\r\n    interface IHasTeeth\r\n    {\r\n        int TeethCount
+    { get; }\r\n    }\r\n\r\n    class Mouth : ICanBite, IHasTeeth\r\n    {\r\n        public
+    int TeethCount { get; }\r\n        public float MaxBiteForce { get; set; }\r\n
+    \       public float MouthOpenHeight { get; set; }\r\n        public float MouthOpenWidth
+    { get; set; }\r\n        public bool LimitMaxBiteForce { get; protected set; }
+    = true;\r\n\r\n        public void BiteOn(IBiteable b)\r\n        {\r\n            if
+    (MaxBiteForce >= b.BreakForce)\r\n            {\r\n                if (LimitMaxBiteForce)\r\n
+    \               {\r\n                    throw new Exception(\"That force could
+    cause some fatal results.\");\r\n                }\r\n                else\r\n
+    \               {\r\n                    b.Break();\r\n                }\r\n            }
+    \r\n        }\r\n    }\r\n\r\n    interface IHumanoid : INamedObject\r\n    {\r\n
+    \       Limb LeftLeg { get; }\r\n        Limb RightLeg { get; }\r\n        Limb
+    LeftArm { get; }\r\n        Limb RightArm { get; }\r\n        Limb Spine { get;
+    }\r\n        Limb Neck { get; }\r\n        Limb Skull { get; }\r\n        Mouth
+    Mouth { get; }\r\n        Brain Brain { get; }\r\n    }\r\n\r\n    class HumanoidController\r\n
+    \   {\r\n        public IMovableHumanoid Controlled { get; set; }\r\n\r\n        public
+    HumanoidController(IMovableHumanoid forHumanoid)\r\n        {\r\n            Controlled
+    = forHumanoid;\r\n\r\n            Terminal.OnReceive += Terminal_OnReceive;\r\n
+    \       }\r\n\r\n        private void Terminal_OnReceive(string command, string[]
+    args)\r\n        {\r\n            if (args[1] != Controlled.Name)\r\n                return;\r\n\r\n
+    \           switch(command)\r\n            {\r\n                case \"move\":\r\n
+    \                   DoMove(MovementCalculator.ParseLocation(args[0]));\r\n                    break;\r\n
+    \                   \r\n                case \"attack\":\r\n                    Attack((IHumanoid)Controlled.Brain.LookFor(args[0]));\r\n
+    \                   break;\r\n\r\n                case \"lure\":\r\n                    Controlled.Brain.DoInterest(args[0]);\r\n
+    \                   break;\r\n            }\r\n        }\r\n\r\n        public
+    void DoMove(IRelativeLocated newLocation)\r\n        {\r\n            MovementCalculator.CalculateLimbs(newLocation,
+    \r\n                Controlled.LeftLeg, \r\n                Controlled.RightLeg,
+    \r\n                Controlled.LeftArm, \r\n                Controlled.RightArm,
+    \r\n                Controlled.Spine, \r\n                Controlled.Neck, \r\n
+    \               Controlled.Skull\r\n            );\r\n            MovementCalculator.MoveTowards(Controlled,
+    newLocation);\r\n        }\r\n\r\n        public void Attack(IHumanoid h)\r\n
+    \       {\r\n            Controlled.Mouth.BiteOn(h.Skull);\r\n        }\r\n    }\r\n\r\n
+    \   interface IMovableHumanoid : IHumanoid, IRelativeLocated\r\n    { }\r\n\r\n
+    \   class Robot : IMovableHumanoid, INamedObject\r\n    {\r\n        public Limb
+    LeftLeg { get; }\r\n        public Limb RightLeg { get; }\r\n        public Limb
+    LeftArm { get; }\r\n        public Limb RightArm { get; }\r\n        public Limb
+    Spine { get; }\r\n        public Limb Neck { get; }\r\n        public Limb Skull
+    { get; }\r\n        public Mouth Mouth { get; }\r\n        public Brain Brain
+    { get; }\r\n\r\n        public string Name { get; set; }\r\n\r\n        public
+    float RelativeX { get; set; }\r\n        public float RelativeY { get; set; }\r\n
+    \   }\r\n\r\n    class Animatronic : Robot, ISuited\r\n    {\r\n        public
+    MaterialType SuitMaterial { get; set; }\r\n        public MaterialColor SuitColor
+    { get; set; }\r\n\r\n        public Animatronic(string name, MaterialType suitMat,
+    MaterialColor suitColor)\r\n        {\r\n            SuitMaterial = suitMat;\r\n
+    \           SuitColor = suitColor;\r\n        }\r\n    }\n}\r\n"
+  speed: 100
+  scanLines: 30
+  onStart: 0
+--- !u!114 &114591154415125988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823790008881270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.14942527, g: 1, b: 0, a: 0.8235294}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 6084cf1360e28f245ba0b410a76b4ef3, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 84
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Connection with animatronics established. [OK]

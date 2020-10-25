@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1964806785169160}
+  m_IsPrefabAsset: 1
+--- !u!1 &1964806785169160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4238319770167412}
+  - component: {fileID: 212016648771983196}
+  - component: {fileID: 114986480031493218}
+  - component: {fileID: 114265801991655416}
+  - component: {fileID: 114759082526141990}
+  - component: {fileID: 114526119232696866}
+  m_Layer: 0
+  m_Name: FoxyScare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4238319770167412
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964806785169160}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.4, z: 1.44}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114265801991655416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964806785169160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbb3bc79666d99459e51f369f34edaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onStart: 1
+  statName: foxyDeath
+  statIncrement: 1
+--- !u!114 &114526119232696866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964806785169160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6add098233a43934a82291bcc68e70d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSound: 
+  enableSound: Scream
+  disableSound: 
+--- !u!114 &114759082526141990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964806785169160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aebca606975727b45beb3ee4945ae8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+  loop: 0
+  afterDelayEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SendDidDieByFoxy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114986480031493218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964806785169160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad77474461d0ced42bae7b6ca4dc7432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 1
+  sprites:
+  - {fileID: 21300000, guid: d5c121a60d8a8d043acb66e30aab54f1, type: 3}
+  - {fileID: 21300000, guid: 5a0eb72196d5413459c4ec53a8da70a2, type: 3}
+  - {fileID: 21300000, guid: f16eaafc9ffab364492c60e9a4c47161, type: 3}
+  - {fileID: 21300000, guid: 5317a01466058c445b9363555ca7d2f7, type: 3}
+  - {fileID: 21300000, guid: abab43fc69a0ccd45ac36698ed5ed6ca, type: 3}
+  - {fileID: 21300000, guid: 71353ed9bb0e34b42b4483820efa4c00, type: 3}
+  - {fileID: 21300000, guid: 3fa0902fe3fae1142acbb3d8a3c8e11a, type: 3}
+  - {fileID: 21300000, guid: b6234b1f192aca147a19435cdee52251, type: 3}
+  - {fileID: 21300000, guid: 556bf817c90ba6942a77a4d7b4899392, type: 3}
+  - {fileID: 21300000, guid: a0fa5923a880df341af7832183ee5795, type: 3}
+  - {fileID: 21300000, guid: aec2a6aa58b710a4a95b69b5b3dcb7fd, type: 3}
+  - {fileID: 21300000, guid: eddc4434ff1c90646a0938fe85cfe4cf, type: 3}
+  - {fileID: 21300000, guid: 3411e0079d1f50b488356cde26db015e, type: 3}
+  - {fileID: 21300000, guid: e717011fbc34da44d924967b30c1780c, type: 3}
+  - {fileID: 21300000, guid: 35d1491f439f32d4abf56d91a7417ef6, type: 3}
+  - {fileID: 21300000, guid: 472c0834d49939e49a17cb885cf86fe0, type: 3}
+  - {fileID: 21300000, guid: 3164ea70c14b9a04b8b9fe7945777749, type: 3}
+  - {fileID: 21300000, guid: 0452d0b0478c1c14ba5818c476f5cc8d, type: 3}
+  - {fileID: 21300000, guid: 8912bdb899735814cbe21686ddbbf6b2, type: 3}
+  - {fileID: 21300000, guid: e71ec7be9a5e1214d8d59fa14290c482, type: 3}
+  - {fileID: 21300000, guid: ca87cc6f24dca8f4682841635334b5e5, type: 3}
+  delay: 0.031
+  sort: 2
+  invertOrder: 0
+  burstOnStart: 1
+  burstLoop: 1
+--- !u!212 &212016648771983196
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964806785169160}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 21300000, guid: ca87cc6f24dca8f4682841635334b5e5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 16, y: 7.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

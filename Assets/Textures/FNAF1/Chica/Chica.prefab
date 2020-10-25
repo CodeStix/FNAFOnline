@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1111239561519438}
+  m_IsPrefabAsset: 1
+--- !u!1 &1111239561519438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4931695087263238}
+  - component: {fileID: 212261190871195426}
+  - component: {fileID: 114900238041032354}
+  - component: {fileID: 114403558451360602}
+  - component: {fileID: 114914485951547420}
+  - component: {fileID: 114602119787765056}
+  m_Layer: 0
+  m_Name: Chica
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4931695087263238
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111239561519438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.44, y: 1.44, z: 1.44}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114403558451360602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111239561519438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbb3bc79666d99459e51f369f34edaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onStart: 1
+  statName: chicaDeath
+  statIncrement: 1
+--- !u!114 &114602119787765056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111239561519438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6add098233a43934a82291bcc68e70d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSound: 
+  enableSound: Scream
+  disableSound: 
+--- !u!114 &114900238041032354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111239561519438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad77474461d0ced42bae7b6ca4dc7432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 1
+  sprites:
+  - {fileID: 21300000, guid: 60df8c58c72ebec47a10813f51a76fe7, type: 3}
+  - {fileID: 21300000, guid: 5a9f44fcfb904a9449cfb5f434824024, type: 3}
+  - {fileID: 21300000, guid: 468e5355ce68b814ca1e361fab9a8a88, type: 3}
+  - {fileID: 21300000, guid: 91a19c3584dc87242aff01c3a9ae1f83, type: 3}
+  - {fileID: 21300000, guid: 738f14358e57eff43a66ff21f4fa1911, type: 3}
+  - {fileID: 21300000, guid: 13c65ed9bb6539740ab3cad027256694, type: 3}
+  - {fileID: 21300000, guid: b6677452c40b88449a54b149cc1e2880, type: 3}
+  - {fileID: 21300000, guid: 185c4989965ef9e4089e44199c04a05f, type: 3}
+  - {fileID: 21300000, guid: 5f8fe40b864ea614ea74935f0adbf384, type: 3}
+  - {fileID: 21300000, guid: 985dbcae27b67534b85cfa07631fa259, type: 3}
+  - {fileID: 21300000, guid: 961fbdf45ea093345816f58a3cb5d107, type: 3}
+  - {fileID: 21300000, guid: 2a3cade67bc759041903c3d2578cc831, type: 3}
+  - {fileID: 21300000, guid: 4d5b6bb4c37731340a07f986291f81bf, type: 3}
+  - {fileID: 21300000, guid: db3be55fe03cb364dbb7b3075fe9e560, type: 3}
+  - {fileID: 21300000, guid: b20a633cd94d7954e85ddff637d414da, type: 3}
+  - {fileID: 21300000, guid: 5a7fd4fd8b559ce41bc84f6009d62dff, type: 3}
+  delay: 0.02
+  sort: 2
+  invertOrder: 0
+  burstOnStart: 1
+  burstLoop: 2
+--- !u!114 &114914485951547420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111239561519438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aebca606975727b45beb3ee4945ae8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+  loop: 0
+  afterDelayEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SendDidDieByChica
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!212 &212261190871195426
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111239561519438}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 21300000, guid: 60df8c58c72ebec47a10813f51a76fe7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 16, y: 7.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

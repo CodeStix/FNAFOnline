@@ -1,0 +1,590 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1733795326345324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864079442184107041}
+  - component: {fileID: 114305541539698752}
+  m_Layer: 5
+  m_Name: SoundEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &864079442184107041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733795326345324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114305541539698752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733795326345324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adeb8b7c5c56da9428fdc8b554db2d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSounds: []
+  soundEffects:
+  - name: Click
+    volume: 0.75
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 0
+    maxPitch: 0
+    sounds:
+    - {fileID: 8300000, guid: 5c0e7b9f3df7e4e4db24c90a843bef55, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 1
+  - name: Hover
+    volume: 0.8
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 0
+    maxPitch: 0
+    sounds:
+    - {fileID: 8300000, guid: bde9b5a0af745f24c827d49b0b4ee0ba, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 9
+  - name: Done
+    volume: 0.7
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 0
+    maxPitch: 0
+    sounds:
+    - {fileID: 8300000, guid: da905c6a367c75a4e800e3be325a5d13, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 9
+  - name: Adjust
+    volume: 0.8
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 0
+    maxPitch: 0
+    sounds:
+    - {fileID: 8300000, guid: 636b0cc3cae81614a95792d30265cdbb, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 9
+  - name: Type
+    volume: 0.5
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 1
+    minPitch: 0.9
+    maxPitch: 1.1
+    sounds:
+    - {fileID: 8300000, guid: da78b1cf0f7d65d469575f741bab97f1, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 9
+  - name: Edit
+    volume: 0.2
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: ce140dbca65e1bb4eb8801f7709f4683, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 9
+  - name: Toggle
+    volume: 0.8
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 1
+    minPitch: 0.9
+    maxPitch: 1.1
+    sounds:
+    - {fileID: 8300000, guid: 34de8cf90e6901349a224e8d30e52901, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 9
+  - name: MenuMusic
+    volume: 0.9
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: e63a5bfa66783f04a84003032d9b1f6d, type: 3}
+    - {fileID: 8300000, guid: 087cfd99c8956ef428577c0e560543ea, type: 3}
+    randomizeSounds: 1
+    loop: 1
+    LPF: 22000
+    reverb: 0
+  - name: PrizeCornerMusic
+    volume: 0.9
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 58cc2d7699ca87d4bac2e18904dedeaa, type: 3}
+    - {fileID: 8300000, guid: 7caf95c8ad557b94f9cfdaf5f4e17e60, type: 3}
+    - {fileID: 8300000, guid: d60668efcbca2d9439e301d6d42ad01d, type: 3}
+    randomizeSounds: 1
+    loop: 1
+    LPF: 22000
+    reverb: 0
+  - name: OGMusic
+    volume: 0.9
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 2726ad0761c5aca43b8359209b4d190a, type: 3}
+    - {fileID: 8300000, guid: a33f5c897129ca6408612171f425afb6, type: 3}
+    - {fileID: 8300000, guid: 3c98839348e82b34aa214f5e25666723, type: 3}
+    - {fileID: 8300000, guid: e931c38de4a56884891f5809a98a2fed, type: 3}
+    randomizeSounds: 1
+    loop: 1
+    LPF: 22000
+    reverb: 0
+  - name: Join
+    volume: 0.7
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: ba9e3101c0d1e3c4f9f8315e0c9713d3, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: Leave
+    volume: 0.7
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 309ca529d58d3d047b7b091cb59b52e8, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: Ready
+    volume: 0.7
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 74247cf39cc8d0840a1b9e7500124a89, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: UnReady
+    volume: 0.7
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: f7fa1ea09c9a253448905b46d5b6d4c3, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: Blib
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 1
+    minPitch: 0.95
+    maxPitch: 1.05
+    sounds:
+    - {fileID: 8300000, guid: e078d8be7e7aa2f47bf2f97a4bd49323, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: Wait
+    volume: 0.925
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 05ce8864c1021d340b90d0afc63d5e68, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 1
+  - name: WaitWait
+    volume: 0.925
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: c83b7273e319a124ca7ad3fd42ae749c, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 1
+  - name: Ambient
+    volume: 0.65
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 1
+    minPitch: 0.9
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: e14bcbd68e8d9114bbe11c5c8aa7d0fd, type: 3}
+    - {fileID: 8300000, guid: 5b68236cfe5ee08488530caf5ffe8ef2, type: 3}
+    - {fileID: 8300000, guid: c0e9411ce8124ab42b851719d313d839, type: 3}
+    - {fileID: 8300000, guid: aff98758a3058f146b384db285a2b5a2, type: 3}
+    - {fileID: 8300000, guid: 50cf431afd574424980e8403bd400828, type: 3}
+    randomizeSounds: 1
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: Flip
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 2189eb628898bd541be87b454ba9e20f, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: Tape
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 1
+    minPitch: 0.9
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 874ae7dd205a38c45bfa1d67a2b1693e, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: Boot
+    volume: 0.7
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: b341e37f21045b14291751a26a085df1, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: DoorLeft
+    volume: 1
+    pitch: 1
+    panStereo: -0.88
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 3f11342b9ed4b8a41803b1a2a63ee67f, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: DoorRight
+    volume: 1
+    pitch: 1
+    panStereo: 0.88
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 3f11342b9ed4b8a41803b1a2a63ee67f, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: KnockLeft
+    volume: 0.95
+    pitch: 1
+    panStereo: -0.85
+    randomizePitch: 1
+    minPitch: 0.85
+    maxPitch: 1.1
+    sounds:
+    - {fileID: 8300000, guid: 7a67a7957206cbc4494cc18360decbbf, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: KnockRight
+    volume: 0.95
+    pitch: 1
+    panStereo: 0.85
+    randomizePitch: 1
+    minPitch: 0.85
+    maxPitch: 1.1
+    sounds:
+    - {fileID: 8300000, guid: 7a67a7957206cbc4494cc18360decbbf, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: LightLeft
+    volume: 1
+    pitch: 1
+    panStereo: -0.75
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: cd95e99dc7c94e442b10b8bf819754f8, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: LightRight
+    volume: 1
+    pitch: 1
+    panStereo: 0.75
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: cd95e99dc7c94e442b10b8bf819754f8, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: Nose
+    volume: 0.75
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 0.95
+    maxPitch: 1.05
+    sounds:
+    - {fileID: 8300000, guid: e6f646b6e4e409049bac68f3486bcd62, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 1
+  - name: Scream
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 0.95
+    maxPitch: 1.1
+    sounds:
+    - {fileID: 8300000, guid: 712853f7862a191499b3aeac289950db, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: WindowLeft
+    volume: 1
+    pitch: 1
+    panStereo: -0.6
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: c2ee3755bb61e224495b7bde4f7e2ee8, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: WindowRight
+    volume: 1
+    pitch: 1
+    panStereo: 0.6
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: c2ee3755bb61e224495b7bde4f7e2ee8, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: Circus
+    volume: 0.075
+    pitch: 1
+    panStereo: -0.5
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 3c055e20ee56ea440982b21c266f9a9e, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 13
+  - name: Kitchen
+    volume: 0.2
+    pitch: 1
+    panStereo: 0.55
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 50d0b6b477fae8149a153dc0d239442e, type: 3}
+    randomizeSounds: 0
+    loop: 1
+    LPF: 22000
+    reverb: 13
+  - name: Flikker
+    volume: 0.25
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 4fd901e8a81c9ba4a965e3654df82862, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: ErrorLeft
+    volume: 0.9
+    pitch: 1
+    panStereo: -0.6
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 37f0acbd472840f4aa6510790e82ad4b, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: ErrorRight
+    volume: 0.9
+    pitch: 1
+    panStereo: 0.6
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 37f0acbd472840f4aa6510790e82ad4b, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 3
+  - name: Booting
+    volume: 0.5
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 05ce8864c1021d340b90d0afc63d5e68, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: Static
+    volume: 0.55
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 91a463bb26267054d868b762866a3b47, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: PowerDown
+    volume: 0.9
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 6eaae9df7c843cc429ac0a58ea504ad4, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: Fan
+    volume: 0.2
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 5069364d6b9098244ac0d78fe1fed9c3, type: 3}
+    randomizeSounds: 0
+    loop: 1
+    LPF: 22000
+    reverb: 3
+  - name: NightStart
+    volume: 0.6
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: e107a92f03baa094e8a22314b03f3f37, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0

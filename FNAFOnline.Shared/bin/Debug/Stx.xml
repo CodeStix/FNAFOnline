@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stx</name>
+    </assembly>
+    <members>
+        <member name="T:Stx.Logging.ConsoleLogger">
+            <summary>
+            A logger that outputs to the console window.
+            </summary>
+        </member>
+        <member name="M:Stx.Logging.ConsoleLogger.#ctor(System.Boolean)">
+            <summary>
+            A logger that outputs to the console window.
+            </summary>
+            <param name="writeAsync">Should this logger be writing to the console on a separate thread and not cause blocking?</param>
+        </member>
+        <member name="T:Stx.Logging.VoidLogger">
+            <summary>
+            A logger that outputs to void, to nothing.
+            </summary>
+        </member>
+        <member name="M:Stx.Collections.Concurrent.ConcurrentList`1.GetRandom">
+            <summary>
+            Safely returns a random item from the list.
+            </summary>
+            <returns>A random item int the list.</returns>
+        </member>
+        <member name="T:Stx.Utilities.FastActivator">
+            <summary>
+            A mush faster alternative to <see cref="T:System.Activator"/>. 
+            But only supports parameterless constructors.
+            </summary>
+        </member>
+        <member name="P:Stx.Utilities.UniqueCodeGenerator.Possibilities">
+            <summary>
+            The total number of unique possible combinations this generator will and can generate.
+            </summary>
+        </member>
+        <member name="P:Stx.Utilities.UniqueCodeGenerator.Position">
+            <summary>
+            The index of this generator, each generated code corresponds to an index. See <see cref="M:Stx.Utilities.UniqueCodeGenerator.GetCodeFor(System.UInt64)"/>.
+            </summary>
+        </member>
+        <member name="M:Stx.Utilities.UniqueCodeGenerator.GetNextCode(System.UInt32)">
+            <summary>
+            Returns the next unique code.
+            </summary>
+            <param name="increment">The number of codes the generator should skip after generating the returned one.</param>
+            <returns>An unique code.</returns>
+        </member>
+        <member name="M:Stx.Utilities.UniqueCodeGenerator.GetCodeFor(System.UInt64)">
+            <summary>
+            Returns a specific code for a specific index. Each code corresponds to an index.
+            </summary>
+            <param name="i">The index to generate a code from.</param>
+            <returns>An unique code that corresponds with the given index.</returns>
+        </member>
+        <member name="P:Stx.Utilities.ThreadSafeDataTransfer`1.MultiThread">
+            <summary>
+            When true:
+                Thread 1: Transfers, use <see cref="M:Stx.Utilities.ThreadSafeDataTransfer`1.Transfer(`0)"/>;
+                Thread 2: Receives, use <see cref="M:Stx.Utilities.ThreadSafeDataTransfer`1.Received(`0)"/>;
+            </summary>
+        </member>
+        <member name="T:Stx.Utilities.ThreadSafeData">
+            <summary>
+            Provides thread safe data transfers and event invokes.
+            <para>To transfer data in a class, the class should implement <see cref="T:Stx.Utilities.ThreadSafeDataTransfer`1"/> where T is the type that is being transfered. 
+            Use <see cref="M:Stx.Utilities.ThreadSafeDataTransfer`1.CheckForData"/> to transfer the data thread-safely.</para>
+            Use <see cref="M:Stx.Utilities.ThreadSafeData.CheckForAllData"/> to transfer all data on every class that implements <see cref="T:Stx.Utilities.ThreadSafeDataTransfer`1"/>.
+            <para>To invoke an event, use <see cref="M:Stx.Utilities.ThreadSafeData.Invoke(System.Action)"/>. 
+            And use <see cref="M:Stx.Utilities.ThreadSafeData.InvokeAllEvents"/> to invoke all the pending events thread-safely.</para>
+            </summary>
+        </member>
+        <member name="M:Stx.Utilities.ThreadSafeData.InvokeAllEvents">
+            <summary>
+            Invokes all pending events on the current thread.
+            </summary>
+        </member>
+        <member name="M:Stx.Utilities.ThreadSafeData.Invoke(System.Action)">
+            <summary>
+            Invokes a event thread-safely, call it using <see cref="M:Stx.Utilities.ThreadSafeData.InvokeAllEvents"/>.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="T:Stx.Utilities.XorShift">
+            <summary>
+            XorShift random number generators are a class of pseudo-random number generators that were discovered by George Marsaglia.
+            </summary>
+        </member>
+    </members>
+</doc>
