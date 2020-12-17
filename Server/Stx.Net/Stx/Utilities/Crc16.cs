@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Stx.Utilities
+{
+    public class Crc16
+    {
+        public Table CrcTable { private get; set; } = DefaultTable;
+
+        public static Table DefaultTable { private get; set; } = new Table(256, 0xA001);
+
+        public ushort ComputeChecksum(byte[] bytes)
+        {
+            ushort crc = 0;
+            for (int i = 0; i < bytes.Length; ++i)
+            {
+                byte index = (byte)(crc ^ bytes[i]);
+                crc = (ushort)((crc >> 8) ^ CrcTable.table[index]);
+            }
+            return crc;
+        }
+
+        public byte[] ComputeChecksumBytes(byte[] bytes)
+        {
+            ushort crc = ComputeChecksum(bytes);
+            return BitConverter.GetBytes(crc);
+        }
+
+        public class Table
+        {
+            public ushort[] table;
+
+            public Table(int length = 256, ushort polynominal = 0xA001)
+            {
+                table = new ushort[length];
+
+                ushort value;
+                ushort temp;
+
+                for (ushort i = 0; i < table.Length; ++i)
+                {
+                    value = 0;
+                    temp = i;
+
+                    for (byte j = 0; j < 8; ++j)
+                    {
+                        if (((value ^ temp) & 0x0001) != 0)
+                        {
+                            value = (ushort)((value >> 1) ^ polynominal);
+                        }
+                        else
+                        {
+                            value >>= 1;
+                        }
+
+                        temp >>= 1;
+                    }
+
+                    table[i] = value;
+                }
+            }
+        }
+    }
+}

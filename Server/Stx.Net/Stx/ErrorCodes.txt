@@ -1,0 +1,44 @@
+#-1: Debug error.
+#0: Client cannot connect to server error. (Stx.Net.Client)
+#1: Cannot send using socket.
+#2: Save ClientIdentity write error. (Stx.Net.ServerOnly.Server)
+#3: Load ClientIdentity read error. (Stx.Net.ServerOnly.Server)
+#4: Could not stop connection with client. (Stx.Net.ServerOnly.Server)
+#5: ClientID got illegally set. 
+#6: Could not authorize on the server, invalid token. (Stx.Net.Client)
+#7: Server closed down, could not receive data. (Stx.Net.Client)
+#8: Could not deserialize.
+#9: Could not serialize.
+#10: Could not load from JSON configuration file.
+#11: Could not save to JSON configuration file.
+#12: Could not check for update. (Stx.Net.Client)
+#13: Could not listen for clients. (Stx.Net.ServerOnly.Server)
+#14: Could not disconnect banned player. (Stx.Net.ServerOnly.Server)
+
+#15: Could not enable plugin. (Stx.PluginArchitecture.PluginLoader)
+#16: Could not disable plugin. (Stx.PluginArchitecture.PluginLoader)
+#17: Could not load plugin(s). (Stx.PluginArchitecture.PluginLoader)
+#18: Could not enable plugin. (Stx.PluginArchitecture.PluginLoader)
+#19: Could not disable plugin. (Stx.PluginArchitecture.PluginLoader)
+
+#20: Cannot authorize, either could not send or receive. (Stx.Net.Client)
+
+#21: Could not create end point(IP/port) from input. (Stx.VoiceBytes) 
+#22: Could not connect to VoiceServer. (Stx.VoiceBytes.Net.VoiceServer)
+#23: Could not start output audio device. (Stx.VoiceBytes.Net.VoiceClient)
+#24: Could not start input audio device. (Stx.VoiceBytes.Net.VoiceClient)
+#25: Could not send to voice server. (Stx.VoiceBytes.Net.VoiceClient)
+#26: Could not receive from voice client. (Stx.VoiceBytes.Net.VoiceServer)
+#27: Could not receive from voice server. (Stx.VoiceBytes.Net.VoiceClient)
+
+#28: Invalid application name or version or invalid client data.
+
+#29: Could not set property while deserializing. (Stx.Serialization.Bytifier)
+#30: The serialized input did not provide a type code, please include on the serializing side. (Stx.Serialization.Bytifier)
+#31: Could not serialize: a non-included type was found, please include. (Stx.Serialization.Bytifier)
+#32: The include border has been reached, please remove some unnecessary includes. (Stx.Serialization.Bytifier)
+#33: Please pick a higher type-code, the specified one is too low.
+#34: Please mark the included type with the IByteDefined<T> interface.
+#35: The included type is not an enum.
+
+#36: Could not add/remove from concurrent collection.
