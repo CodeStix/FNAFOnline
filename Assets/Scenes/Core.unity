@@ -143,13 +143,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: localhost:1987
-  clientIDOverride: gfhj
+  clientIDOverride: sdfg
   connectOnStart: 1
   connectAsync: 1
   applicationInfo:
-    applicationKey: f689f430-1633-4489-a65b-35f7d6d949a4
+    applicationKey: 1c4371d9-c8b3-4305-b29c-f719715ae2df
     applicationName: FNAFOnline
-    applicationVersion: 1.0
+    applicationVersion: 1.1
   doConnectDelay: 2
   reconnectTime: 8
   mainScene: GameMenu

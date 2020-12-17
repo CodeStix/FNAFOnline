@@ -24,11 +24,12 @@ public class SoundEffects : MonoBehaviour
     {
         if (soundEffectsClass != null)
         {
-            Debug.LogWarning("Multiple SoundEffect instances found. Destroying unneeded unit.");
-
-            Destroy(soundEffectsClass.gameObject);
+            Debug.LogWarning("Multiple SoundEffect instances found. Destroying this one.");
+            Destroy(gameObject);
+            return;
         }
 
+        DontDestroyOnLoad(this);
         soundEffectsClass = this;
 
         audioLPFs.Clear();

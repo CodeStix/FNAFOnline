@@ -14,7 +14,14 @@ public class States : MonoBehaviour
     private GameObject[] states = new GameObject[] { };
     private int current = 0;
 
-    void Awake()
+
+    void OnEnable()
+    {
+        if (randomizeOnEnable)
+            JumpRandom();
+    }
+
+    void Start()
     {
         states = new GameObject[transform.childCount];
 
@@ -25,16 +32,7 @@ public class States : MonoBehaviour
             current = Random.Range(0, states.Length);
         else
             current = startingState;
-    }
 
-    void OnEnable()
-    {
-        if (randomizeOnEnable)
-            JumpRandom();
-    }
-
-    void Start()
-    {
         UpdateStates();
     }
 
