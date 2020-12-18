@@ -18,22 +18,24 @@ public class JoinMenu : MonoBehaviour
 
     private bool didTryJoin = false;
 
+    public void JoinRandom()
+    {
+        joinRandomButton.interactable = false;
+
+        StxUnityClient.F.JoinRandomRoomAsync(MatchmakingQuery.MatchAll, (state, r) =>
+        {
+            joinRandomButton.interactable = true;
+
+            if (state.WasSuccessful())
+                StxUnityClient.Instance.SceneSwitchLobby();
+            else
+                StxUnityClient.Instance.DisplayAlert($"Could not join random room.\nTry creating one.", "Joining Problem", false);
+        }, new RoomTemplate(4));
+    }
+
     void Start()
     {
-        joinRandomButton.onClick.AddListener(() =>
-        {
-            joinRandomButton.interactable = false;
-
-            StxUnityClient.F.JoinRandomRoomAsync(MatchmakingQuery.MatchAll, (state, r) =>
-            {
-                joinRandomButton.interactable = true;
-
-                if (state.WasSuccessful())
-                    StxUnityClient.Instance.SceneSwitchLobby();
-                else
-                    StxUnityClient.Instance.DisplayAlert($"Could not join random room.\nTry creating one.", "Joining Problem", false);
-            }, new RoomTemplate(4));
-        });
+        joinRandomButton.onClick.AddListener(JoinRandom);
 
         roomCodeInput.onValueChanged.AddListener((str) =>
         {
