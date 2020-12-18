@@ -335,7 +335,7 @@
         </member>
         <member name="P:Stx.Net.RoomBased.Room.RoomCode">
             <summary>
-            The code of this room, used to let others easily join to this room.
+            The code of this room, used to let others easily join this room.
             </summary>
         </member>
         <member name="P:Stx.Net.RoomBased.Room.RequiredPlayerCount">

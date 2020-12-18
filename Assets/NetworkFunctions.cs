@@ -69,7 +69,7 @@ public class NetworkFunctions : MonoBehaviour
                 SetLight((string)p.Data["Light"]);
             else if (p.Data.Requires<string>("LookingMapBlib"))
                 SetLookingMapBlib((string)p.Data["LookingMapBlib"]);
-            else if (p.Data.ContainsKey("ZeroPower"))
+            else if (p.Data.ContainsKey("ZeroPower")) 
                 SetZeroPower();
             else if (p.Data.Requires<string>("SendBackGoldenFreddy"))
                 SetMove("GoldenFreddy", (string)p.Data["SendBackGoldenFreddy"], true);
@@ -158,7 +158,7 @@ public class NetworkFunctions : MonoBehaviour
         Hashtable data = new Hashtable();
         data.Add(changedName, value);
 
-        StxUnityClient.F.RequestAsync("FNAFOffice", data);
+        StxUnityClient.F.RequestAsync("FNAFOfficeChanged", data);
     }
 
     private void SendGameCourse(string changedName)

@@ -1120,6 +1120,98 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &621490378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 621490379}
+  - component: {fileID: 621490382}
+  - component: {fileID: 621490381}
+  - component: {fileID: 621490380}
+  m_Layer: 5
+  m_Name: TextRoomCode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &621490379
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621490378}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1859161117}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000021935, y: -149.9}
+  m_SizeDelta: {x: 0.00012207031, y: -139.51459}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &621490380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621490378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -942456532, guid: 8033a32029000124fae0b2b2877e0501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: 4
+  textFormat: 'Room code: <color=#EE5511><i>{0}</i></color>'
+--- !u!114 &621490381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621490378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0.9411765}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 2
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 32
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 0.8
+  m_Text: 'Room code:'
+--- !u!222 &621490382
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621490378}
+  m_CullTransparentMesh: 0
 --- !u!1 &721138348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,7 +1706,7 @@ PrefabInstance:
     - target: {fileID: 224539541781482004, guid: cd9460c54000ea146bc63fee10395754,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000010807036
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224539541781482004, guid: cd9460c54000ea146bc63fee10395754,
         type: 3}
@@ -2342,6 +2434,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1865044434}
+  - {fileID: 621490379}
   m_Father: {fileID: 517873448}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2481,9 +2574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: 1
-  textFormat: 'Are you ready for a spooky night?
-
-    <color=#EE5511><i>{0}</i></color>'
+  textFormat: Are you ready for a spooky night, <color=#EE5511><i>{0}</i></color>?
 --- !u!1001 &2022680003
 PrefabInstance:
   m_ObjectHideFlags: 0

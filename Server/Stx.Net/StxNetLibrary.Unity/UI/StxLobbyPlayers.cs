@@ -70,6 +70,7 @@ namespace Stx.Net.Unity.UI
 
             StxInfoText.Infos.currentRoomPlayerCount = r.PlayerCount;
             StxInfoText.Infos.currentRoomName = r.Name;
+            StxInfoText.Infos.currentRoomCode = r.RoomCode;
         }
 
         void OnDisable()

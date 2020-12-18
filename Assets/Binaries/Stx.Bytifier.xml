@@ -43,7 +43,7 @@
         </member>
         <member name="T:Stx.Serialization.Bytifier">
             <summary>
-            Fast object serializing method used to send objects over network. Does not support version control.
+            Object serializing system used to send objects over network. Does not support version control.
             </summary>
         </member>
         <member name="M:Stx.Serialization.Bytifier.IncludeManually(System.Type,System.Byte)">

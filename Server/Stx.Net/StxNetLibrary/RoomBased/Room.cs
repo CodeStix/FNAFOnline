@@ -42,7 +42,7 @@ namespace Stx.Net.RoomBased
         /// </summary>
         public bool Locked { get; private set; }
         /// <summary>
-        /// The code of this room, used to let others easily join to this room.
+        /// The code of this room, used to let others easily join this room.
         /// </summary>
         public string RoomCode { get; set; } = null;
         /// <summary>

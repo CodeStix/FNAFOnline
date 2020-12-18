@@ -20,7 +20,7 @@ public class SoundEffects : MonoBehaviour
     public const string AUDIO_SOURCE_NAME = "Audio Source: ";
     public const float ALLTIME_VOLUME_MULTIPLIER = 0.75f;
 
-    void Awake()
+    void Start()
     {
         if (soundEffectsClass != null)
         {
@@ -55,13 +55,11 @@ public class SoundEffects : MonoBehaviour
             audioReverb.reverbPreset = soundEff.reverb;
             audioReverbs.Add(soundEff, audioReverb);
         }
-    }
 
-    void Start()
-    {
         foreach (string s in startSounds)
             Play(s);
     }
+
 
     public void PlayGlobal(string name)
     {

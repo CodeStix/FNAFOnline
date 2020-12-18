@@ -11,7 +11,7 @@ using System.Text;
 namespace Stx.Serialization
 {
     /// <summary>
-    /// Fast object serializing method used to send objects over network. Does not support version control.
+    /// Object serializing system used to send objects over network. Does not support version control.
     /// </summary>
     public static class Bytifier
     {

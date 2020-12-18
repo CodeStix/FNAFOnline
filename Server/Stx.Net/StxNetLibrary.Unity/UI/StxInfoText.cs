@@ -50,6 +50,10 @@ namespace Stx.Net.Unity.UI
                 case StxInfoTextSource.CurrentRoomName:
                     SetText(Infos.currentRoomName);
                     break;
+
+                case StxInfoTextSource.CurrentRoomCode:
+                    SetText(Infos.currentRoomCode);
+                    break;
             }
         }
 
@@ -61,6 +65,7 @@ namespace Stx.Net.Unity.UI
         public static class Infos
         {
             public static string currentRoomName = null;
+            public static string currentRoomCode = null;
             public static int currentRoomPlayerCount = 0;
         }
     }
@@ -71,6 +76,7 @@ namespace Stx.Net.Unity.UI
         YourName,
         YourID,
         CurrentRoomName,
+        CurrentRoomCode,
         CurrentRoomPlayerCount,
         Ping
     }

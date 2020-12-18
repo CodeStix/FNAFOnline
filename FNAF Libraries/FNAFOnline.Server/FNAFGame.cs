@@ -207,7 +207,7 @@ namespace FNAFOnline.Server
 
             RegisterHandler("FNAFMoveEntity", RequestMoveEntity);
             RegisterHandler("FNAFHack", RequestHack);
-            RegisterHandler("FNAFOffice", RequestOffice);
+            RegisterHandler("FNAFOfficeChanged", RequestOffice);
             RegisterHandler("FNAFRequireSetup", RequestRequireSetup);
             RegisterHandler("FNAFGameCourse", RequestGameCourse);
 
