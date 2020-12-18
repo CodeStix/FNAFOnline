@@ -1212,6 +1212,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundEffects
       objectReference: {fileID: 0}
+    - target: {fileID: 114305541539698752, guid: 393e1066fc469f24788765304ea7cedb,
+        type: 3}
+      propertyPath: soundEffects.Array.data[7].sounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114305541539698752, guid: 393e1066fc469f24788765304ea7cedb,
+        type: 3}
+      propertyPath: soundEffects.Array.data[7].sounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a33f5c897129ca6408612171f425afb6, type: 3}
+    - target: {fileID: 114305541539698752, guid: 393e1066fc469f24788765304ea7cedb,
+        type: 3}
+      propertyPath: soundEffects.Array.data[7].sounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2726ad0761c5aca43b8359209b4d190a, type: 3}
+    - target: {fileID: 114305541539698752, guid: 393e1066fc469f24788765304ea7cedb,
+        type: 3}
+      propertyPath: soundEffects.Array.data[7].sounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: e931c38de4a56884891f5809a98a2fed, type: 3}
     - target: {fileID: 224150329851904350, guid: 393e1066fc469f24788765304ea7cedb,
         type: 3}
       propertyPath: m_LocalPosition.x
