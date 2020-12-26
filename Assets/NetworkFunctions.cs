@@ -14,6 +14,7 @@ public class NetworkFunctions : MonoBehaviour
     public RoomScheme freddyRoomScheme;
     public RoomScheme foxyRoomScheme;
     public RoomScheme goldenFreddyRoomScheme;
+    public UnityEvent onAftonGotCaughtMoving;
     //[Space]
     //public GameObject[] toDisableIfSecurity;
     //public GameObject[] toDisableIfNotSecurity;
@@ -46,7 +47,9 @@ public class NetworkFunctions : MonoBehaviour
     public UnityEvent onCallAccepted;
     public UnityEvent onStopCall;
 
-    void OnEnable()
+    private string lookingCameraName = "";
+
+    void Start()
     {
         waitingPlayersScreen.Status("Waiting for other players...");
         waitingPlayersScreen.Progress(0.6f);
@@ -99,7 +102,7 @@ public class NetworkFunctions : MonoBehaviour
         }));
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFEntityMoved");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFOfficeChanged");
@@ -246,33 +249,41 @@ public class NetworkFunctions : MonoBehaviour
 
     public void SetMoveBonnie(string room)
     {
+        if (NightSetup.isAfton && (room == lookingCameraName || bonnieRoomScheme.GetCurrentRoom().roomName == lookingCameraName))
+            onAftonGotCaughtMoving.Invoke();
         bonnieRoomScheme.ForceMoveNamed(room);
     }
 
     public void SetMoveChica(string room)
     {
+        if (NightSetup.isAfton && (room == lookingCameraName || chicaRoomScheme.GetCurrentRoom().roomName == lookingCameraName))
+            onAftonGotCaughtMoving.Invoke();
         chicaRoomScheme.ForceMoveNamed(room);
     }
 
     public void SetMoveFreddy(string room)
     {
+        if (NightSetup.isAfton && (room == lookingCameraName || freddyRoomScheme.GetCurrentRoom().roomName == lookingCameraName))
+            onAftonGotCaughtMoving.Invoke();
         freddyRoomScheme.ForceMoveNamed(room);
     }
 
     public void SetMoveFoxy(string room)
     {
+        if (NightSetup.isAfton && (room == lookingCameraName || foxyRoomScheme.GetCurrentRoom().roomName == lookingCameraName))
+            onAftonGotCaughtMoving.Invoke();
         foxyRoomScheme.ForceMoveNamed(room);
     }
 
     public void SetMoveGoldenFreddy(string room)
     {
+        if (NightSetup.isAfton && (room == lookingCameraName || goldenFreddyRoomScheme.GetCurrentRoom().roomName == lookingCameraName))
+            onAftonGotCaughtMoving.Invoke();
         goldenFreddyRoomScheme.ForceMoveNamed(room);
     }
     
     public void SetPhone(bool enable)
     {
-        Debug.Log("Set phone " + enable);
-
         if (enable)
         {
             onIncomingCall.Invoke();
@@ -282,43 +293,6 @@ public class NetworkFunctions : MonoBehaviour
         {
             onStopCall.Invoke();
         }
-    }
-
-    public void SendBackBonnie()
-    {
-        RoomConnection room = bonnieRoomScheme.GetRandomStartingRoom();
-        //SoundEffects.Play("KnockLeft");
-        SendMove("Bonnie", room.roomName, true);
-    }
-
-    public void SendBackChica()
-    {
-        RoomConnection room = chicaRoomScheme.GetRandomStartingRoom();
-        //SoundEffects.Play("KnockRight");
-        SendMove("Chica", room.roomName, true);
-    }
-
-    public void SendBackFreddy()
-    {
-        RoomConnection room = freddyRoomScheme.GetRandomStartingRoom();
-        //SoundEffects.Play("KnockRight");
-        SendMove("Freddy", room.roomName, true);
-    }
-
-    public void SendBackFoxy()
-    {
-        RoomConnection room = foxyRoomScheme.GetRandomStartingRoom();
-        //SoundEffects.Play("KnockLeft");
-        SendMove("Foxy", room.roomName, true);
-    }
-
-    public void SendBackGoldenFreddy()
-    {
-        if (goldenFreddyRoomScheme.GetCurrentRoom().roomName != "Office" || !NightSetup.isGuard)
-            return;
-
-        RoomConnection room = goldenFreddyRoomScheme.GetRandomStartingRoom();
-        SendOfficeChange("SendBackGoldenFreddy", room.roomName);
     }
 
     public void SendDoor(string value)
@@ -383,9 +357,6 @@ public class NetworkFunctions : MonoBehaviour
     {
         int i = int.Parse(value);
 
-        if (NightSetup.isGuard)
-            return;
-
         if (NightSetup.isObserver)
         {
             if (i >= 11)
@@ -399,13 +370,14 @@ public class NetworkFunctions : MonoBehaviour
                 cameraButtons.transform.GetChild(i).GetComponent<ClickEvent>().clickEvent?.Invoke();
             }
         }
-
-        if (NightSetup.isAfton)
+        else if (NightSetup.isAfton)
         {
             if (i < 0)
                 securityGuardBlibs.JumpLast();
             else
                 securityGuardBlibs.Jump(i);
+
+            lookingCameraName = securityGuardBlibs.GetCurrentStateName();
         }
     }
 

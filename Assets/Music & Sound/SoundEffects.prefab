@@ -614,3 +614,16 @@ MonoBehaviour:
     loop: 0
     LPF: 22000
     reverb: 0
+  - name: CameraCaught
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 4776800f9fa7527489b0c98099959b90, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
