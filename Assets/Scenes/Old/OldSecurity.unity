@@ -286,8 +286,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &3796720
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,8 +418,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &3796726
 SpriteRenderer:
@@ -1076,8 +1072,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &32469082
 BoxCollider2D:
@@ -1483,8 +1477,6 @@ MonoBehaviour:
           m_StringArgument: 10
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &40706277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,8 +1537,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -1619,8 +1609,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &40706282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1649,8 +1637,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &40706283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1938,8 +1924,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cameraButtons:
   - {fileID: 1843954698}
   - {fileID: 825594083}
@@ -1964,7 +1948,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &45764027
 MonoBehaviour:
@@ -2109,7 +2093,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &50670172
 AudioSource:
@@ -2247,8 +2231,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &56389421
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,8 +2286,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -2377,8 +2357,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -2393,8 +2371,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &69407667
 Transform:
@@ -2624,13 +2600,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &75927488
 Transform:
@@ -2756,6 +2728,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextTitle
       objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Text
+      value: /Office Hacking
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.52232695
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.43867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2804,7 +2826,7 @@ PrefabInstance:
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 409.5
+      value: 457.85004
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
@@ -2860,56 +2882,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.00008
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Text
-      value: /Office Hacking
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 39
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.52232695
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.43867922
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114717488207037974, guid: 8e14da9d5ef20204aa009d4e60d11a86, type: 3}
@@ -3163,8 +3135,6 @@ MonoBehaviour:
           m_StringArgument: RCLOSE
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &99086112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3191,8 +3161,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -3296,6 +3264,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextTitle
       objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Text
+      value: /Animatronics
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.52232695
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.43867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3344,7 +3362,7 @@ PrefabInstance:
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 409.5
+      value: 457.85004
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
@@ -3400,56 +3418,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.00008
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Text
-      value: /Animatronics
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 39
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.52232695
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.43867922
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114717488207037974, guid: 8e14da9d5ef20204aa009d4e60d11a86, type: 3}
@@ -3723,8 +3691,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   randomMovePreferChance: 0.8
 --- !u!4 &115390254
 Transform:
@@ -3753,7 +3719,7 @@ Transform:
   - {fileID: 1309570157}
   - {fileID: 391857907}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &115390255
 MonoBehaviour:
@@ -3825,8 +3791,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -4306,8 +4270,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -4350,8 +4312,6 @@ MonoBehaviour:
           m_StringArgument: LCLOSE
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &140344693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4482,8 +4442,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &142552183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4842,8 +4800,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -4955,6 +4911,26 @@ PrefabInstance:
     - target: {fileID: 1200379965741368, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
       propertyPath: m_Name
       value: ButtonMoveSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Text
+      value: / Animatronics
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -5109,6 +5085,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 64288b8c8a9246b439400837805d62ba,
         type: 3}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -13.3
+      objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5122,7 +5108,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9720
+      value: -9719.998
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -5152,17 +5138,17 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 579
+      value: -57
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -57.100006
+      value: -198.00003
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 341.07996
+      value: 341.08008
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -5172,7 +5158,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -5182,7 +5168,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -5192,12 +5178,12 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -5213,36 +5199,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.00008
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Text
-      value: / Animatronics
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 6.600006
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -13.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
@@ -5386,7 +5342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4930364535446766, guid: 4c73603e89c5f59449d5b2b673f113ef, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 114405749207532104, guid: 4c73603e89c5f59449d5b2b673f113ef,
         type: 3}
@@ -5534,13 +5490,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &173204941
 Transform:
@@ -5753,8 +5705,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -5769,8 +5719,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &177421547
 GameObject:
@@ -5926,8 +5874,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &177421551
 BoxCollider2D:
@@ -6182,13 +6128,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &200886862
 GameObject:
@@ -6426,8 +6368,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &201565311
 BoxCollider2D:
@@ -6665,8 +6605,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &222304024
 BoxCollider2D:
@@ -6776,8 +6714,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!212 &225480267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6980,8 +6916,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &237469692
 BoxCollider2D:
@@ -7059,13 +6993,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &240921393
 GameObject:
@@ -7102,7 +7032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 530, y: 244.59996}
+  m_AnchoredPosition: {x: 531, y: 196}
   m_SizeDelta: {x: 650.6, y: 84.400024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &240921395
@@ -7123,8 +7053,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -7222,13 +7150,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1001 &245438221
 PrefabInstance:
@@ -7653,8 +7577,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onClose:
     m_PersistentCalls:
       m_Calls:
@@ -7801,8 +7723,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &248981010
 GameObject:
   m_ObjectHideFlags: 0
@@ -7949,8 +7869,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -8122,8 +8040,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &249082337
 Transform:
   m_ObjectHideFlags: 0
@@ -8136,7 +8052,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &251614338
 GameObject:
@@ -8220,8 +8136,6 @@ MonoBehaviour:
           m_StringArgument: 8
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &256690133
 GameObject:
   m_ObjectHideFlags: 0
@@ -8438,13 +8352,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &257801816
 GameObject:
@@ -8714,8 +8624,6 @@ MonoBehaviour:
           m_StringArgument: 11
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &272190816
 GameObject:
   m_ObjectHideFlags: 0
@@ -8789,8 +8697,6 @@ MonoBehaviour:
           m_StringArgument: ROPEN
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &272190819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8817,8 +8723,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -9092,9 +8996,8 @@ RectTransform:
   - {fileID: 415530904}
   - {fileID: 1051461746}
   - {fileID: 40706278}
-  - {fileID: 828795254}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9363,8 +9266,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -9437,13 +9338,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1001 &318689517
 PrefabInstance:
@@ -9455,6 +9352,26 @@ PrefabInstance:
     - target: {fileID: 1200379965741368, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
       propertyPath: m_Name
       value: ButtonSendPower10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Text
+      value: 10%
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -9530,6 +9447,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
       value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.025016785
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.049988
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -9636,36 +9563,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Text
-      value: 10%
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.5882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.025016785
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -0.049988
-      objectReference: {fileID: 0}
-    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
 --- !u!224 &318689518 stripped
@@ -9750,8 +9647,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 425cc092169e3f94a9aad382d66c31d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -9802,7 +9697,7 @@ Transform:
   - {fileID: 892527019}
   - {fileID: 2094018864}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &330365617
 GameObject:
@@ -9884,8 +9779,6 @@ MonoBehaviour:
           m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &332369248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9896,6 +9789,56 @@ PrefabInstance:
     - target: {fileID: 1823790008881270, guid: 8e14da9d5ef20204aa009d4e60d11a86, type: 3}
       propertyPath: m_Name
       value: TextTitle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Text
+      value: /Camera System
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.52232695
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.43867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
@@ -9945,7 +9888,7 @@ PrefabInstance:
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 409.5
+      value: 457.85004
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
@@ -10001,56 +9944,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.00008
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Text
-      value: /Camera System
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 39
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.52232695
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.43867922
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114717488207037974, guid: 8e14da9d5ef20204aa009d4e60d11a86, type: 3}
@@ -10128,8 +10021,6 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &335225509
 SpriteRenderer:
@@ -10240,8 +10131,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -10256,8 +10145,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &336068910
 Transform:
@@ -10616,13 +10503,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &370100719
 GameObject:
@@ -10710,13 +10593,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &381938050
 Transform:
@@ -10765,7 +10644,7 @@ Transform:
   - {fileID: 520406566}
   - {fileID: 200871}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391828061
 GameObject:
@@ -11007,8 +10886,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &391857906
 GameObject:
   m_ObjectHideFlags: 0
@@ -11070,13 +10947,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &396093694
 GameObject:
@@ -11139,8 +11012,6 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &396093697
 SpriteRenderer:
@@ -11245,8 +11116,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: cb7b8140feea05041b315a64abff9405, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -11320,8 +11189,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -11481,13 +11348,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1001 &432603029
 PrefabInstance:
@@ -11530,7 +11393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4931695087263238, guid: 5e09a5df3e3668146b208d06d17792fc, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 114914485951547420, guid: 5e09a5df3e3668146b208d06d17792fc,
         type: 3}
@@ -11641,8 +11504,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -11668,8 +11529,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &435399965
 GameObject:
@@ -11721,13 +11580,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &440272928
 GameObject:
@@ -11806,7 +11661,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449589429
 GameObject:
@@ -11962,8 +11817,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &449589433
 BoxCollider2D:
@@ -12160,7 +12013,7 @@ Transform:
   - {fileID: 789736975}
   - {fileID: 1817994570}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &481935553
 GameObject:
@@ -12404,8 +12257,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &481962816
 SpriteRenderer:
@@ -12536,8 +12387,6 @@ MonoBehaviour:
           m_StringArgument: 7
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &487437058
 GameObject:
   m_ObjectHideFlags: 0
@@ -12593,8 +12442,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -12702,8 +12549,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -12718,8 +12563,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &493679726
 GameObject:
@@ -12770,7 +12613,7 @@ Transform:
   - {fileID: 847185724}
   - {fileID: 27855843}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &495899070
 GameObject:
@@ -12948,8 +12791,6 @@ MonoBehaviour:
           m_StringArgument: Coin
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &497353088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13166,8 +13007,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &514753001
 BoxCollider2D:
@@ -13349,8 +13188,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &517743790
 BoxCollider2D:
@@ -13658,8 +13495,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -13893,8 +13728,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &537346384
 SpriteRenderer:
@@ -14169,13 +14002,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &558708474
 GameObject:
@@ -15049,8 +14878,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled:
   - {fileID: 1854080883}
 --- !u!212 &628367865
@@ -15151,13 +14978,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &640532386
 GameObject:
@@ -15316,13 +15139,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &643986922
 Transform:
@@ -15388,13 +15207,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &645058087
 GameObject:
@@ -15716,8 +15531,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cooldown: 0.45
 --- !u!4 &663811603
 Transform:
@@ -15731,7 +15544,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &663811606
 MonoBehaviour:
@@ -15760,8 +15573,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cooldown: 0
 --- !u!1 &664206382
 GameObject:
@@ -15797,7 +15608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -729.4304, y: -336.3}
+  m_AnchoredPosition: {x: -729.4304, y: -368.3}
   m_SizeDelta: {x: 402.55, y: 66.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664206384
@@ -15818,8 +15629,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 740055a3ff6498149862c69afb8d5061, type: 3}
     m_FontSize: 14
@@ -16008,8 +15817,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cooldown: 0.5
 --- !u!114 &671471708
 MonoBehaviour:
@@ -16038,8 +15845,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cooldown: 0.5
 --- !u!114 &671471709
 MonoBehaviour:
@@ -16068,8 +15873,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cooldown: 0.1
 --- !u!114 &671471710
 MonoBehaviour:
@@ -16098,8 +15901,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cooldown: 0.1
 --- !u!1 &677237477
 GameObject:
@@ -16907,8 +16708,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -17115,8 +16914,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &725869518
 BoxCollider2D:
@@ -17337,8 +17134,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   randomMovePreferChance: 0.66
 --- !u!4 &746873933
 Transform:
@@ -17355,7 +17150,7 @@ Transform:
   - {fileID: 969317456}
   - {fileID: 435080413}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &751370298
 GameObject:
@@ -17407,8 +17202,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   randomMovePreferChance: 0.8
 --- !u!4 &751370300
 Transform:
@@ -17437,7 +17230,7 @@ Transform:
   - {fileID: 557401348}
   - {fileID: 237696202}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &751370301
 MonoBehaviour:
@@ -17754,8 +17547,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &755587373
 BoxCollider2D:
@@ -17891,7 +17682,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &758747609
 MonoBehaviour:
@@ -17963,8 +17754,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   securityGuardBlibs: {fileID: 1184595532}
   phoneGuy: {fileID: 493679727}
   phone: {fileID: 959483554}
@@ -17993,8 +17782,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onMayStart:
     m_PersistentCalls:
       m_Calls:
@@ -18009,8 +17796,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onExit:
     m_PersistentCalls:
       m_Calls:
@@ -18025,8 +17810,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   waitingPlayersScreen: {fileID: 906178339}
 --- !u!114 &758747612
 MonoBehaviour:
@@ -18122,7 +17905,7 @@ Transform:
   - {fileID: 2089768457}
   - {fileID: 142463778}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &772783544
 GameObject:
@@ -18325,8 +18108,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: e379e80e4862e444d91fc8fd4c148355, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -18498,8 +18279,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &776723283
 BoxCollider2D:
@@ -18568,7 +18347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4238319770167412, guid: 28da1dfdd4b73294f83c57e522cd7d2b, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 114759082526141990, guid: 28da1dfdd4b73294f83c57e522cd7d2b,
         type: 3}
@@ -19307,8 +19086,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -19410,139 +19187,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &828795253
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 301104356}
-    m_Modifications:
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -679.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 476.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -1378.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: -986.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224091410818440002, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224267244192169894, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -46.90001
-      objectReference: {fileID: 0}
-    - target: {fileID: 224267244192169894, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 93.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 224267244192169894, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 324.65002
-      objectReference: {fileID: 0}
-    - target: {fileID: 224267244192169894, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 433.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114962150703694074, guid: ce3264c40922aa142933c59528561086,
-        type: 2}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1829322156941100, guid: ce3264c40922aa142933c59528561086, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ce3264c40922aa142933c59528561086, type: 2}
---- !u!4 &828795254 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 828795253}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &830365359
 GameObject:
   m_ObjectHideFlags: 0
@@ -19646,9 +19290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c70d8faf09304a94eaf2a2c61e9649a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d13e77b7c17d794ca0205fafd9f7dd8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19823,8 +19465,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -19839,8 +19479,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &837866925
 Transform:
@@ -19866,6 +19504,26 @@ PrefabInstance:
     - target: {fileID: 1200379965741368, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
       propertyPath: m_Name
       value: ButtonItsMe
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Text
+      value: Its Me
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -19941,6 +19599,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
       value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.025016785
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.049988
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -20046,36 +19714,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.00008
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Text
-      value: Its Me
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.5882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.025016785
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -0.049988
-      objectReference: {fileID: 0}
-    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.39215687
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
@@ -20332,13 +19970,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &882520085
 GameObject:
@@ -20370,7 +20004,7 @@ Transform:
   - {fileID: 722700724}
   - {fileID: 192679806}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &885382059
 GameObject:
@@ -20660,7 +20294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -729.4304, y: -184}
+  m_AnchoredPosition: {x: -729.4304, y: -216}
   m_SizeDelta: {x: 402.55, y: 66.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &897983917
@@ -20681,8 +20315,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -20859,8 +20491,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &898009251
 BoxCollider2D:
@@ -20963,8 +20593,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -20979,8 +20607,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1001 &902945568
 PrefabInstance:
@@ -20992,6 +20618,26 @@ PrefabInstance:
     - target: {fileID: 1200379965741368, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
       propertyPath: m_Name
       value: ButtonOfficeHacking
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Text
+      value: / Office Hacking
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -21146,6 +20792,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 64288b8c8a9246b439400837805d62ba,
         type: 3}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -13.3
+      objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21159,7 +20815,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9720
+      value: -9719.998
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -21189,17 +20845,17 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 966.45996
+      value: -243
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -57.100098
+      value: -110
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 341.06
+      value: 341.06006
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -21209,7 +20865,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -21219,7 +20875,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -21229,12 +20885,12 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -21250,36 +20906,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.00008
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Text
-      value: / Office Hacking
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 6.600006
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -13.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
@@ -21388,8 +21014,6 @@ MonoBehaviour:
           m_StringArgument: 4
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &906178337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21526,15 +21150,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224607598653404566, guid: 088691a87735fa64bb9260bb5934aa37,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.57006836
-      objectReference: {fileID: 0}
     - target: {fileID: 224274638829327628, guid: 088691a87735fa64bb9260bb5934aa37,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224607598653404566, guid: 088691a87735fa64bb9260bb5934aa37,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.57006836
       objectReference: {fileID: 0}
     - target: {fileID: 224704865066480334, guid: 088691a87735fa64bb9260bb5934aa37,
         type: 3}
@@ -21713,8 +21337,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &923451057
 GameObject:
   m_ObjectHideFlags: 0
@@ -21909,13 +21531,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &928391859
 Transform:
@@ -21981,13 +21599,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1001 &932131285
 PrefabInstance:
@@ -22026,7 +21640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4531239142454942, guid: 882fd749024fe50468e4afcd301b28a3, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114993904413298532, guid: 882fd749024fe50468e4afcd301b28a3,
         type: 3}
@@ -22098,8 +21712,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -22114,8 +21726,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &944817752 stripped
 GameObject:
@@ -22197,8 +21807,6 @@ MonoBehaviour:
           m_StringArgument: 0
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &949273538
 GameObject:
   m_ObjectHideFlags: 0
@@ -22412,8 +22020,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -22526,7 +22132,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &959483560
 MonoBehaviour:
@@ -22880,8 +22486,6 @@ MonoBehaviour:
           m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &969317455
 GameObject:
   m_ObjectHideFlags: 0
@@ -22956,8 +22560,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -22972,8 +22574,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &974529380
 GameObject:
@@ -23037,8 +22637,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -23053,8 +22651,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &974529382
 Transform:
@@ -23202,8 +22798,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &985263920
 SpriteRenderer:
@@ -23385,8 +22979,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &985900684
 SpriteRenderer:
@@ -23486,13 +23078,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &997950563
 GameObject:
@@ -23567,8 +23155,6 @@ MonoBehaviour:
           m_StringArgument: ROFF
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &997950566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23595,8 +23181,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -23803,13 +23387,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1017771556
 GameObject:
@@ -24070,8 +23650,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1021083463
 BoxCollider2D:
@@ -24295,13 +23873,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1048406953
 GameObject:
@@ -24364,8 +23938,6 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &1048406956
 SpriteRenderer:
@@ -24471,8 +24043,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -24531,13 +24101,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1051724326
 Transform:
@@ -24610,8 +24176,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onMustWait:
     m_PersistentCalls:
       m_Calls:
@@ -24626,8 +24190,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1053270382
 Transform:
   m_ObjectHideFlags: 0
@@ -24640,7 +24202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1053270383
 MonoBehaviour:
@@ -25071,8 +24633,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1064997031
 GameObject:
   m_ObjectHideFlags: 0
@@ -25227,8 +24787,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1064997035
 BoxCollider2D:
@@ -25413,8 +24971,6 @@ MonoBehaviour:
           m_StringArgument: ErrorLeft
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -25567,8 +25123,6 @@ MonoBehaviour:
           m_StringArgument: ErrorLeft
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -25791,7 +25345,7 @@ Transform:
   - {fileID: 356719926}
   - {fileID: 677237478}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1102805002
 MonoBehaviour:
@@ -25863,7 +25417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a565d17ab24b60d4f87021fab6e91e8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: 4
+  startingState: 0
   randomStartingState: 0
   randomizeOnEnable: 0
 --- !u!1 &1115061641
@@ -26132,13 +25686,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1130703525
 GameObject:
@@ -26176,13 +25726,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1130703527
 Transform:
@@ -26205,6 +25751,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1603924664}
     m_Modifications:
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_Text
+      value: '[OK] Boot succesful. v1.3.07
+
+        [OK] Connection with animatronics established.
+
+
+        Welcome back Afton.
+
+
+        To move an animatronic, please wait for the timer to finish
+
+        and then navigate to <color=#FFFFFF>/Animatronics</color> and press the desired
+        square.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26253,7 +25825,7 @@ PrefabInstance:
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -67.29999
+      value: -18.849976
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
@@ -26294,32 +25866,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_Text
-      value: '[OK] Boot succesful. v1.3.07
-
-        [OK] Connection with animatronics established.
-
-
-        Welcome back Afton.
-
-
-        To move an animatronic, please wait for the timer to finish
-
-        and then navigate to <color=#FFFFFF>/Animatronics</color> and press the desired
-        square.'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 114591154415125988, guid: 8e14da9d5ef20204aa009d4e60d11a86,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e14da9d5ef20204aa009d4e60d11a86, type: 3}
@@ -26396,8 +25942,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -26412,8 +25956,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1134587232
 Transform:
@@ -26492,8 +26034,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -26508,8 +26048,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1143536716
 GameObject:
@@ -26657,8 +26195,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -26843,8 +26379,6 @@ MonoBehaviour:
           m_StringArgument: 2
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1151378729
 GameObject:
   m_ObjectHideFlags: 0
@@ -27026,8 +26560,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   nightSeconds: 270
   secondsPerHour: 45
   hours:
@@ -27060,8 +26592,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1151378731
 Transform:
   m_ObjectHideFlags: 0
@@ -27074,7 +26604,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1153329020
 MonoBehaviour:
@@ -27246,8 +26776,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1161126604
 BoxCollider2D:
@@ -27392,7 +26920,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: c76dbaaa9be1cb14d82ea1ce04b670ee, type: 2}
 --- !u!114 &1162025094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27478,7 +27005,7 @@ Transform:
   - {fileID: 247414477}
   - {fileID: 2086065457}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1162025098
 MonoBehaviour:
@@ -27629,8 +27156,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &1179929353
 SpriteRenderer:
@@ -27716,13 +27241,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1182323436
 Transform:
@@ -28006,7 +27527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187604057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.25, y: -1.05, z: 0}
+  m_LocalPosition: {x: 5.25, y: -1.37, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_Children:
   - {fileID: 1994150078}
@@ -28109,8 +27630,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   cooldown: 0.2
 --- !u!1 &1191219053
 GameObject:
@@ -28158,8 +27677,6 @@ MonoBehaviour:
           m_StringArgument: Circus
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1191219057
 Transform:
   m_ObjectHideFlags: 0
@@ -28172,7 +27689,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1200411760
 GameObject:
@@ -28326,8 +27843,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!82 &1202207495
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28452,8 +27967,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1209636594
 GameObject:
   m_ObjectHideFlags: 0
@@ -28625,8 +28138,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   minCheckTime: 8
   maxCheckTime: 20
 --- !u!4 &1224213949
@@ -28641,7 +28152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1224213950
 MonoBehaviour:
@@ -28682,8 +28193,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   minCheckTime: 7
   maxCheckTime: 20
 --- !u!114 &1224213951
@@ -28725,8 +28234,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   minCheckTime: 6
   maxCheckTime: 17
 --- !u!114 &1224213952
@@ -28768,8 +28275,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   minCheckTime: 6
   maxCheckTime: 15
 --- !u!114 &1224213953
@@ -29014,13 +28519,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1236592054
 GameObject:
@@ -29071,8 +28572,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -29087,8 +28586,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1236592056
 Transform:
@@ -29151,8 +28648,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   randomMovePreferChance: 0.72
 --- !u!4 &1243359347
 Transform:
@@ -29181,7 +28676,7 @@ Transform:
   - {fileID: 1479944048}
   - {fileID: 362258426}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1243992947
 GameObject:
@@ -29216,7 +28711,7 @@ Transform:
   - {fileID: 450100293}
   - {fileID: 1008681876}
   m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253431602
 GameObject:
@@ -29364,8 +28859,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled:
   - {fileID: 1479894107}
 --- !u!212 &1253431608
@@ -29716,8 +29209,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1284534078
 BoxCollider2D:
@@ -29808,8 +29299,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!82 &1288556858
 AudioSource:
   m_ObjectHideFlags: 0
@@ -30100,8 +29589,6 @@ MonoBehaviour:
           m_StringArgument: 6
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1291269676
 GameObject:
   m_ObjectHideFlags: 0
@@ -30238,8 +29725,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -30254,8 +29739,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1302090600
 GameObject:
@@ -30602,8 +30085,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -30618,8 +30099,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1309570156
 GameObject:
@@ -30671,13 +30150,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1318738743
 GameObject:
@@ -30891,8 +30366,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   noHoverTime: 0.35
 --- !u!61 &1337380223
 BoxCollider2D:
@@ -31030,8 +30503,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -31046,8 +30517,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1342090318
 Transform:
@@ -31270,13 +30739,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1395797369
 GameObject:
@@ -31953,6 +31418,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonSendPower50
       objectReference: {fileID: 0}
+    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Text
+      value: 50%
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -32027,6 +31512,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
       value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.025016785
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.049988
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -32133,36 +31628,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.00008
       objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Text
-      value: 50%
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.5882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.025016785
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -0.049988
-      objectReference: {fileID: 0}
-    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
 --- !u!224 &1411994186 stripped
@@ -32263,8 +31728,6 @@ MonoBehaviour:
           m_StringArgument: Kitchen
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -32290,8 +31753,6 @@ MonoBehaviour:
           m_StringArgument: Kitchen
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1414321745
 Transform:
@@ -32341,7 +31802,7 @@ RectTransform:
   - {fileID: 56389422}
   - {fileID: 906178338}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -32946,8 +32407,6 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &1446385050
 SpriteRenderer:
@@ -33256,8 +32715,6 @@ MonoBehaviour:
           m_StringArgument: 3
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1478389512
 GameObject:
   m_ObjectHideFlags: 0
@@ -33392,8 +32849,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -33436,8 +32891,6 @@ MonoBehaviour:
           m_StringArgument: LOPEN
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1479894107
 GameObject:
   m_ObjectHideFlags: 0
@@ -33593,13 +33046,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1484050568
 GameObject:
@@ -33637,13 +33086,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1484050570
 Transform:
@@ -33896,8 +33341,6 @@ MonoBehaviour:
           m_StringArgument: ErrorRight
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -34030,8 +33473,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: d9ed747dc4801be4f9d49d8df7018f62, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -34104,8 +33545,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2175a1e20139d347bf1bca5a1082284, type: 3}
     m_FontSize: 14
@@ -34191,8 +33630,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!82 &1523704903
 AudioSource:
   m_ObjectHideFlags: 0
@@ -34413,8 +33850,6 @@ MonoBehaviour:
           m_StringArgument: Kitchen
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -34440,8 +33875,6 @@ MonoBehaviour:
           m_StringArgument: Kitchen
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1533519159
 GameObject:
@@ -34559,7 +33992,7 @@ Transform:
   - {fileID: 696504730}
   - {fileID: 830365360}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1538261911
 GameObject:
@@ -34801,8 +34234,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1538261920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34831,8 +34262,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1540752384
 GameObject:
   m_ObjectHideFlags: 0
@@ -34908,8 +34337,6 @@ MonoBehaviour:
           m_StringArgument: ErrorRight
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -35058,8 +34485,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -35074,8 +34499,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1544492435
 Transform:
@@ -35453,7 +34876,7 @@ Transform:
   - {fileID: 1862414379}
   - {fileID: 1661798929}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1564499588
 GameObject:
@@ -35700,8 +35123,6 @@ MonoBehaviour:
           m_StringArgument: LOFF
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!212 &1574695429
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -35776,8 +35197,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -35972,8 +35391,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -35988,8 +35405,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1584540033
 GameObject:
@@ -36310,8 +35725,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1603704481
 GameObject:
   m_ObjectHideFlags: 0
@@ -36369,8 +35782,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -36551,8 +35962,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 62bf77bca3a6422418934b0ce0a02f0c, type: 3}
     m_FontSize: 14
@@ -36592,7 +36001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 732, y: 163}
+  m_AnchoredPosition: {x: 732, y: 123}
   m_SizeDelta: {x: 142.85999, y: 97.90997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1607440699
@@ -36813,8 +36222,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -36829,8 +36236,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1607827602
 Transform:
@@ -36856,6 +36261,26 @@ PrefabInstance:
     - target: {fileID: 1200379965741368, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
       propertyPath: m_Name
       value: ButtonCameraSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Text
+      value: / Camera System
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -37005,6 +36430,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: f02019ca978de8e48b82eb04b5d6a3fd,
         type: 3}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -13.3
+      objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37018,7 +36453,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9720
+      value: -9719.998
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -37048,17 +36483,17 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 194.45996
+      value: -421
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -57.100098
+      value: -198
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 341.09998
+      value: 341.1001
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -37068,7 +36503,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -37078,7 +36513,7 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -37088,12 +36523,12 @@ PrefabInstance:
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224908560057942830, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -37109,36 +36544,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Text
-      value: / Camera System
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087698647008602, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 6.600006
-      objectReference: {fileID: 0}
-    - target: {fileID: 224572438115516508, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -13.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114007206701405350, guid: a39b5d6ef5b368444858a41f9f971f8c,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.7058824
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39b5d6ef5b368444858a41f9f971f8c, type: 3}
@@ -37320,8 +36725,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1625980890
 BoxCollider2D:
@@ -37529,8 +36932,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1634961253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37570,8 +36971,6 @@ MonoBehaviour:
           m_StringArgument: RON
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1634961254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37598,8 +36997,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -37855,8 +37252,6 @@ MonoBehaviour:
           m_StringArgument: 9
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1644812001
 GameObject:
   m_ObjectHideFlags: 0
@@ -38150,8 +37545,6 @@ MonoBehaviour:
           m_StringArgument: Booting
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1652929304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38198,9 +37591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c70d8faf09304a94eaf2a2c61e9649a1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d13e77b7c17d794ca0205fafd9f7dd8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -38494,8 +37885,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled:
   - {fileID: 678895177}
 --- !u!212 &1664670382
@@ -38698,8 +38087,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1669091241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38750,8 +38137,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1669091242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38802,8 +38187,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1669091243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38854,8 +38237,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1669091244
 Transform:
   m_ObjectHideFlags: 0
@@ -38869,7 +38250,7 @@ Transform:
   m_Children:
   - {fileID: 13495376}
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1671987140
 GameObject:
@@ -39017,8 +38398,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -39169,13 +38548,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1680167847
 Transform:
@@ -39376,6 +38751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 864079442184107041, guid: 393e1066fc469f24788765304ea7cedb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 393e1066fc469f24788765304ea7cedb, type: 3}
@@ -39649,8 +39029,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 5a7ec25f554a46b4091b6a198ca0d8a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -39921,8 +39299,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: d81bc594f78dc1b4ea34e53003e32985, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -40157,8 +39533,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1765043788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40169,6 +39543,10 @@ PrefabInstance:
     - target: {fileID: 1667928004129176, guid: d977fb7119c511549a23fc1dc54730ad, type: 3}
       propertyPath: m_Name
       value: BonnieScare
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667928004129176, guid: d977fb7119c511549a23fc1dc54730ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4420896959550178, guid: d977fb7119c511549a23fc1dc54730ad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40273,7 +39651,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768524578
 GameObject:
@@ -40632,13 +40010,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1797548071
 GameObject:
@@ -40794,8 +40168,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1797548075
 BoxCollider2D:
@@ -40939,7 +40311,7 @@ Transform:
   - {fileID: 1434210680}
   - {fileID: 1463233489}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1817355048
 GameObject:
@@ -41286,8 +40658,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &1827802747
 SpriteRenderer:
@@ -41483,8 +40853,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -41636,13 +41004,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1835196056
 GameObject:
@@ -41699,8 +41063,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2175a1e20139d347bf1bca5a1082284, type: 3}
     m_FontSize: 14
@@ -41871,8 +41233,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -42141,8 +41501,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -42157,8 +41515,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1858293491
 Transform:
@@ -42564,8 +41920,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -42580,8 +41934,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1890419067
 GameObject:
@@ -42652,8 +42004,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c70d8faf09304a94eaf2a2c61e9649a1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -42817,8 +42167,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -43168,8 +42516,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -43211,7 +42557,7 @@ Transform:
   m_LocalScale: {x: 0.45, y: -0.11, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.32}
 --- !u!114 &1914887572
 MonoBehaviour:
@@ -43445,13 +42791,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &1929389145
 Transform:
@@ -43621,8 +42963,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1930261320
 BoxCollider2D:
@@ -43861,8 +43201,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -43877,8 +43215,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &1941794771
 GameObject:
@@ -43930,13 +43266,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1001 &1948001207
 PrefabInstance:
@@ -44319,8 +43651,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &1972744299
 BoxCollider2D:
@@ -44871,8 +44201,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0.3
   onlyIfActive: {fileID: 0}
@@ -45018,8 +44346,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1981194405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45059,8 +44385,6 @@ MonoBehaviour:
           m_StringArgument: LON
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1981194406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45236,8 +44560,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1995113035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45361,8 +44683,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   noHoverTime: 0
 --- !u!58 &1995573686
 CircleCollider2D:
@@ -45534,8 +44854,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!61 &2010622766
 BoxCollider2D:
@@ -45843,8 +45161,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -46110,8 +45426,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled:
   - {fileID: 1733818784}
 --- !u!212 &2027491683
@@ -46243,7 +45557,7 @@ Transform:
   - {fileID: 2015991001}
   - {fileID: 608756150}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2045333675
 GameObject:
@@ -46330,8 +45644,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls:
@@ -46346,8 +45658,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &2051683330
 GameObject:
@@ -46429,13 +45739,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &2055920618
 GameObject:
@@ -46688,8 +45994,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   canClick: 1
   noClickTime: 0
   onlyIfActive: {fileID: 0}
@@ -46873,13 +46177,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1001 &2080613264
 PrefabInstance:
@@ -47013,8 +46313,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2175a1e20139d347bf1bca5a1082284, type: 3}
     m_FontSize: 14
@@ -47118,8 +46416,6 @@ MonoBehaviour:
           m_StringArgument: Boot
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &2086065457
 Transform:
   m_ObjectHideFlags: 0
@@ -47319,8 +46615,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   toEnableIfEnabled: []
 --- !u!212 &2093274817
 SpriteRenderer:
@@ -47659,8 +46953,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2097215706
 GameObject:
   m_ObjectHideFlags: 0
@@ -47741,13 +47033,9 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!1 &2105036531
 GameObject:
@@ -47884,7 +47172,7 @@ Transform:
   - {fileID: 1717102543}
   - {fileID: 1667185610}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2118088410
 GameObject:
@@ -48183,13 +47471,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 
 --- !u!4 &2131100326
 Transform:
@@ -48358,8 +47642,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   randomMovePreferChance: 0.68
 --- !u!4 &2137180781
 Transform:
@@ -48391,7 +47673,7 @@ Transform:
   - {fileID: 1390659534}
   - {fileID: 633854248}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137320467
 GameObject:
@@ -48893,11 +48175,7 @@ MonoBehaviour:
   onMove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   onLeave:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   roomName: 

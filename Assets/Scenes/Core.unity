@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 1226382412, guid: 8033a32029000124fae0b2b2877e0501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: localhost:1987
-  clientIDOverride: sdfsdfsdfsdf
+  host: 192.168.0.8:1987
+  clientIDOverride: zxc
   connectOnStart: 1
   connectAsync: 1
   applicationInfo:
