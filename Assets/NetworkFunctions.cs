@@ -48,6 +48,7 @@ public class NetworkFunctions : MonoBehaviour
     public UnityEvent onStopCall;
 
     private string lookingCameraName = "";
+    private bool isCalling = false;
 
     void Start()
     {
@@ -284,13 +285,15 @@ public class NetworkFunctions : MonoBehaviour
     
     public void SetPhone(bool enable)
     {
-        if (enable)
+        if (enable && !isCalling)
         {
+            isCalling = true;
             onIncomingCall.Invoke();
             StartCoroutine(StopAndAcceptCallLater());
         }
-        else
+        else if (!enable && isCalling)
         {
+            isCalling = false;
             onStopCall.Invoke();
         }
     }
@@ -424,7 +427,7 @@ public class NetworkFunctions : MonoBehaviour
         yield return new WaitForSeconds(13f);
         onCallAccepted.Invoke();
         yield return new WaitForSeconds(60f);
-        onStopCall.Invoke();
+        SetPhone(false);
     }
 
     /*public void SendReturnToLobby()

@@ -144,8 +144,9 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1
     sounds:
-    - {fileID: 8300000, guid: e63a5bfa66783f04a84003032d9b1f6d, type: 3}
-    - {fileID: 8300000, guid: 087cfd99c8956ef428577c0e560543ea, type: 3}
+    - {fileID: 8300000, guid: a33f5c897129ca6408612171f425afb6, type: 3}
+    - {fileID: 8300000, guid: 2726ad0761c5aca43b8359209b4d190a, type: 3}
+    - {fileID: 8300000, guid: e931c38de4a56884891f5809a98a2fed, type: 3}
     randomizeSounds: 1
     loop: 1
     LPF: 22000
@@ -609,7 +610,7 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1
     sounds:
-    - {fileID: 8300000, guid: 5d9a7cc5cf217f04e8ee15130d75fd94, type: 3}
+    - {fileID: 8300000, guid: f1888f4948c81d74ca6942ccdd50e34f, type: 3}
     randomizeSounds: 0
     loop: 0
     LPF: 22000

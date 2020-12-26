@@ -11,27 +11,29 @@ public class SoundEffects : MonoBehaviour
     public static float volumeMultiplier = 1f;
     public static float masterVolume = 1f;
 
-    private static Dictionary<Sound, AudioSource> audioSources = new Dictionary<Sound, AudioSource>();
-    private static Dictionary<Sound, AudioLowPassFilter> audioLPFs = new Dictionary<Sound, AudioLowPassFilter>();
-    private static Dictionary<Sound, AudioReverbFilter> audioReverbs = new Dictionary<Sound, AudioReverbFilter>();
+    private Dictionary<Sound, AudioSource> audioSources = new Dictionary<Sound, AudioSource>();
+    private Dictionary<Sound, AudioLowPassFilter> audioLPFs = new Dictionary<Sound, AudioLowPassFilter>();
+    private Dictionary<Sound, AudioReverbFilter> audioReverbs = new Dictionary<Sound, AudioReverbFilter>();
+
     private static SoundEffects soundEffectsClass = null;
 
     public const string NO_SOUND_NAME = "NONE";
     public const string AUDIO_SOURCE_NAME = "Audio Source: ";
     public const float ALLTIME_VOLUME_MULTIPLIER = 0.75f;
 
-    void Start()
+    private void Awake()
     {
         if (soundEffectsClass != null)
         {
-            Debug.LogWarning("Multiple SoundEffect instances found. Destroying this one.");
-            Destroy(gameObject);
-            return;
+            Debug.LogWarning("Multiple SoundEffect instances found. Destroying other one.");
+            Destroy(soundEffectsClass.gameObject);
         }
 
-        DontDestroyOnLoad(this);
         soundEffectsClass = this;
+    }
 
+    void Start()
+    {
         audioLPFs.Clear();
         audioSources.Clear();
         audioReverbs.Clear();
@@ -60,6 +62,11 @@ public class SoundEffects : MonoBehaviour
             Play(s);
     }
 
+    private void OnDestroy()
+    {
+        if (soundEffectsClass == this)
+            soundEffectsClass = null;
+    }
 
     public void PlayGlobal(string name)
     {
@@ -73,15 +80,25 @@ public class SoundEffects : MonoBehaviour
 
     public static void Stop(string name)
     {
+        soundEffectsClass.StopSound(name);
+    }
+
+    public void StopSound(string name)
+    {
         if (string.IsNullOrEmpty(name))
             return;
 
-        foreach(Sound s in audioSources.Keys)
+        foreach (Sound s in audioSources.Keys)
             if (s.name.Trim().ToUpper() == name.Trim().ToUpper())
                 audioSources[s].Stop();
     }
 
     public static void Play(string name)
+    {
+        soundEffectsClass.PlaySound(name);
+    }
+
+    public void PlaySound(string name)
     {
         bool playedSomething = false;
 
