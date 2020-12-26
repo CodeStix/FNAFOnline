@@ -252,6 +252,8 @@ namespace FNAFOnline.Server
                 data.Add("AddPower", packet.Data["AddPower"]);
             if (packet.Data.Contains("ItsMeDistraction"))
                 data.Add("ItsMeDistraction", packet.Data["ItsMeDistraction"]);
+            if (packet.Data.Requires<bool>("Phone"))
+                data.Add("Phone", packet.Data["Phone"]);
 
             ServerRoom.TryBroadcast(sender.NetworkID, data, true);
 

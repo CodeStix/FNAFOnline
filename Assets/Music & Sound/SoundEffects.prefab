@@ -588,3 +588,29 @@ MonoBehaviour:
     loop: 0
     LPF: 22000
     reverb: 0
+  - name: PhoneRing
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 95fc88b91aa50d147866327c06f5f5d9, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0
+  - name: PhoneHangUp
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 1
+    sounds:
+    - {fileID: 8300000, guid: 5d9a7cc5cf217f04e8ee15130d75fd94, type: 3}
+    randomizeSounds: 0
+    loop: 0
+    LPF: 22000
+    reverb: 0

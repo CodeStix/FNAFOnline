@@ -1,6 +1,7 @@
 ﻿using FNAFOnline.Shared;
 using Stx.Net;
 using Stx.Net.Unity;
+using Stx.Net.VoiceBytes.Unity;
 using Stx.Utilities;
 using System.Collections;
 using UnityEngine;
@@ -40,6 +41,10 @@ public class NetworkFunctions : MonoBehaviour
     public UnityEvent onExit;
     [Space]
     public LoadingScreen waitingPlayersScreen;
+    [Space]
+    public UnityEvent onIncomingCall;
+    public UnityEvent onCallAccepted;
+    public UnityEvent onStopCall;
 
     void OnEnable()
     {
@@ -69,7 +74,7 @@ public class NetworkFunctions : MonoBehaviour
                 SetLight((string)p.Data["Light"]);
             else if (p.Data.Requires<string>("LookingMapBlib"))
                 SetLookingMapBlib((string)p.Data["LookingMapBlib"]);
-            else if (p.Data.ContainsKey("ZeroPower")) 
+            else if (p.Data.ContainsKey("ZeroPower"))
                 SetZeroPower();
             else if (p.Data.Requires<string>("SendBackGoldenFreddy"))
                 SetMove("GoldenFreddy", (string)p.Data["SendBackGoldenFreddy"], true);
@@ -81,6 +86,8 @@ public class NetworkFunctions : MonoBehaviour
                 SetAddPower((int)p.Data["AddPower"]);
             if (p.Data.Contains("ItsMeDistraction"))
                 SetItsMeDistraction();
+            if (p.Data.Requires<bool>("Phone"))
+                SetPhone((bool)p.Data["Phone"]);
         }));
 
         StxUnityClient.C.DataReceiver.AddHandler(new ObjectHandler("FNAFEveryoneLoaded", (e, p) =>
@@ -153,7 +160,7 @@ public class NetworkFunctions : MonoBehaviour
         StxUnityClient.F.RequestAsync("FNAFHack", data);
     }
 
-    private void SendOfficeChange(string changedName, string value)
+    private void SendOfficeChange(string changedName, object value)
     {
         Hashtable data = new Hashtable();
         data.Add(changedName, value);
@@ -261,40 +268,47 @@ public class NetworkFunctions : MonoBehaviour
     {
         goldenFreddyRoomScheme.ForceMoveNamed(room);
     }
+    
+    public void SetPhone(bool enable)
+    {
+        Debug.Log("Set phone " + enable);
+
+        if (enable)
+        {
+            onIncomingCall.Invoke();
+            StartCoroutine(StopAndAcceptCallLater());
+        }
+        else
+        {
+            onStopCall.Invoke();
+        }
+    }
 
     public void SendBackBonnie()
     {
         RoomConnection room = bonnieRoomScheme.GetRandomStartingRoom();
-        //bonnieRoomScheme.ForceMove(room);
         //SoundEffects.Play("KnockLeft");
-
         SendMove("Bonnie", room.roomName, true);
     }
 
     public void SendBackChica()
     {
         RoomConnection room = chicaRoomScheme.GetRandomStartingRoom();
-        //chicaRoomScheme.ForceMove(room);
         //SoundEffects.Play("KnockRight");
-
         SendMove("Chica", room.roomName, true);
     }
 
     public void SendBackFreddy()
     {
         RoomConnection room = freddyRoomScheme.GetRandomStartingRoom();
-        //freddyRoomScheme.ForceMove(room);
         //SoundEffects.Play("KnockRight");
-
         SendMove("Freddy", room.roomName, true);
     }
 
     public void SendBackFoxy()
     {
         RoomConnection room = foxyRoomScheme.GetRandomStartingRoom();
-        //foxyRoomScheme.ForceMove(room);
         //SoundEffects.Play("KnockLeft");
-
         SendMove("Foxy", room.roomName, true);
     }
 
@@ -304,13 +318,7 @@ public class NetworkFunctions : MonoBehaviour
             return;
 
         RoomConnection room = goldenFreddyRoomScheme.GetRandomStartingRoom();
-        //goldenFreddyRoomScheme.ForceMove(room);
-        /* SoundEffects.Play("KnockLeft");
-         SoundEffects.Play("KnockRight");*/
-
         SendOfficeChange("SendBackGoldenFreddy", room.roomName);
-
-        //SendMoveGoldenFreddy(room.roomName);
     }
 
     public void SendDoor(string value)
@@ -401,53 +409,22 @@ public class NetworkFunctions : MonoBehaviour
         }
     }
 
-    /*public void SendPhoneGuy(string value)
-    {
-        network.Send("PHONE", value);
-    }
-
-    public void SendRandomPhoneGuy()
-    {
-        network.Send("PHONE", Random.Range(0,phoneGuy.transform.childCount).ToString());
-    }
-
-    public void SetPhoneGuy(string value)
-    {
-        int i = int.Parse(value);
-        phoneGuy.Jump(i);
-    }
-
-    public void SendPhone(string value)
-    {
-        network.Send("NPHONE",value);
-    }
-
-    public void SetPhone(string value)
-    {
-        phone.SetActive(bool.Parse(value));
-    }*/
-
     public void SendZeroPower()
     {
-        SendOfficeChange("ZeroPower", bool.TrueString);
+        SendOfficeChange("ZeroPower", true);
     }
 
     public void SetZeroPower()
     {
         onPowerZeroNotSecurity.Invoke();
-
         //night.PowerDown();
     }
 
-    /*public void SendPower(string value)
+    public void SendPhone(bool enable)
     {
-        SendOfficeChange("Power", value);
-    }*/
-
-    /*public void SetPower(string value)
-    {
-        night.SetPower(int.Parse(value));
-    }*/
+        SendHack("Phone", enable);
+        SetPhone(enable);
+    }
 
     public void SendAddPower(int powerToSend)
     {
@@ -468,6 +445,14 @@ public class NetworkFunctions : MonoBehaviour
     {
         if (onDistract != null)
             onDistract.Invoke();
+    }
+
+    private IEnumerator StopAndAcceptCallLater()
+    {
+        yield return new WaitForSeconds(13f);
+        onCallAccepted.Invoke();
+        yield return new WaitForSeconds(60f);
+        onStopCall.Invoke();
     }
 
     /*public void SendReturnToLobby()

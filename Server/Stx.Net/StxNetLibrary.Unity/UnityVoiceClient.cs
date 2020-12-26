@@ -13,7 +13,7 @@ namespace Stx.Net.VoiceBytes.Unity
         public KeyCode pushToTalk = KeyCode.None;
 
         public Dictionary<int, AudioSource> VoiceOuts { get; private set; }
-        public bool EnableIn { get; set; } = true;
+        public bool EnableIn { get; set; } = false;
         public bool EnableOut { get; set; } = true;
 
         private UdpClient client;
