@@ -105,10 +105,12 @@ public class NetworkFunctions : MonoBehaviour
 
     void OnDestroy()
     {
+        Debug.LogWarning("OnDestroy 1");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFEntityMoved");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFOfficeChanged");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFHacked");
-        StxUnityClient.C.DataReceiver.RemoveHandler("FNAFGameCourse");
+        StxUnityClient.C.DataReceiver.RemoveHandler("FNAFEveryoneLoaded");
+        Debug.LogWarning("OnDestroy 2");
     }
 
     public void SendLeft()

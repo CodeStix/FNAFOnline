@@ -10,7 +10,7 @@ namespace Stx.Collections.Concurrent
 {
     public class ConcurrentList<T> : IList<T>, ICollection<T>
     {
-        public List<T> Underlaying { get; set; }
+        private List<T> inner;
 
         public int Count
         {
@@ -18,7 +18,7 @@ namespace Stx.Collections.Concurrent
             {
                 lock (Locker)
                 {
-                    return Underlaying.Count;
+                    return inner.Count;
                 }
             }
         }
@@ -31,14 +31,14 @@ namespace Stx.Collections.Concurrent
             {
                 lock(Locker)
                 {
-                    return Underlaying[index];
+                    return inner[index];
                 }
             }
             set
             {
                 lock (Locker)
                 {
-                    Underlaying[index] = value;
+                    inner[index] = value;
                 }
             }
         }
@@ -47,20 +47,20 @@ namespace Stx.Collections.Concurrent
         {
             get
             {
-                return ((ICollection)Underlaying).SyncRoot;
+                return ((ICollection)inner).SyncRoot;
             }
         }
 
         public ConcurrentList()
         {
-            Underlaying = new List<T>();
+            inner = new List<T>();
         }
 
         public void Add(T item)
         {
             lock (Locker)
             {
-                Underlaying.Add(item);
+                inner.Add(item);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Stx.Collections.Concurrent
         {
             lock (Locker)
             {
-                Underlaying.AddRange(items);
+                inner.AddRange(items);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Stx.Collections.Concurrent
         {
             lock (Locker)
             {
-                Underlaying.Clear();
+                inner.Clear();
             }
         }
 
@@ -84,7 +84,7 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                return Underlaying.Contains(item);
+                return inner.Contains(item);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Stx.Collections.Concurrent
         {
             lock (Locker)
             {
-                Underlaying.CopyTo(array, arrayIndex);
+                inner.CopyTo(array, arrayIndex);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Stx.Collections.Concurrent
         {
             lock (Locker)
             {
-                return Underlaying.Remove(item);
+                return inner.Remove(item);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                return Underlaying.GetEnumerator();
+                return inner.GetEnumerator();
             }
         }
 
@@ -116,7 +116,7 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                return Underlaying.GetEnumerator();
+                return inner.GetEnumerator();
             }
         }
 
@@ -141,7 +141,7 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                return Underlaying.IndexOf(item);
+                return inner.IndexOf(item);
             }
         }
 
@@ -149,7 +149,7 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                Underlaying.Insert(index, item);
+                inner.Insert(index, item);
             }
         }
 
@@ -157,7 +157,7 @@ namespace Stx.Collections.Concurrent
         {
             lock (Locker)
             {
-                Underlaying.RemoveAt(index);
+                inner.RemoveAt(index);
             }
         }
 
@@ -165,7 +165,7 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                return Underlaying.ToArray();
+                return inner.ToArray();
             }
         }
 
@@ -173,7 +173,7 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                Underlaying.ForEach(action);
+                inner.ForEach(action);
             }
         }
 
@@ -181,21 +181,16 @@ namespace Stx.Collections.Concurrent
         {
             lock(Locker)
             {
-                return new List<T>(Underlaying);
+                return new List<T>(inner);
             }
         }
-        /*public T First(Func<T, bool> check, T defaultValue = default(T))
+
+        public void RemoveAll(Predicate<T> where)
         {
             lock(Locker)
             {
-                foreach(T item in Underlaying)
-                {
-                    if (check.Invoke(item))
-                        return item;
-                }
+                inner.RemoveAll(where);
             }
-
-            return defaultValue;
-        }*/
+        }
     }
 }

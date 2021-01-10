@@ -68,13 +68,7 @@ namespace Stx.Net
 
         public void RemoveHandler(string withKey)
         {
-            lock(handlers.Locker)
-            {
-                var v = handlers.Where((e) => e.requiredKey == withKey);
-
-                foreach (var vv in v)
-                    handlers.Remove(vv);
-            }
+            handlers.RemoveAll((e) => e.requiredKey == withKey);
         }
 
         /// <summary>
