@@ -8,6 +8,7 @@ namespace Stx.Net.Unity.UI
 {
     public class StxLobbyPlayers : MonoBehaviour
     {
+        public bool hideUnusedPlayerSpots = true;
         public List<StxLobbyPlayerDisplay> playerSpots;
         [Space]
         public Sprite defaultAvatar;
@@ -51,12 +52,15 @@ namespace Stx.Net.Unity.UI
         {
             LobbyOwnerID = r.OwnerClientID;
 
-            // Hide the unused player spots.
-            while (r.MaxPlayers < playerSpots.Count)
+            if (hideUnusedPlayerSpots)
             {
-                var v = playerSpots.Last();
-                v.gameObject.SetActive(false);
-                playerSpots.Remove(v);
+                // Hide the unused player spots.
+                while (r.MaxPlayers < playerSpots.Count)
+                {
+                    var v = playerSpots.Last();
+                    v.gameObject.SetActive(false);
+                    playerSpots.Remove(v);
+                }
             }
 
             foreach (string c in r.ConnectedClients)

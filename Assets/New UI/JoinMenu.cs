@@ -8,6 +8,8 @@ using Stx.Net.RoomBased;
 
 public class JoinMenu : MonoBehaviour
 {
+    public int playerCount = 4;
+    public bool hidden = false;
     [Header("Random")]
     public Button joinRandomButton;
     [Header("With Code")]
@@ -30,7 +32,7 @@ public class JoinMenu : MonoBehaviour
                 StxUnityClient.Instance.SceneSwitchLobby();
             else
                 StxUnityClient.Instance.DisplayAlert($"Could not join random room.\nTry creating one.", "Joining Problem", false);
-        }, new RoomTemplate(4));
+        }, new RoomTemplate(playerCount, null, hidden));
     }
 
     void Start()

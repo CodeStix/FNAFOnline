@@ -4863,6 +4863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f4d6c1d978587448c5be9692ad5be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCount: 2
+  hidden: 0
   joinRandomButton: {fileID: 1463376159}
   roomCodeInput: {fileID: 87037954}
   uncompleteColor: {r: 0.8396226, g: 0.36768937, b: 0.33664113, a: 1}
