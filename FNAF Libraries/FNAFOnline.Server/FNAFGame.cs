@@ -212,7 +212,9 @@ namespace FNAFOnline.Server
             RegisterHandler("FNAFGameCourse", RequestGameCourse);
 
             loaded = new ConcurrentList<string>();
-            gameSetup = new GameSetup(GameMode.None,new MoveTimings());
+            gameSetup = new GameSetup(GameMode.OriginalFNAF1, new MoveTimings());
+
+            Logger.Debug($"Move timings for new game: {gameSetup.MoveTimerTimings}");
         }
 
         private void RequestMoveEntity(RequestPacket packet, BaseClientData<ClientIdentity> sender)
@@ -336,6 +338,7 @@ namespace FNAFOnline.Server
             string aftonClientID = c[1];
 
             gameSetup.SetPlayerRoles(guardClientID, aftonClientID);
+            gameSetup.MoveTimerTimings = MoveTimings.RandomTimings;
 
             Room.UnTagClients("Guard");
             Room.UnTagClients("Afton");

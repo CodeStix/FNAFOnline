@@ -57,8 +57,6 @@ public class NetworkFunctions : MonoBehaviour
 
         StxUnityClient.C.DataReceiver.AddHandler(new ObjectHandler("FNAFEntityMoved", (e, p) =>
         {
-            Debug.Log("Received move.");
-
             if (p.Data.Requires<string, string, bool>("Entity", "To", "Back"))
             {
                 string entity = (string)p.Data["Entity"];
@@ -105,12 +103,10 @@ public class NetworkFunctions : MonoBehaviour
 
     void OnDestroy()
     {
-        Debug.LogWarning("OnDestroy 1");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFEntityMoved");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFOfficeChanged");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFHacked");
         StxUnityClient.C.DataReceiver.RemoveHandler("FNAFEveryoneLoaded");
-        Debug.LogWarning("OnDestroy 2");
     }
 
     public void SendLeft()
