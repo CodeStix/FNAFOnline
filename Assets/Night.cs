@@ -90,6 +90,8 @@ public class Night : MonoBehaviour
         UpdateTimeText();
 
         isStarted = true;
+
+        powerUsage.JumpFirst();
     }
 
     private void UpdatePowerText()

@@ -21,7 +21,7 @@ public class States : MonoBehaviour
             JumpRandom();
     }
 
-    void Start()
+    private void Awake()
     {
         states = new GameObject[transform.childCount];
 
@@ -32,6 +32,11 @@ public class States : MonoBehaviour
             current = Random.Range(0, states.Length);
         else
             current = startingState;
+    }
+
+    void Start()
+    {
+        Debug.Log(gameObject.name + " has starting state " + current);
 
         UpdateStates();
     }
@@ -42,6 +47,8 @@ public class States : MonoBehaviour
             JumpLast();
         else
             UpdateStates();
+
+        Debug.Log(gameObject.name + " jumps to previous state " + current);
     }
 
     public void Next()
@@ -50,6 +57,8 @@ public class States : MonoBehaviour
             JumpFirst();
         else
             UpdateStates();
+
+        Debug.Log(gameObject.name + " jumps to next state " + current);
     }
 
     public void JumpFirst()
@@ -63,6 +72,8 @@ public class States : MonoBehaviour
     {
         current = states.Length - 1;
 
+        Debug.Log(gameObject.name + " jumps to last state " + current);
+
         UpdateStates();
     }
 
@@ -73,12 +84,16 @@ public class States : MonoBehaviour
         else if (current == 1)
             current = 0;
 
+        Debug.Log(gameObject.name + " jumps to first/second state " + current);
+
         UpdateStates();
     }
 
     public void JumpRandom()
     {
         current = Random.Range(0, states.Length);
+
+        Debug.Log(gameObject.name + " jumps to random state " + current);
 
         UpdateStates();
     }
@@ -96,7 +111,7 @@ public class States : MonoBehaviour
     {
         return current;
     }
-
+        
     public GameObject GetCurrentStateObject()
     {
         return states[current];
