@@ -121,17 +121,17 @@ public class NetworkSetup : MonoBehaviour
                 {
                     if (state.WasSuccessful())
                     {
-                        alertBox.Alert($"Welcome { input },\nhave fun scaring everyone or getting scared!", "Welcome Message");
+                        alertBox.Alert($"Welcome to FNAFOnline, { input }!", "Message");
                     }
                 });
 
                 return true;
             });
         }
-        else
-        {
-            alertBox.Alert($"Welcome back { StxUnityClient.You.ShortDisplayName },\nhave fun poking around!", "Welcome Message");
-        }
+        //else
+        //{
+        //    alertBox.Alert($"Welcome back { StxUnityClient.You.ShortDisplayName }!", "Message");
+        //}
 
         Invoke(nameof(Test), 2.0f);
     }
