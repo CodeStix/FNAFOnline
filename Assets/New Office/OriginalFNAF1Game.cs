@@ -23,10 +23,10 @@ public class OriginalFNAF1Game : MonoBehaviour
         StxUnityClient.C.DataReceiver.AddHandler(new ObjectHandler("FNAF1Move", OnFNAFMove));
 
         // If the player is guard, disable the boot sequence.
-        if (gameSetup.GuardClientID == StxUnityClient.C.NetworkID)
-        {
-            monitor.startupTime = 0f;
-        }
+        //if (gameSetup.GuardClientID == StxUnityClient.C.NetworkID)
+        //{
+        //    monitor.startupTime = 0f;
+        //}
     }
 
     void OnDisable()

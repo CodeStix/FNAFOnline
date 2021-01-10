@@ -337,7 +337,6 @@ namespace FNAFOnline.Server
             string guardClientID = c[0];
             string aftonClientID = c[1];
 
-            gameSetup.SetPlayerRoles(guardClientID, aftonClientID);
             gameSetup.MoveTimerTimings = MoveTimings.RandomTimings;
 
             Room.UnTagClients("Guard");

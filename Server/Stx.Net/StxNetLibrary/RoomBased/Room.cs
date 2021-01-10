@@ -233,27 +233,27 @@ namespace Stx.Net.RoomBased
             return OwnerClientID == clientID;
         }
 
-        public List<string> GetClientsWithTag(string tag)
+        public BList<string> GetClientsWithTag(string tag)
         {
             if (TaggedClients == null || TaggedClients.Count <= 0)
-                return new List<string>();
+                return new BList<string>();
             else if (TaggedClients.ContainsKey(tag))
-                return TaggedClients[tag] as List<string>;
+                return (BList<string>)TaggedClients[tag];
             else
-                return new List<string>();
+                return new BList<string>();
         }
 
-        public List<string> GetClientsNotWithTag(string tag)
+        public BList<string> GetClientsNotWithTag(string tag)
         {
             if (TaggedClients == null || TaggedClients.Count <= 0)
-                return new List<string>();
+                return new BList<string>();
             else
             {
-                List<string> c = new List<string>();
+                BList<string> c = new BList<string>();
 
                 foreach (var key in TaggedClients.Keys)
-                    if (key.ToString() != tag && TaggedClients[key] is List<string>)
-                        c.Union(TaggedClients[key] as List<string>);
+                    if (key.ToString() != tag && TaggedClients[key] is BList<string> list)
+                        c.AddRange(list);
 
                 return c;
             }
@@ -265,9 +265,9 @@ namespace Stx.Net.RoomBased
                 TaggedClients = new BHashtable();
 
             if (!TaggedClients.ContainsKey(tag))
-                TaggedClients.Add(tag, new List<string>());
+                TaggedClients.Add(tag, new BList<string>());
 
-            List<string> b = TaggedClients[tag] as List<string>;
+            BList<string> b = TaggedClients[tag] as BList<string>;
             if (b != null)
             {
                 if (b.Contains(clientID))
@@ -285,7 +285,7 @@ namespace Stx.Net.RoomBased
             if (!TaggedClients.ContainsKey(tagToRemove))
                 return;
 
-            List<string> b = TaggedClients[tagToRemove] as List<string>;
+            BList<string> b = TaggedClients[tagToRemove] as BList<string>;
             if (b != null)
             {
                 if (b.Contains(clientID))
@@ -312,7 +312,7 @@ namespace Stx.Net.RoomBased
             if (!TaggedClients.ContainsKey(withTag))
                 return false;
 
-            List<string> b = TaggedClients[withTag] as List<string>;
+            BList<string> b = (BList<string>)TaggedClients[withTag];
             if (b != null)
                 return b.Contains(clientID);
             else

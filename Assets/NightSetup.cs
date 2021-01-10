@@ -48,69 +48,62 @@ public class NightSetup : MonoBehaviour
     {
         hasPlayed = true;
 
-        Debug.Log("## Requesting setup...");
-
         StxUnityClient.F.RequestAsync<GameSetup>("FNAFRequireSetup", (state, e) =>
         {
-            Debug.Log("## Received setup. " + state);
-
-            if (!hasBeenSetup && state == PacketResponseStatus.Responded)
+            StxUnityClient.F.GetCurrentRoomAsync((roomState, room) =>
             {
-                isGuard = StxUnityClient.C.NetworkID == e.GuardClientID;
-                isAfton = StxUnityClient.C.NetworkID == e.AftonClientID;
-                isObserver = !isAfton && !isGuard;
-
-                Debug.Log("## isGuard: " + isGuard);
-                Debug.Log("## isAfton: " + isAfton);
-                Debug.Log("## isObserver: " + isObserver);
-                Debug.Log("## e.GuardClientID: " + e.GuardClientID);
-                Debug.Log("## e.AftonClientID: " + e.AftonClientID);
-                Debug.Log("## StxUnityClient.C.NetworkID: " + StxUnityClient.C.NetworkID);
-
-                night.usePower = isGuard;
-                night.nightSeconds += e.Overtime * night.secondsPerHour;
-                night.startingPower = e.StartingPower;
-                moveTimer.timings = e.MoveTimerTimings;
-
-                if (isGuard)
+                if (!hasBeenSetup)
                 {
-                    foreach (GameObject obj in toDisableIfSecurity)
-                        obj.SetActive(false);
-                    foreach (MonoBehaviour mono in componentsToDisableIfSecurity)
-                        mono.enabled = false;
+                    isGuard = room.IsClientTaggedWith(StxUnityClient.C.NetworkID, "Guard");
+                    isAfton = room.IsClientTaggedWith(StxUnityClient.C.NetworkID, "Afton");
+                    isObserver = !isAfton && !isGuard;
+
+                    night.usePower = isGuard;
+                    night.nightSeconds += e.Overtime * night.secondsPerHour;
+                    night.startingPower = e.StartingPower;
+                    moveTimer.timings = e.MoveTimerTimings;
+
+                    if (isGuard)
+                    {
+                        foreach (GameObject obj in toDisableIfSecurity)
+                            obj.SetActive(false);
+                        foreach (MonoBehaviour mono in componentsToDisableIfSecurity)
+                            mono.enabled = false;
+                    }
+
+                    if (isAfton)
+                    {
+                        foreach (GameObject obj in toDisableIfNotSecurity)
+                            obj.SetActive(false);
+                        foreach (MonoBehaviour mono in componentsToDisableIfNotSecurity)
+                            mono.enabled = false;
+
+                        foreach (States s in doorsLightsButtons)
+                            s.Jump(2);
+
+                        night.powerDrainSpeed = 0f;
+                    }
+
+                    if (isObserver)
+                    {
+                        foreach (GameObject obj in toDisableIfObserver)
+                            obj.SetActive(false);
+                        foreach (MonoBehaviour mono in componentsToDisableIfObserver)
+                            mono.enabled = false;
+
+                        foreach (States s in doorsLightsButtons)
+                            s.Jump(2);
+
+                        foreach (ClickEvent ce in cameraButtons)
+                            ce.canClick = false;
+
+                        onIsObserver?.Invoke();
+                    }
+
+                    hasBeenSetup = true;
                 }
 
-                if (isAfton)
-                {
-                    foreach (GameObject obj in toDisableIfNotSecurity)
-                        obj.SetActive(false);
-                    foreach (MonoBehaviour mono in componentsToDisableIfNotSecurity)
-                        mono.enabled = false;
-
-                    foreach (States s in doorsLightsButtons)
-                        s.Jump(2);
-
-                    night.powerDrainSpeed = 0f;
-                }
-
-                if (isObserver)
-                {
-                    foreach (GameObject obj in toDisableIfObserver)
-                        obj.SetActive(false);
-                    foreach (MonoBehaviour mono in componentsToDisableIfObserver)
-                        mono.enabled = false;
-
-                    foreach (States s in doorsLightsButtons)
-                        s.Jump(2);
-
-                    foreach (ClickEvent ce in cameraButtons)
-                        ce.canClick = false;
-
-                    onIsObserver?.Invoke();
-                }
-
-                hasBeenSetup = true;
-            }
+            });
         });
 
 

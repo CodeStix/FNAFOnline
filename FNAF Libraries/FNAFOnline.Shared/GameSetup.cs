@@ -12,8 +12,6 @@ namespace FNAFOnline.Shared
         public MoveTimings MoveTimerTimings { get; set; }
         public float Overtime { get; set; } = 0;
         public float StartingPower { get; set; } = 100f;
-        public string GuardClientID { get; set; }
-        public string AftonClientID { get; set; }
 
         public GameSetup()
         { }
@@ -26,21 +24,19 @@ namespace FNAFOnline.Shared
             StartingPower = startingPower;
         }
 
-        public GameSetup(GameMode gameMode, string guardClientID, string aftonClientID, MoveTimings moveTimerTimings, float startingPower = 100f, float overtime = 0f)
-        {
-            GameMode = gameMode;
-            GuardClientID = guardClientID;
-            AftonClientID = aftonClientID;
-            MoveTimerTimings = moveTimerTimings;
-            Overtime = overtime;
-            StartingPower = startingPower;
-        }
+        //public GameSetup(GameMode gameMode, MoveTimings moveTimerTimings, float startingPower = 100f, float overtime = 0f)
+        //{
+        //    GameMode = gameMode;
+        //    MoveTimerTimings = moveTimerTimings;
+        //    Overtime = overtime;
+        //    StartingPower = startingPower;
+        //}
 
-        public void SetPlayerRoles(string guardClientID, string aftonClientID)
-        {
-            GuardClientID = guardClientID;
-            AftonClientID = aftonClientID;
-        }
+        //public void SetPlayerRoles(string guardClientID, string aftonClientID)
+        //{
+        //    GuardClientID = guardClientID;
+        //    AftonClientID = aftonClientID;
+        //}
 
         public static void RegisterNetworkTypes()
         {
