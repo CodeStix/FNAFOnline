@@ -12081,7 +12081,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449589429
 GameObject:
@@ -12629,7 +12629,7 @@ MonoBehaviour:
   - {r: 0.9811321, g: 0.7821289, b: 0.7821289, a: 0.88235295}
   - {r: 1, g: 1, b: 1, a: 0.9411765}
   - {r: 0.9987985, g: 1, b: 0.8537736, a: 0.78431374}
-  clickable: 1
+  clickable: 0
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -14049,7 +14049,7 @@ MonoBehaviour:
   - {r: 0.9811321, g: 0.7821289, b: 0.7821289, a: 0.88235295}
   - {r: 1, g: 1, b: 1, a: 0.9411765}
   - {r: 0.9987985, g: 1, b: 0.8537736, a: 0.78431374}
-  clickable: 1
+  clickable: 0
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -22826,7 +22826,7 @@ MonoBehaviour:
   - {r: 0.9811321, g: 0.7821289, b: 0.7821289, a: 0.88235295}
   - {r: 1, g: 1, b: 1, a: 0.9411765}
   - {r: 0.9987985, g: 1, b: 0.8537736, a: 0.78431374}
-  clickable: 1
+  clickable: 0
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -27740,7 +27740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDelay: 50
-  maxDelay: 500
+  maxDelay: 1000
   loop: 1
   afterDelayEvent:
     m_PersistentCalls:
@@ -29025,7 +29025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804405558460258, guid: 140ae11a3a6bfa440b4e78dbdeb76e2b, type: 3}
       propertyPath: m_RootOrder
-      value: 38
+      value: 37
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 140ae11a3a6bfa440b4e78dbdeb76e2b, type: 3}
@@ -33131,7 +33131,7 @@ MonoBehaviour:
   pointer: {fileID: 345967274}
   scheme: {fileID: 746873932}
   pointerMoveSpeed: 2
-  onlyShowPointer: 0
+  onlyShowPointer: 1
 --- !u!114 &1496387835
 MonoBehaviour:
   m_ObjectHideFlags: 0
