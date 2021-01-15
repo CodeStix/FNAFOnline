@@ -5,9 +5,9 @@ I decided I would try to quickly finish it, which succeeded, but the code is one
 
 ## Project structure
 
-- `.` (root): Unity version 2018.4.28f1 project
+- `.`: Unity version 2018.4.28f1 project
 - `FNAF Libraries/`: contains FNAF server plugin and shared server/client code.
-- `Server/Stx.Net`: contains the networking library I made along with it. (StxServer contains the server executable, if built)
+- `Server/Stx.Net/`: contains the networking library I made along with it. (StxServer contains the server executable, if built)
 
 ## Contributions 
 
