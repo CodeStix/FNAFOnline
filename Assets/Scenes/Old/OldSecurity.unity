@@ -18027,7 +18027,7 @@ MonoBehaviour:
   m_Script: {fileID: 244562427, guid: 8033a32029000124fae0b2b2877e0501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: 192.168.0.8:11987
+  host: fnaf.codestix.nl:11987
   pushToTalk: 0
 --- !u!4 &758747608
 Transform:
@@ -18055,6 +18055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d438b43335adb43b742066cf3b8790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableGoBackSound: 0
   bonnieRoomScheme: {fileID: 751370299}
   chicaRoomScheme: {fileID: 115390253}
   freddyRoomScheme: {fileID: 1243359346}
@@ -25916,7 +25917,7 @@ PrefabInstance:
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 119.3
+      value: 119.29999
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
