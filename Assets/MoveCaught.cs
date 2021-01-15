@@ -17,6 +17,12 @@ public class MoveCaught : MonoBehaviour
         scheme.OnLeave += Scheme_OnLeave;
     }
 
+    void OnDestroy()
+    {
+        scheme.OnMove -= Scheme_OnMove;
+        scheme.OnLeave -= Scheme_OnLeave;
+    }
+
     private void Scheme_OnMove(RoomConnection room)
     {
         if (room.roomName.Contains(securityGuardBlibs.GetCurrentStateName()))
