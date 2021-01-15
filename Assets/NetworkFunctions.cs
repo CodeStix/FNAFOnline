@@ -9,6 +9,7 @@ using UnityEngine.Events;
 
 public class NetworkFunctions : MonoBehaviour
 {
+    public bool enableGoBackSound = false;
     public RoomScheme bonnieRoomScheme;
     public RoomScheme chicaRoomScheme;
     public RoomScheme freddyRoomScheme;
@@ -192,33 +193,53 @@ public class NetworkFunctions : MonoBehaviour
         {
             case "Bonnie":
                 SetMoveBonnie(to);
-                if (back)
+                if (back && enableGoBackSound)
                     SoundEffects.Play("KnockLeft");
                 break;
             case "Chica":
                 SetMoveChica(to);
-                if (back)
+                if (back && enableGoBackSound)
                     SoundEffects.Play("KnockRight");
                 break;
             case "Freddy":
                 SetMoveFreddy(to);
-                if (back)
+                if (back && enableGoBackSound)
                     SoundEffects.Play("KnockRight");
                 break;
             case "Foxy":
                 SetMoveFoxy(to);
-                if (back)
+                if (back && enableGoBackSound)
                     SoundEffects.Play("KnockLeft");
                 break;
             case "GoldenFreddy":
                 SetMoveGoldenFreddy(to);
-                if (back)
+                if (back && enableGoBackSound)
                 {
                     SoundEffects.Play("KnockLeft");
                     SoundEffects.Play("KnockRight");
                 }
                 break;
         }
+    }
+
+    public void SendBackBonnie()
+    {
+        SendMove("Bonnie", bonnieRoomScheme.GetRandomStartingRoom().roomName, true);
+    }
+
+    public void SendBackChica()
+    {
+        SendMove("Chica", chicaRoomScheme.GetRandomStartingRoom().roomName, true);
+    }
+
+    public void SendBackFreddy()
+    {
+        SendMove("Freddy", freddyRoomScheme.GetRandomStartingRoom().roomName, true);
+    }
+
+    public void SendBackFoxy()
+    {
+        SendMove("Foxy", foxyRoomScheme.GetRandomStartingRoom().roomName, true);
     }
 
     public void SendMoveBonnie(string room)

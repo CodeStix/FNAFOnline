@@ -2220,7 +2220,6 @@ MonoBehaviour:
   - {fileID: 897983915}
   - {fileID: 1605138767}
   - {fileID: 902945571}
-  - {fileID: 0}
   - {fileID: 332369250}
   - {fileID: 56389421}
   - {fileID: 1616305016}
@@ -2231,6 +2230,7 @@ MonoBehaviour:
   - {fileID: 2086065455}
   - {fileID: 290068683}
   - {fileID: 664206382}
+  - {fileID: 1224213947}
   componentsToDisableIfSecurity:
   - {fileID: 1187604063}
   toDisableIfNotSecurity:
@@ -15977,7 +15977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00015259, y: -347}
+  m_AnchoredPosition: {x: 0.00015259, y: -355}
   m_SizeDelta: {x: 402.55, y: 66.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664206384
@@ -17519,7 +17519,7 @@ Transform:
   - {fileID: 969317456}
   - {fileID: 435080413}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &751370298
 GameObject:
@@ -20625,7 +20625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.4552e-11, y: -205}
+  m_AnchoredPosition: {x: -1.4552e-11, y: -213}
   m_SizeDelta: {x: 402.55, y: 66.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &897983917
@@ -25916,7 +25916,7 @@ PrefabInstance:
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -18.849945
+      value: 119.3
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
@@ -25926,7 +25926,7 @@ PrefabInstance:
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -184.5
+      value: -460.8081
       objectReference: {fileID: 0}
     - target: {fileID: 224791296174966674, guid: 8e14da9d5ef20204aa009d4e60d11a86,
         type: 3}
@@ -35854,7 +35854,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 0.82
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -38089,7 +38089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1669091240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39552,7 +39552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4420896959550178, guid: d977fb7119c511549a23fc1dc54730ad, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 114254983235505944, guid: d977fb7119c511549a23fc1dc54730ad,
         type: 3}
