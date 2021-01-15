@@ -18027,7 +18027,8 @@ MonoBehaviour:
   m_Script: {fileID: 244562427, guid: 8033a32029000124fae0b2b2877e0501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  host: fnaf.codestix.nl:11987
+  host: fnaf.codestix.nl
+  port: 11987
   pushToTalk: 0
 --- !u!4 &758747608
 Transform:

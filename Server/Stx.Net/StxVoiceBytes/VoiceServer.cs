@@ -29,7 +29,7 @@ namespace Stx.Net.VoiceBytes
 
             IPAddress addrs = IPUtil.GetLocalIP(AddressFamily.InterNetwork);
 
-            Logger.Log($"Starting voice server on { addrs.ToString() }:{ port } ...");
+            Logger.Log($"Starting voice server on { addrs }:{ port } ...");
 
             server = new UdpClient(port);
             server.BeginReceive(new AsyncCallback(Receive), null);

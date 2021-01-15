@@ -9,7 +9,8 @@ namespace Stx.Net.VoiceBytes.Unity
 {
     public class UnityVoiceClient : MonoBehaviour
     {
-        public string host = "yourVoiceServer:port";
+        public string host;
+        public ushort port;
         public KeyCode pushToTalk = KeyCode.None;
 
         public Dictionary<int, AudioSource> VoiceOuts { get; private set; }
@@ -29,10 +30,8 @@ namespace Stx.Net.VoiceBytes.Unity
         {
             Logger.Log("Connecting to voice server...");
 
-            IPAddress ip;
-            ushort port;
-
-            IPUtil.ParseIPAndPort(host, out ip, out port, 11987);
+            IPAddress ip = Dns.GetHostAddresses(host)[0];
+            //IPUtil.ParseIPAndPort(host, out IPAddress ip, out ushort port, 11987);
 
             try
             {
