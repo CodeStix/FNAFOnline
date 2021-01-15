@@ -38,7 +38,7 @@ public class RoomConnection : MonoBehaviour
         moved[roomName]++;
         isHere = true;
         onMove.Invoke();
-        Debug.Log("Moved(" + transform.parent.name + ") to " + gameObject.name);
+        // Debug.Log("Moved(" + transform.parent.name + ") to " + gameObject.name);
     }
 
     public void Leave()
@@ -46,7 +46,7 @@ public class RoomConnection : MonoBehaviour
         moved[roomName]--;
         isHere = false;
         onLeave.Invoke();
-        Debug.Log("Leaving(" + transform.parent.name + ") from " + gameObject.name);
+        // Debug.Log("Leaving(" + transform.parent.name + ") from " + gameObject.name);
     }
 
     public bool CanMoveHere()
