@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.1
-  m_Text: "<color=#EEDD44>Stijn Rogiest(@CodeStix) 2017 (c) </color> \nVersion <color=#33DD33>0.2.0</color>\n\nMost
+  m_Text: "<color=#EEDD44>Stijn Rogiest(@CodeStix) 2017 (c) </color> \nVersion <color=#33DD33>1.0.0</color>\n\nMost
     of the textures, ideas and sounds belong to <color=#FFEE66>Scott Cawthon</color>,
     the creator of the original FNAF series.\n"
 --- !u!222 &1944998
