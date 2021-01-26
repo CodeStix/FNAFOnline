@@ -15,6 +15,7 @@ There are a couple of features that are implemented, but are too unstable to rel
 
 - Golden freddy attacks: golden freddy is implemented for afton, but is disabled because there is no way to defend against him.
 - Achievements and the Prize Corner (see `Scenes/`)
+- Teams (multiple guards working together)
 
 ## Contributions 
 
