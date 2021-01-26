@@ -34190,8 +34190,8 @@ MonoBehaviour:
   enabled: 1
   sprites:
   - {fileID: 21300000, guid: c06899ee6205d4d4e8aff35d459a4e6f, type: 3}
-  - {fileID: 21300000, guid: 81f4fd505319e63419402c07aaf3e81b, type: 3}
-  - {fileID: 21300000, guid: 81f4fd505319e63419402c07aaf3e81b, type: 3}
+  - {fileID: 21300000, guid: fe948c92e25e73644a79d4226e8b7efd, type: 3}
+  - {fileID: 21300000, guid: fe948c92e25e73644a79d4226e8b7efd, type: 3}
   delay: 0.025
   sort: 1
   invertOrder: 0
@@ -34232,8 +34232,8 @@ MonoBehaviour:
   enabled: 1
   sprites:
   - {fileID: 21300000, guid: 1f1ddf5d712a6c2479488897c759257c, type: 3}
-  - {fileID: 21300000, guid: 81f4fd505319e63419402c07aaf3e81b, type: 3}
-  - {fileID: 21300000, guid: 81f4fd505319e63419402c07aaf3e81b, type: 3}
+  - {fileID: 21300000, guid: fe948c92e25e73644a79d4226e8b7efd, type: 3}
+  - {fileID: 21300000, guid: fe948c92e25e73644a79d4226e8b7efd, type: 3}
   delay: 0.025
   sort: 1
   invertOrder: 0
