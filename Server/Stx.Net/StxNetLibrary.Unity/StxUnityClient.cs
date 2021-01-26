@@ -71,10 +71,12 @@ namespace Stx.Net.Unity
         public static Logging.ILogger Logger { get; set; } = StxNet.DefaultLogger;
         public static StxUnityClient Instance { get; private set; } = null;
 
-        public const int DefaultPort = 1987;
+        public const int DEFAULT_PORT = 1987;
 
         void Awake()
         {
+            StxNet.DefaultLogger = new UnityLogger();
+
             if (Instance == null)
             {
                 name = "[StxClient]";
@@ -94,9 +96,8 @@ namespace Stx.Net.Unity
             // Let the system know we are working with multiple threads, 
             // the Unity thread and the receive/send thread.
             ThreadSafeData.MultiThreadOverride = true;
-
-            StxNet.DefaultLogger = new UnityLogger();
             Bytifier.Logger = StxNet.DefaultLogger;
+            Logger = StxNet.DefaultLogger;
 
             onConnecting?.Invoke();
 

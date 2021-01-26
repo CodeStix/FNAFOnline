@@ -145,13 +145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: fnaf.codestix.nl:1987
-  clientIDOverride: aaaa
+  clientIDOverride: 
   connectOnStart: 1
-  connectAsync: 1
+  connectAsync: 0
   applicationInfo:
     applicationKey: 1c4371d9-c8b3-4305-b29c-f719715ae2df
     applicationName: FNAFOnline
-    applicationVersion: 1.1
+    applicationVersion: 1.0
   doConnectDelay: 2
   reconnectTime: 8
   mainScene: GameMenu
@@ -259,7 +259,30 @@ MonoBehaviour:
         m_CallState: 2
   onUpdateRequired:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 210604292}
+        m_MethodName: Show
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: There is an update available, please download the new
+            version from gamejolt to continue.
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 493560213}
+        m_MethodName: Done
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &133766896
 MonoBehaviour:
   m_ObjectHideFlags: 0
