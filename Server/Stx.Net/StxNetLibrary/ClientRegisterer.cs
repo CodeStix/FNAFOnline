@@ -10,7 +10,7 @@ namespace Stx.Net
 {
     public static class ClientRegisterer<TIdentity> where TIdentity : NetworkIdentity, new()
     {
-        public const string DataSaveLocation = @".\ClientData\";
+        public const string DataSaveLocation = @"./ClientData/";
         public const string DataSaveExtension = ".bin";
         public const string AuthSaveExtension = ".auth";
 

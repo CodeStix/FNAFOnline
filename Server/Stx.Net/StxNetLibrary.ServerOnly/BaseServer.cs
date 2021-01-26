@@ -98,7 +98,7 @@ namespace Stx.Net.ServerOnly
         /// </summary>
         public bool IsRunning { get; private set; } = false;
 
-        public const string PluginsLocation = @".\Plugins\";
+        public const string PluginsLocation = @"./Plugins/";
         public const string AchievementFile = @"achievements.json";
 
         internal Socket listenerSocket;

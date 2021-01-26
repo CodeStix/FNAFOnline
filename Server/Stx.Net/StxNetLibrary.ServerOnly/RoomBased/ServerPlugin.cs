@@ -36,7 +36,7 @@ namespace Stx.Net.ServerOnly.RoomBased
 
         public string GetConfigLocation()
         {
-            return $@"{ Server.PluginsLocation + PluginName }\config.json";
+            return $@"{ Server.PluginsLocation + PluginName }/config.json";
         }
 
         public void Set<T>(string key, T value)

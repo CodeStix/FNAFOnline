@@ -35,7 +35,7 @@ namespace Stx.Net
         public bool ConnectOnConstruct { get; set; } = true;
         public bool ConnectAsync { get; set; } = false;
 
-        public const string DefaultLoadFile = @"CodeStix\Net\local.json";
+        public const string DefaultLoadFile = @"CodeStix/Net/local.json";
         public const ushort DefaultPort = 1987;
 
         public ConnectionStartInfo(string hostColonPort, string applicationKey, bool loadFromDisk = true)
