@@ -256,39 +256,48 @@ namespace Stx.Net.ServerOnly
 
         private void AcceptCallback(IAsyncResult ar)
         {
-            acceptConnectionDone.Set();
-
-            // Get the socket that handles the client request.  
-            Socket listener = (Socket)ar.AsyncState;
-            Socket accepted = listener.EndAccept(ar);
-            accepted.NoDelay = true;
-            accepted.ReceiveBufferSize = SendReceiveBufferSizePerClient;
-            accepted.SendBufferSize = SendReceiveBufferSizePerClient;
-
-            IPEndPoint acceptedEnd = accepted.RemoteEndPoint as IPEndPoint;
-
-            if (!CanConnect || ConnectedCount >= MaxConnections || acceptedEnd == null || BannedClientIPs.Contains(acceptedEnd.Address.ToString()))
+            try
             {
-                DisconnectSocket(accepted, DisconnectReason.KickedByHost);
-                return;
+                // Get the socket that handles the client request.  
+                Socket listener = (Socket)ar.AsyncState;
+                Socket accepted = listener.EndAccept(ar);
+                accepted.NoDelay = true;
+                accepted.ReceiveBufferSize = SendReceiveBufferSizePerClient;
+                accepted.SendBufferSize = SendReceiveBufferSizePerClient;
+
+                IPEndPoint acceptedEnd = accepted.RemoteEndPoint as IPEndPoint;
+
+                if (!CanConnect || ConnectedCount >= MaxConnections || acceptedEnd == null || BannedClientIPs.Contains(acceptedEnd.Address.ToString()))
+                {
+                    DisconnectSocket(accepted, DisconnectReason.KickedByHost);
+                    return;
+                }
+
+                BaseClientData<TIdentity> connected = GetClientDataForAccepted(accepted);
+                connected.MaxTimeoutSeconds = MaxTimeoutSeconds;
+                connected.MaxReceivesPerToken = MaxReceivesPerSecondPerClient;
+
+                UnknownClients.Add(connected);
+
+                // Create the state object.  
+                StateObject state = new StateObject();
+                state.isAcknowledge = true;
+                state.sender = connected;
+                state.buffer = new byte[SendReceiveBufferSizePerClient];
+                accepted.BeginReceive(state.buffer, 0, SendReceiveBufferSizePerClient, 0, ReadCallback, state);
+
+                ServerStats.connectionsAccepted++;
+
+                Logger.Log($"Accepted new connection. { connected.ToIdentifiedString() }", LoggedImportance.Debug);
             }
-
-            BaseClientData<TIdentity> connected = GetClientDataForAccepted(accepted);
-            connected.MaxTimeoutSeconds = MaxTimeoutSeconds;
-            connected.MaxReceivesPerToken = MaxReceivesPerSecondPerClient;
-
-            UnknownClients.Add(connected);
-
-            // Create the state object.  
-            StateObject state = new StateObject();
-            state.isAcknowledge = true;
-            state.sender = connected;
-            state.buffer = new byte[SendReceiveBufferSizePerClient];
-            accepted.BeginReceive(state.buffer, 0, SendReceiveBufferSizePerClient, 0, ReadCallback, state);
-
-            ServerStats.connectionsAccepted++;
-
-            Logger.Log($"Accepted new connection. { connected.ToIdentifiedString() }", LoggedImportance.Debug);
+            catch(Exception ex)
+            {
+                Logger.Log($"Could not accept connection: {ex.Message}", LoggedImportance.CriticalError);
+            }
+            finally
+            {
+                acceptConnectionDone.Set();
+            }
         }
 
         class StateObject
