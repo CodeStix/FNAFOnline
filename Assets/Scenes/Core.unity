@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   host: fnaf.codestix.nl:1987
-  clientIDOverride: ewqqewqe
+  clientIDOverride: 
   connectOnStart: 1
   connectAsync: 1
   applicationInfo:
