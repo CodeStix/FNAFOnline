@@ -35,6 +35,17 @@ public class JoinMenu : MonoBehaviour
         }, new RoomTemplate(playerCount, null, hidden));
     }
 
+    public void JoinNew()
+    {
+        StxUnityClient.F.JoinNewRoomAsync(new RoomTemplate("fnaf", 2), (state, r) =>
+        {
+            if (state.WasSuccessful())
+                StxUnityClient.Instance.SceneSwitchLobby();
+            else
+                StxUnityClient.Instance.DisplayAlert($"Could not join random room.\nTry creating one.", "Joining Problem", false);
+        });
+    }
+
     void Start()
     {
         joinRandomButton.onClick.AddListener(JoinRandom);

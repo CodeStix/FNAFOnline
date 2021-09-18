@@ -3770,7 +3770,7 @@ PrefabInstance:
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: JoinRandom
+      value: JoinNew
       objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
@@ -4030,7 +4030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 820.6963, y: -52.5}
+  m_AnchoredPosition: {x: 821, y: -52.5}
   m_SizeDelta: {x: 271.547, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1430302786
