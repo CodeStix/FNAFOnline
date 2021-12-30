@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ccc8a415e81e247997424666d260e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refreshTime: 0
+  refreshTime: 5
   roomListItemPrefab: {fileID: 2429180760134562594, guid: cdcb44c1f3ca35b4aac3d63abb2e6d1d,
     type: 3}
   refreshingObject: {fileID: 303177806}
@@ -1453,7 +1453,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 468332473}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName

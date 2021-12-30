@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FNAFMatchmakingItem : MonoBehaviour
@@ -30,6 +31,13 @@ public class FNAFMatchmakingItem : MonoBehaviour
             return;
         }
 
+        FNAFClient.Instance.OnJoinRoomResponse += Instance_OnJoinResponse;
         FNAFClient.Instance.JoinRoom(room.id);
+    }
+
+    private void Instance_OnJoinResponse(object sender, FNAFJoinRoomResponse e)
+    {
+        FNAFClient.Instance.OnJoinRoomResponse -= Instance_OnJoinResponse;
+        SceneManager.LoadScene("Lobby");
     }
 }

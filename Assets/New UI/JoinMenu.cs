@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Stx.Net.RoomBased;
+using UnityEngine.SceneManagement;
 
 public class JoinMenu : MonoBehaviour
 {
@@ -24,26 +25,33 @@ public class JoinMenu : MonoBehaviour
     {
         joinRandomButton.interactable = false;
 
-        StxUnityClient.F.JoinRandomRoomAsync(MatchmakingQuery.MatchAll, (state, r) =>
-        {
-            joinRandomButton.interactable = true;
+        FNAFClient.Instance.OnJoinRoomResponse += Instance_OnJoinRoomResponse_Random;
+        FNAFClient.Instance.JoinRoom(null);
+    }
 
-            if (state.WasSuccessful())
-                StxUnityClient.Instance.SceneSwitchLobby();
-            else
-                StxUnityClient.Instance.DisplayAlert($"Could not join random room.\nTry creating one.", "Joining Problem", false);
-        }, new RoomTemplate(playerCount, null, hidden));
+    private void Instance_OnJoinRoomResponse_Random(object sender, FNAFJoinRoomResponse e)
+    {
+        FNAFClient.Instance.OnJoinRoomResponse -= Instance_OnJoinRoomResponse_Random;
+        joinRandomButton.interactable = true;
+        if (e.ok)
+        {
+            SceneManager.LoadScene("Lobby");
+        }
+        else
+        {
+            AlertBox.Instance.Alert("Could not join random room.", "Join random", false);
+        }
     }
 
     public void JoinNew()
     {
-        StxUnityClient.F.JoinNewRoomAsync(new RoomTemplate("fnaf", 2), (state, r) =>
-        {
-            if (state.WasSuccessful())
-                StxUnityClient.Instance.SceneSwitchLobby();
-            else
-                StxUnityClient.Instance.DisplayAlert($"Could not join random room.\nTry creating one.", "Joining Problem", false);
-        });
+        FNAFClient.Instance.OnCreateRoomResponse += Instance_OnCreateRoomResponse;
+        FNAFClient.Instance.CreateRoom(2, false);
+    }
+
+    private void Instance_OnCreateRoomResponse(object sender, FNAFCreateRoomResponse e)
+    {
+        FNAFClient.Instance.OnCreateRoomResponse -= Instance_OnCreateRoomResponse;
     }
 
     void Start()
@@ -61,20 +69,28 @@ public class JoinMenu : MonoBehaviour
                 didTryJoin = true;
                 roomCodeInput.interactable = false;
 
-                StxUnityClient.F.JoinRoomWithCodeAsync(str, (state, r) =>
-                {
-                    roomCodeInput.interactable = true;
-
-                    if (state.WasSuccessful())
-                        StxUnityClient.Instance.SceneSwitchLobby();
-                    else
-                        StxUnityClient.Instance.DisplayAlert($"Could not join room with code { str },\ntry joining another one.", "Joining Problem", false);
-                });
+                FNAFClient.Instance.OnJoinRoomResponse += Instance_OnJoinRoomResponse_Input;
+                FNAFClient.Instance.JoinRoom(str);
             }
             else
             {
                 didTryJoin = false;
             }
         });
+    }
+
+    private void Instance_OnJoinRoomResponse_Input(object sender, FNAFJoinRoomResponse e)
+    {
+        FNAFClient.Instance.OnJoinRoomResponse -= Instance_OnJoinRoomResponse_Input;
+        roomCodeInput.interactable = true;
+        if (e.ok)
+        {
+            Debug.Log("Joining room " + e.room.id);
+            SceneManager.LoadScene("Lobby");
+        }
+        else
+        {
+            AlertBox.Instance.Alert("Room not found.", "Join with code", false);
+        }
     }
 }

@@ -21,8 +21,11 @@ public class AlertBox : MonoBehaviour
 
     private Animation m;
 
+    public static AlertBox Instance { get; private set; }
+
     void Start()
     {
+        Instance = this;
         m = GetComponent<Animation>();
     }
 
