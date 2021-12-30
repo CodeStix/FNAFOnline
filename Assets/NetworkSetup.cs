@@ -17,21 +17,21 @@ public class NetworkSetup : MonoBehaviour
         loadingScreen.Progress(0.6f);
         loadingScreen.Status("Connecting to the FNAF online services...");
 
-        FNAFClient.Connect();
-        FNAFClient.OnConnected += FNAFClient_OnConnected;
-        FNAFClient.OnDisconnected += FNAFClient_OnDisconnected;
+        FNAFClient.Instance.Connect();
+        FNAFClient.Instance.OnConnected += FNAFClient_OnConnected;
+        //FNAFClient.Instance.OnDisconnected += FNAFClient_OnDisconnected;
     }
 
-    private void FNAFClient_OnDisconnected(object sender, WebSocketSharp.CloseEventArgs e)
-    {
-        FNAFClient.OnDisconnected -= FNAFClient_OnDisconnected;
-        if (!dangerBox.IsShown)
-            dangerBox.Show("Oopsie!\nYou got disconnected from the server!");
-    }
+    //private void FNAFClient_OnDisconnected(object sender, WebSocketSharp.CloseEventArgs e)
+    //{
+    //    FNAFClient.Instance.OnDisconnected -= FNAFClient_OnDisconnected;
+    //    if (!dangerBox.IsShown)
+    //        dangerBox.Show("Oopsie!\nYou got disconnected from the server!");
+    //}
 
     private void FNAFClient_OnConnected(object sender, EventArgs e)
     {
-        FNAFClient.OnConnected -= FNAFClient_OnConnected;
+        FNAFClient.Instance.OnConnected -= FNAFClient_OnConnected;
         loadingScreen.Progress(1f);
     }
 

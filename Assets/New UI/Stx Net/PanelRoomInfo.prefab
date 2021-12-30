@@ -304,7 +304,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 114303984957668452}
+      - m_Target: {fileID: 0}
         m_MethodName: Join
         m_Mode: 1
         m_Arguments:
@@ -579,7 +579,6 @@ GameObject:
   - component: {fileID: 114826562279438108}
   - component: {fileID: 114883356217121490}
   - component: {fileID: 114011654844015498}
-  - component: {fileID: 114303984957668452}
   - component: {fileID: 2429180760134562594}
   m_Layer: 5
   m_Name: PanelRoomInfo
@@ -690,23 +689,6 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
---- !u!114 &114303984957668452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506317498355688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1410521614, guid: 8033a32029000124fae0b2b2877e0501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 114911457855061388}
-  ownerText: {fileID: 114487821868797476}
-  playerCountText: {fileID: 114068408468593702}
-  locked: {fileID: 1605598683047334}
-  joinButton: {fileID: 114006315857526898}
 --- !u!114 &2429180760134562594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +701,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bca7a3a5a6e52943a5dd556cda478f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: {fileID: 114911457855061388}
+  ownerText: {fileID: 114487821868797476}
+  playerCountText: {fileID: 114068408468593702}
+  locked: {fileID: 1605598683047334}
+  joinButton: {fileID: 114006315857526898}
+  room:
+    id: 0
+    name: 
+    ownerName: 
+    playerCount: 0
+    maxPlayers: 0
+    locked: 0
 --- !u!1 &1605598683047334
 GameObject:
   m_ObjectHideFlags: 0

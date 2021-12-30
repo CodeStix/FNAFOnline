@@ -30,6 +30,6 @@ public class FNAFMatchmakingItem : MonoBehaviour
             return;
         }
 
-        FNAFClient.JoinRoom(room.id);
+        FNAFClient.Instance.JoinRoom(room.id);
     }
 }

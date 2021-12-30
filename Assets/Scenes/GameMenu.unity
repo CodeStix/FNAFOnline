@@ -1268,8 +1268,8 @@ GameObject:
   m_Component:
   - component: {fileID: 468332472}
   - component: {fileID: 468332471}
-  - component: {fileID: 468332469}
   - component: {fileID: 468332470}
+  - component: {fileID: 468332473}
   m_Layer: 5
   m_Name: PanelConent
   m_TagString: Untagged
@@ -1277,31 +1277,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &468332469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468332468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 970602880, guid: 8033a32029000124fae0b2b2877e0501, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  refreshTime: 25
-  roomListItemPrefab: {fileID: 114303984957668452, guid: cdcb44c1f3ca35b4aac3d63abb2e6d1d,
-    type: 3}
-  refreshingObject: {fileID: 303177806}
-  onListRefreshing:
-    m_PersistentCalls:
-      m_Calls: []
-  onListRefreshed:
-    m_PersistentCalls:
-      m_Calls: []
-  onJoinFailed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &468332470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,6 +1333,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -656.7498}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &468332473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468332468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ccc8a415e81e247997424666d260e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refreshTime: 0
+  roomListItemPrefab: {fileID: 2429180760134562594, guid: cdcb44c1f3ca35b4aac3d63abb2e6d1d,
+    type: 3}
+  refreshingObject: {fileID: 303177806}
+  onListRefreshing:
+    m_PersistentCalls:
+      m_Calls: []
+  onListRefreshed:
+    m_PersistentCalls:
+      m_Calls: []
+  onJoinFailed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &488826710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1453,7 +1453,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 468332469}
+      objectReference: {fileID: 0}
     - target: {fileID: 114255291927759158, guid: a39b5d6ef5b368444858a41f9f971f8c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName

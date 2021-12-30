@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using UnityEngine;
 using WebSocketSharp;
@@ -52,7 +53,7 @@ public class FNAFRegisterResponse
 }
 
 [Serializable]
-public class FNAFRoomJoinRequest
+public class FNAFJoinRoomRequest
 {
     public string token;
     public int id;
@@ -72,27 +73,60 @@ public class FNAFConfig
     public string token;
 }
 
-public class FNAFClient
+public class FNAFClient : MonoBehaviour
 {
-    private const string CONNECTION_URL = "ws://localhost:8080";
+    public string connectionUrl = "ws://localhost:8080";
 
-    public static event EventHandler OnConnected;
-    public static event EventHandler<CloseEventArgs> OnDisconnected;
+    public event EventHandler OnConnected;
+    public event EventHandler<CloseEventArgs> OnDisconnected;
 
-    public static event EventHandler<FNAFRoomJoinResponse> OnJoinResponse;
-    public static event EventHandler<FNAFLoginResponse> OnLoginResponse;
-    public static event EventHandler<FNAFRegisterResponse> OnRegisterResponse;
-    public static event EventHandler<FNAFMatchmakingResponse> OnMatchmakingResponse;
+    public event EventHandler<FNAFRoomJoinResponse> OnJoinResponse;
+    public event EventHandler<FNAFLoginResponse> OnLoginResponse;
+    public event EventHandler<FNAFRegisterResponse> OnRegisterResponse;
+    public event EventHandler<FNAFMatchmakingResponse> OnMatchmakingResponse;
 
-    private static WebSocket socket;
-    private static FNAFConfig config;
+    private WebSocket socket;
+    private FNAFConfig config;
+    private ConcurrentQueue<string> incomingMessages = new ConcurrentQueue<string>();
 
-    private static string userName;
+    private string userName;
 
     //string oldConfigPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"CodeStix/Net/local.json");
     private static string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"CodeStix/user.json");
 
-    private static void LoadConfig()
+    public static FNAFClient Instance { get; private set; }
+
+    void Start()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("An instance of FNAFClient is already running");
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    void Update()
+    {
+        if (incomingMessages.Count > 0)
+        {
+            if (incomingMessages.TryDequeue(out string message))
+            {
+                try
+                {
+                    HandleMessage(message);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError("Error during HandleMessage: " + ex);
+                }
+            }
+        }
+    }
+
+    private void LoadConfig()
     {
         if (File.Exists(configPath))
         {
@@ -110,12 +144,12 @@ public class FNAFClient
         }
     }
 
-    private static void SaveConfig()
+    private void SaveConfig()
     {
         File.WriteAllText(configPath, JsonUtility.ToJson(config));
     }
 
-    public static void Connect()
+    public void Connect()
     {
         LoadConfig();
 
@@ -139,7 +173,7 @@ public class FNAFClient
             Debug.LogWarning("[FNAFClient] Disconnected from WebSocket");
         };
 
-        socket = new WebSocket(CONNECTION_URL);
+        socket = new WebSocket(connectionUrl);
         socket.OnOpen += (sender, e) => OnConnected.Invoke(sender, e);
         socket.OnClose += (sender, e) => OnDisconnected.Invoke(sender, e);
         socket.OnMessage += Socket_OnMessage;
@@ -151,7 +185,7 @@ public class FNAFClient
         socket.ConnectAsync();
     }
 
-    private static void FNAFClient_OnRegisterResponse(object sender, FNAFRegisterResponse e)
+    private void FNAFClient_OnRegisterResponse(object sender, FNAFRegisterResponse e)
     {
         OnRegisterResponse -= FNAFClient_OnRegisterResponse;
 
@@ -162,7 +196,7 @@ public class FNAFClient
         SaveConfig();
     }
 
-    private static void FNAFClient_OnLoginResponse(object sender, FNAFLoginResponse e)
+    private void FNAFClient_OnLoginResponse(object sender, FNAFLoginResponse e)
     {
         OnLoginResponse -= FNAFClient_OnLoginResponse;
 
@@ -171,21 +205,22 @@ public class FNAFClient
         userName = e.name;
     }
 
-    private static void Socket_OnMessage(object sender, MessageEventArgs e)
+    private void Socket_OnMessage(object sender, MessageEventArgs e)
     {
         if (!e.IsText || e.IsPing) return;
 
-        string message = e.Data;
-        int splitIndex = message.IndexOf(':');
-        
-        if (splitIndex < 0)
-        {
-            Debug.LogError("Received invalid message from server: " + message);
-            return;
-        }
+        incomingMessages.Enqueue(e.Data);
+    }
 
-        string type = message.Substring(0, splitIndex);
-        string jsonText = message.Substring(splitIndex + 1);
+    private void HandleMessage(string rawData)
+    {
+        int splitIndex = rawData.IndexOf(':');
+
+        if (splitIndex < 0)
+            throw new Exception("Invalid data");
+
+        string type = rawData.Substring(0, splitIndex);
+        string jsonText = rawData.Substring(splitIndex + 1);
 
         Debug.Log("Received message of type " + type);
 
@@ -213,23 +248,23 @@ public class FNAFClient
         }
     }
 
-    public static void RegisterRequest(string name)
+    public void RegisterRequest(string name)
     {
         socket.Send(nameof(FNAFRegisterRequest) + ":" + JsonUtility.ToJson(new FNAFRegisterRequest() { name = name }));
     }
 
-    public static void LoginRequest(string token)
+    public void LoginRequest(string token)
     {
         socket.Send(nameof(FNAFLoginRequest) + ":" + JsonUtility.ToJson(new FNAFLoginRequest() { token = token }));
     }
 
-    public static void JoinRoom(int id)
+    public void JoinRoom(int id)
     {
-        socket.Send(nameof(FNAFRoomJoinRequest) + ":" + JsonUtility.ToJson(new FNAFRoomJoinRequest() { id = id, token = config.token }));
+        socket.Send(nameof(FNAFJoinRoomRequest) + ":" + JsonUtility.ToJson(new FNAFJoinRoomRequest() { id = id }));
     }
 
-    public static void RequestMatchmaking()
+    public void RequestMatchmaking()
     {
-        socket.Send(nameof(FNAFMatchmakingRequest) + ":" + JsonUtility.ToJson(new FNAFMatchmakingRequest() { token = config.token }));
+        socket.Send(nameof(FNAFMatchmakingRequest) + ":" + JsonUtility.ToJson(new FNAFMatchmakingRequest()));
     }
 }
