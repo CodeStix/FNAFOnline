@@ -1,10 +1,9 @@
 ﻿using Stx.Net;
 using UnityEngine;
-//using Stx.Serialization;
 using FNAFOnline.Shared;
-//using Stx.Net.Unity;
-//using Stx.Utilities;
 using System;
+
+// Note: WebSocket transition started at commit 25854844b07119c824494d78989733e0d2dd6968 
 
 public class NetworkSetup : MonoBehaviour
 {
@@ -15,19 +14,6 @@ public class NetworkSetup : MonoBehaviour
 
     void Start()
     {
-        //GameSetup.RegisterNetworkTypes();
-
-        
-
-        //StxUnityClient.C.OnConnected += Client_OnConnected;
-        //StxUnityClient.C.OnUpdateRequired += Client_OnUpdateRequired;
-        //StxUnityClient.C.OnDisconnected += Client_OnDisconnected;
-        //StxUnityClient.C.OnAnnouncement += Client_OnAnnouncement;
-        //StxUnityClient.C.PacketCompleter = PacketCompleter;
-
-        //StxUnityClient.Instance.Alert = alertBox.Alert;
-        //StxUnityClient.Instance.InputRequired = inputBox.AskForInput;
-
         loadingScreen.Progress(0.6f);
         loadingScreen.Status("Connecting to the FNAF online services...");
 
@@ -45,7 +31,6 @@ public class NetworkSetup : MonoBehaviour
 
     private void FNAFClient_OnConnected(object sender, EventArgs e)
     {
-        Debug.Log("connected this");
         FNAFClient.OnConnected -= FNAFClient_OnConnected;
         loadingScreen.Progress(1f);
     }
@@ -149,9 +134,4 @@ public class NetworkSetup : MonoBehaviour
 
     //    Invoke(nameof(Test), 2.0f);
     //}
-
-    private void Test()
-    {
-        //StxUnityClient.Instance.AskForInput("Please give input:", "Enter it above /\\", (str) => false);
-    }
 }
