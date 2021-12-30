@@ -43,15 +43,23 @@ public class JoinMenu : MonoBehaviour
         }
     }
 
-    public void JoinNew()
+    public void JoinNew(bool isPrivate)
     {
         FNAFClient.Instance.OnCreateRoomResponse += Instance_OnCreateRoomResponse;
-        FNAFClient.Instance.CreateRoom(2, false);
+        FNAFClient.Instance.CreateRoom(2, isPrivate);
     }
 
     private void Instance_OnCreateRoomResponse(object sender, FNAFCreateRoomResponse e)
     {
         FNAFClient.Instance.OnCreateRoomResponse -= Instance_OnCreateRoomResponse;
+        if (e.ok)
+        {
+            SceneManager.LoadScene("Lobby");
+        }
+        else
+        {
+            AlertBox.Instance.Alert("Could not create room.", "Create", false);
+        }
     }
 
     void Start()

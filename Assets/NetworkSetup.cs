@@ -2,11 +2,13 @@
 using UnityEngine;
 using FNAFOnline.Shared;
 using System;
+using UnityEngine.Events;
 
 // Note: WebSocket transition started at commit 25854844b07119c824494d78989733e0d2dd6968 
 
 public class NetworkSetup : MonoBehaviour
 {
+    public UnityEvent onConnected;
     public LoadingScreen loadingScreen;
     public AlertBox alertBox;
     public InputBox inputBox;
@@ -31,8 +33,17 @@ public class NetworkSetup : MonoBehaviour
 
     private void FNAFClient_OnConnected(object sender, EventArgs e)
     {
+        try
+        {
+
         FNAFClient.Instance.OnConnected -= FNAFClient_OnConnected;
         loadingScreen.Progress(1f);
+        onConnected?.Invoke();
+        }
+        catch(Exception ex)
+        {
+            Debug.LogError(ex);
+        }
     }
 
     //private void PacketCompleter(RequestPacket forPacket, string requiredKey, Type requiredKeyType, Action<bool> submit)

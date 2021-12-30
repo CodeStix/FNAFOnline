@@ -174,12 +174,12 @@ public class FNAFClient : MonoBehaviour
 
             if (config.token == null)
             {
-                OnRegisterResponse += FNAFClient_OnRegisterResponse; ;
+                OnRegisterResponse += FNAFClient_OnRegisterResponse;
                 RegisterRequest("Freddy");
             }
             else
             {
-                OnLoginResponse += FNAFClient_OnLoginResponse; ;
+                OnLoginResponse += FNAFClient_OnLoginResponse;
                 LoginRequest(config.token);
             }
         };
@@ -189,8 +189,8 @@ public class FNAFClient : MonoBehaviour
         };
 
         socket = new WebSocket(connectionUrl);
-        socket.OnOpen += (sender, e) => OnConnected.Invoke(sender, e);
-        socket.OnClose += (sender, e) => OnDisconnected.Invoke(sender, e);
+        socket.OnOpen += (sender, e) => incomingMessages.Enqueue("Connected:{}");
+        socket.OnClose += (sender, e) => incomingMessages.Enqueue("Disconnected:{}");
         socket.OnMessage += Socket_OnMessage;
         socket.OnError += (_, e) =>
         {
@@ -241,6 +241,14 @@ public class FNAFClient : MonoBehaviour
 
         switch (type)
         {
+            case "Connected":
+                OnConnected.Invoke(null, null);
+                break;
+
+            case "Disconnected":
+                OnDisconnected.Invoke(null, null);
+                break;
+
             case nameof(FNAFJoinRoomResponse):
                 var joinRoomData = JsonUtility.FromJson<FNAFJoinRoomResponse>(jsonText);
                 currentRoomId = joinRoomData.room.id;
