@@ -35,7 +35,7 @@ public class JoinMenu : MonoBehaviour
         joinRandomButton.interactable = true;
         if (e.ok)
         {
-            SceneManager.LoadScene("Lobby");
+            LoadingScreen.LoadScene("Lobby");
         }
         else
         {
@@ -54,7 +54,7 @@ public class JoinMenu : MonoBehaviour
         FNAFClient.Instance.OnCreateRoomResponse -= Instance_OnCreateRoomResponse;
         if (e.ok)
         {
-            SceneManager.LoadScene("Lobby");
+            LoadingScreen.LoadScene("Lobby");
         }
         else
         {
@@ -94,7 +94,7 @@ public class JoinMenu : MonoBehaviour
         if (e.ok)
         {
             Debug.Log("Joining room " + e.room.id);
-            SceneManager.LoadScene("Lobby");
+            LoadingScreen.LoadScene("Lobby");
         }
         else
         {

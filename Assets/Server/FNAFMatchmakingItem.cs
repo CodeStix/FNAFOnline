@@ -20,17 +20,11 @@ public class FNAFMatchmakingItem : MonoBehaviour
         nameText.text = room.name;
         ownerText.text = room.ownerName;
         playerCountText.text = $"{ room.playerCount }/{ room.maxPlayers }";
-        locked.SetActive(room.locked);
+        locked.SetActive(room.isPrivate);
     }
 
     public void Join()
     {
-        if (room.locked)
-        {
-            Debug.LogError("Locked rooms not implemented");
-            return;
-        }
-
         FNAFClient.Instance.OnJoinRoomResponse += Instance_OnJoinResponse;
         FNAFClient.Instance.JoinRoom(room.id);
     }
@@ -38,6 +32,6 @@ public class FNAFMatchmakingItem : MonoBehaviour
     private void Instance_OnJoinResponse(object sender, FNAFJoinRoomResponse e)
     {
         FNAFClient.Instance.OnJoinRoomResponse -= Instance_OnJoinResponse;
-        SceneManager.LoadScene("Lobby");
+        LoadingScreen.LoadScene("Lobby");
     }
 }

@@ -1,18 +1,39 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using WebSocketSharp;
+
+[Serializable]
+public class FNAFUser
+{
+    public int id;
+    public string name;
+    public bool ready;
+
+    public override string ToString()
+    {
+        return $"User id={id} name={name} ready={(ready ? "yes" : "no")}";
+    }
+}
 
 [Serializable]
 public class FNAFRoom
 {
     public string id;
     public string name;
+    public int ownerId;
     public string ownerName;
     public int playerCount;
+    public List<FNAFUser> users;
     public int maxPlayers;
-    public bool locked;
+    public bool isPrivate;
+
+    public override string ToString()
+    {
+        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} private={(isPrivate ? "yes" : "no")}";
+    }
 }
 
 [Serializable]
@@ -35,7 +56,7 @@ public class FNAFLoginRequest
 [Serializable]
 public class FNAFLoginResponse
 {
-    public string name;
+    public FNAFUser user;
 }
 
 [Serializable]
@@ -48,7 +69,7 @@ public class FNAFRegisterRequest
 public class FNAFRegisterResponse
 {
     public string token;
-    public string name;
+    public FNAFUser user;
 }
 
 [Serializable]
@@ -65,6 +86,17 @@ public class FNAFJoinRoomResponse
 }
 
 [Serializable]
+public class FNAFLeaveRoomRequest
+{
+}
+
+[Serializable]
+public class FNAFLeaveRoomResponse
+{
+    public bool ok;
+}
+
+[Serializable]
 public class FNAFCreateRoomRequest
 {
     public int maxPlayers;
@@ -75,6 +107,13 @@ public class FNAFCreateRoomRequest
 public class FNAFCreateRoomResponse
 {
     public bool ok;
+    public FNAFRoom room;
+}
+
+[Serializable]
+public class FNAFRoomChangeEvent
+{
+    public string eventType;
     public FNAFRoom room;
 }
 
@@ -93,8 +132,11 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler OnConnected;
     public event EventHandler<CloseEventArgs> OnDisconnected;
 
+    public event EventHandler<FNAFRoomChangeEvent> OnRoomChangeEvent;
+
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
     public event EventHandler<FNAFJoinRoomResponse> OnJoinRoomResponse;
+    public event EventHandler<FNAFLeaveRoomResponse> OnLeaveRoomResponse;
     public event EventHandler<FNAFLoginResponse> OnLoginResponse;
     public event EventHandler<FNAFRegisterResponse> OnRegisterResponse;
     public event EventHandler<FNAFMatchmakingResponse> OnMatchmakingResponse;
@@ -103,8 +145,8 @@ public class FNAFClient : MonoBehaviour
     private FNAFConfig config;
     private ConcurrentQueue<string> incomingMessages = new ConcurrentQueue<string>();
 
-    private string userName;
-    private string currentRoomId;
+    private FNAFUser me;
+    private FNAFRoom currentRoom;
 
     //string oldConfigPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"CodeStix/Net/local.json");
     private static string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"CodeStix/user.json");
@@ -139,6 +181,16 @@ public class FNAFClient : MonoBehaviour
                 }
             }
         }
+    }
+
+    public FNAFUser GetUser()
+    {
+        return me;
+    }
+
+    public FNAFRoom GetRoom()
+    {
+        return currentRoom;
     }
 
     private void LoadConfig()
@@ -206,7 +258,7 @@ public class FNAFClient : MonoBehaviour
 
         Debug.Log("Registered new user: " + e.token);
 
-        userName = e.name;
+        me = e.user;
         config.token = e.token;
         SaveConfig();
     }
@@ -215,9 +267,9 @@ public class FNAFClient : MonoBehaviour
     {
         OnLoginResponse -= FNAFClient_OnLoginResponse;
 
-        Debug.Log("Logged in: " + e.name);
+        Debug.Log("Logged in: " + e.user);
 
-        userName = e.name;
+        me = e.user;
     }
 
     private void Socket_OnMessage(object sender, MessageEventArgs e)
@@ -251,13 +303,22 @@ public class FNAFClient : MonoBehaviour
 
             case nameof(FNAFJoinRoomResponse):
                 var joinRoomData = JsonUtility.FromJson<FNAFJoinRoomResponse>(jsonText);
-                currentRoomId = joinRoomData.room.id;
+                if (joinRoomData.ok)
+                    currentRoom = joinRoomData.room;
                 OnJoinRoomResponse.Invoke(null, joinRoomData);
+                break;
+
+            case nameof(FNAFLeaveRoomResponse):
+                var leaveRoomData = JsonUtility.FromJson<FNAFLeaveRoomResponse>(jsonText);
+                if (leaveRoomData.ok)
+                    currentRoom = null;
+                OnLeaveRoomResponse.Invoke(null, leaveRoomData);
                 break;
 
             case nameof(FNAFCreateRoomResponse):
                 var newRoomData = JsonUtility.FromJson<FNAFCreateRoomResponse>(jsonText);
-                currentRoomId = newRoomData.room.id;
+                if (newRoomData.ok)
+                    currentRoom = newRoomData.room;
                 OnCreateRoomResponse.Invoke(null, newRoomData);
                 break;
 
@@ -271,6 +332,12 @@ public class FNAFClient : MonoBehaviour
 
             case nameof(FNAFMatchmakingResponse):
                 OnMatchmakingResponse.Invoke(null, JsonUtility.FromJson<FNAFMatchmakingResponse>(jsonText));
+                break;
+
+            case nameof(FNAFRoomChangeEvent):
+                var roomChangeEvent = JsonUtility.FromJson<FNAFRoomChangeEvent>(jsonText);
+                currentRoom = roomChangeEvent.room;
+                OnRoomChangeEvent.Invoke(null, roomChangeEvent);
                 break;
 
             default:
@@ -297,6 +364,11 @@ public class FNAFClient : MonoBehaviour
     public void JoinRoom(string id)
     {
         socket.Send(nameof(FNAFJoinRoomRequest) + ":" + JsonUtility.ToJson(new FNAFJoinRoomRequest() { id = id }));
+    }
+
+    public void LeaveRoom()
+    {
+        socket.Send(nameof(FNAFLeaveRoomRequest) + ":" + JsonUtility.ToJson(new FNAFLeaveRoomRequest()));
     }
 
     public void RequestMatchmaking()
