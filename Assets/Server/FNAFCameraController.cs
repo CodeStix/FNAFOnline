@@ -4,35 +4,34 @@ using UnityEngine;
 
 public class FNAFCameraController : MonoBehaviour
 {
+    public float minX, maxX;
     public Camera mainCamera;
     public float speed = 1f;
     public float treshold = 100f;
 
-    private float minX, maxX;
+    //private float cameraWidth;
 
     void Start()
     {
-        // 1600 is the size of the office in pixels
-        Debug.Log("screen width = " + Screen.width);
-        float x = mainCamera.ScreenToWorldPoint(new Vector2(Mathf.Max(1600 - Screen.width, 0f), 0f)).x;
-        Debug.Log("x = " + x);
-        minX = x;
-        maxX = -x;
+        //cameraWidth = mainCamera.orthographicSize * ((float)Screen.width / Screen.height);
     }
 
     void Update()
     {
-        float cameraWidth = Screen.width;
-
         Vector3 mouse = Input.mousePosition;
+
+        float cameraWidth = mainCamera.orthographicSize * ((float)Screen.width / Screen.height);
+
+        if (cameraWidth * 2 >= maxX - minX)
+            return;
 
         if (mouse.x < treshold)
         {
             Vector3 pos = transform.localPosition;
 
             pos.x -= Time.deltaTime * speed;
-            if (pos.x < minX) 
-                pos.x = minX;
+            if (pos.x < minX + cameraWidth) 
+                pos.x = minX + cameraWidth;
 
             transform.localPosition = pos;
 
@@ -43,8 +42,8 @@ public class FNAFCameraController : MonoBehaviour
             Vector3 pos = transform.localPosition;
 
             pos.x += Time.deltaTime * speed;
-            if (pos.x > maxX)
-                pos.x = maxX;
+            if (pos.x > maxX - cameraWidth)
+                pos.x = maxX - cameraWidth;
 
             transform.localPosition = pos;
         }
