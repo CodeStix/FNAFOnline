@@ -36,7 +36,6 @@ public class FNAFCameraController : MonoBehaviour
 
             transform.localPosition = pos;
 
-            mainCamera.
         }
 
         if (mouse.x > Screen.width - treshold)
