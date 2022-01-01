@@ -40,6 +40,8 @@ public class FNAFOffice1 : MonoBehaviour
     [Space]
     public FNAFBetweenAnimation monitor;
     public AudioSource monitorSound;
+    public GameObject monitorEnableObject;
+
 
     private bool monitorOpen = false;
     private int fanFrame = 0;
@@ -114,13 +116,21 @@ public class FNAFOffice1 : MonoBehaviour
         monitorOpen = !monitorOpen;
         if (monitorOpen)
         {
-            monitor.Start();
+            monitorSound.Play();
+            monitor.End();
+            Invoke(nameof(EnableMonitor), 0.25f);
         }
         else
         {
-            monitor.End();
+            monitorSound.Stop();
+            monitor.Start();
+            monitorEnableObject.SetActive(false);
         }
-        monitorSound.Play();
+    }
+
+    private void EnableMonitor()
+    {
+        monitorEnableObject.SetActive(true);
     }
 
     public void LeftLightToggle()

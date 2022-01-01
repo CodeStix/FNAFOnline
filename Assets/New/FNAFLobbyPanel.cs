@@ -60,7 +60,7 @@ public class FNAFLobbyPanel : MonoBehaviour
         }
         else if (e.eventType == "start")
         {
-            LoadingScreen.LoadScene("OldSecurity");
+            LoadingScreen.LoadScene("Office1");
         }
 
         room = e.room;
