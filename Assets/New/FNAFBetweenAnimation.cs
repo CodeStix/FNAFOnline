@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FNAFOfficeMonitor : MonoBehaviour
+public class FNAFBetweenAnimation : MonoBehaviour
 {
     public float speed = 5f;
     public SpriteRenderer spriteRenderer;
@@ -25,14 +25,14 @@ public class FNAFOfficeMonitor : MonoBehaviour
         }
     }
 
-    public void Up()
-    {
-        targetIndex = textures.Length - 1;
-    }
-
-    public void Down()
+    public void Start()
     {
         targetIndex = 0;
+    }
+
+    public void End()
+    {
+        targetIndex = textures.Length - 1;
     }
 
 }

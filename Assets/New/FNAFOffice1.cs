@@ -8,6 +8,7 @@ public class FNAFOffice1 : MonoBehaviour
     public Sprite[] fanTextures;
     public SpriteRenderer fanRenderer;
     [Space]
+    public FNAFBetweenAnimation rightDoor;
     public SpriteRenderer officeRenderer;
     public Sprite normalOfficeSprite;
     public Sprite darkOfficeSprite;
@@ -21,6 +22,7 @@ public class FNAFOffice1 : MonoBehaviour
     public SpriteRenderer rightDoorButtonRenderer;
     public Sprite rightDoorButtonOnSprite;
     public Sprite rightDoorButtonOffSprite;
+    public FNAFBetweenAnimation leftDoor;
     public SpriteRenderer leftOfficeRenderer;
     public Sprite leftOfficeNormalSprite;
     public Sprite leftOfficeMonsterSprite;
@@ -32,18 +34,21 @@ public class FNAFOffice1 : MonoBehaviour
     public Sprite leftDoorButtonOnSprite;
     public Sprite leftDoorButtonOffSprite;
     public AudioSource lightSound;
+    public AudioSource doorSound;
+    [Range(0f, 1f)]
+    public float lightRandomThreshold = 0.85f;
     [Space]
-    public FNAFOfficeMonitor monitor;
+    public FNAFBetweenAnimation monitor;
+    public AudioSource monitorSound;
 
     private bool monitorOpen = false;
     private int fanFrame = 0;
     private bool enableFan = true;
     private bool leftLight = false;
-    private bool leftDoor = false;
+    private bool leftDoorDown = false;
     private bool rightLight = false;
-    private bool rightDoor = false;
+    private bool rightDoorDown = false;
 
-    private const float LIGHT_RANDOM_THRESHOLD = 0.8f;
 
     private void Start()
     {
@@ -68,9 +73,11 @@ public class FNAFOffice1 : MonoBehaviour
                 fanSound.Stop();
         }
 
+
+
         if (leftLight)
         {
-            leftOfficeRenderer.sprite = Random.value > LIGHT_RANDOM_THRESHOLD ? leftOfficeLightSprite : leftOfficeNormalSprite;
+            leftOfficeRenderer.sprite = Random.value > lightRandomThreshold ? leftOfficeLightSprite : leftOfficeNormalSprite;
             leftLightButtonRenderer.sprite = leftLightButtonOnSprite;
         }
         else
@@ -81,7 +88,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (rightLight)
         {
-            rightOfficeRenderer.sprite = Random.value > LIGHT_RANDOM_THRESHOLD ? rightOfficeLightSprite : rightOfficeNormalSprite;
+            rightOfficeRenderer.sprite = Random.value > lightRandomThreshold ? rightOfficeLightSprite : rightOfficeNormalSprite;
             rightLightButtonRenderer.sprite = rightLightButtonOnSprite;
         }
         else
@@ -106,9 +113,14 @@ public class FNAFOffice1 : MonoBehaviour
     {
         monitorOpen = !monitorOpen;
         if (monitorOpen)
-            monitor.Up();
+        {
+            monitor.Start();
+        }
         else
-            monitor.Down();
+        {
+            monitor.End();
+        }
+        monitorSound.Play();
     }
 
     public void LeftLightToggle()
@@ -118,7 +130,18 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void LeftDoorToggle()
     {
-        leftDoor = !leftDoor;
+        doorSound.Play();
+        leftDoorDown = !leftDoorDown;
+        if (leftDoorDown)
+        {
+            leftDoorButtonRenderer.sprite = leftDoorButtonOnSprite;
+            leftDoor.End();
+        }
+        else
+        {
+            leftDoorButtonRenderer.sprite = leftDoorButtonOffSprite;
+            leftDoor.Start();
+        }
     }
 
     public void RightLightToggle()
@@ -128,6 +151,17 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void RightDoorToggle()
     {
-        rightDoor = !rightDoor;
+        doorSound.Play();
+        rightDoorDown = !rightDoorDown;
+        if (rightDoorDown)
+        {
+            rightDoorButtonRenderer.sprite = rightDoorButtonOnSprite;
+            rightDoor.End();
+        }
+        else
+        {
+            rightDoorButtonRenderer.sprite = rightDoorButtonOffSprite;
+            rightDoor.Start();
+        }
     }
 }
