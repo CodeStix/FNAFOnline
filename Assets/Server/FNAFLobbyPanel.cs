@@ -32,7 +32,7 @@ public class FNAFLobbyPanel : MonoBehaviour
         room = FNAFClient.Instance.GetRoom();
 
         UpdatePlayersUI();
-        UpdateReadyUI();
+        readyButtonText.text = notReadyText;
     }
 
     void OnDisable()
@@ -57,6 +57,10 @@ public class FNAFLobbyPanel : MonoBehaviour
         else if (e.eventType == "unready")
         {
             onUnReady?.Invoke();
+        }
+        else if (e.eventType == "start")
+        {
+            LoadingScreen.LoadScene("OldSecurity");
         }
 
         room = e.room;
@@ -97,10 +101,10 @@ public class FNAFLobbyPanel : MonoBehaviour
         }
     }
 
-    public void UpdateReadyUI()
-    {
-        readyButtonText.text = ready ? readyText : notReadyText;
-    }
+    //public void UpdateReadyUI()
+    //{
+    //    readyButtonText.text = ready ? readyText : notReadyText;
+    //}
 
     public void Leave()
     {
@@ -119,8 +123,18 @@ public class FNAFLobbyPanel : MonoBehaviour
 
     public void ReadyToggle()
     {
-        ready = !ready;
-        UpdateReadyUI();
+        FNAFClient.Instance.OnStartResponse += Instance_OnStartResponse;
+        FNAFClient.Instance.StartGameRequest(!ready);
     }
 
+    private void Instance_OnStartResponse(object sender, FNAFStartResponse e)
+    {
+        FNAFClient.Instance.OnStartResponse -= Instance_OnStartResponse;
+
+        if (e.ok)
+        {
+            ready = e.ready;
+            readyButtonText.text = e.ready ? readyText : notReadyText;
+        }
+    }
 }

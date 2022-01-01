@@ -22,7 +22,7 @@ public class FNAFLobbyPlayer : MonoBehaviour
     public Sprite defaultAvatar;
     public Sprite nobodyAvatar;
 
-    private FNAFUser user;
+    private FNAFRoomUser user;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class FNAFLobbyPlayer : MonoBehaviour
         //UseFor(null);
     }
 
-    public void UseFor(FNAFUser user)
+    public void UseFor(FNAFRoomUser user)
     {
         this.user = user;
         if (user != null)
@@ -38,12 +38,12 @@ public class FNAFLobbyPlayer : MonoBehaviour
             FNAFRoom currentRoom = FNAFClient.Instance.GetRoom();
             bool currentIsOwner = currentRoom.ownerId == FNAFClient.Instance.GetUser().id;
             avatarImage.sprite = defaultAvatar;
-            nameText.text = user.name;
+            nameText.text = user.user.name;
             nameText.enabled = true;
             levelText.enabled = true;
             statusText.enabled = true;
-            statusText.text = notReadyText;
-            ownerImage.enabled = currentRoom.ownerId == user.id;
+            statusText.text = user.ready ? readyText : notReadyText;
+            ownerImage.enabled = currentRoom.ownerId == user.user.id;
             kickButton.enabled = true;
             kickButton.interactable = currentIsOwner;
             addFriendButton.enabled = true;
@@ -61,10 +61,10 @@ public class FNAFLobbyPlayer : MonoBehaviour
         }
     }
 
-    public void SetReady(bool ready)
-    {
-        statusText.text = ready ? readyText : notReadyText;
-    }
+    //public void SetReady(bool ready)
+    //{
+    //    statusText.text = ready ? readyText : notReadyText;
+    //}
 
     public void Kick()
     {

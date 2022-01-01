@@ -19,6 +19,18 @@ public class FNAFUser
 }
 
 [Serializable]
+public class FNAFRoomUser
+{
+    public FNAFUser user;
+    public bool ready;
+
+    public override string ToString()
+    {
+        return user.ToString() + " ready=" + (ready ? "yes" : "no");
+    }
+}
+
+[Serializable]
 public class FNAFRoom
 {
     public string id;
@@ -26,13 +38,14 @@ public class FNAFRoom
     public int ownerId;
     public string ownerName;
     public int playerCount;
-    public List<FNAFUser> users;
+    public List<FNAFRoomUser> users;
     public int maxPlayers;
     public bool isPrivate;
+    public bool inGame;
 
     public override string ToString()
     {
-        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} private={(isPrivate ? "yes" : "no")}";
+        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")}";
     }
 }
 
@@ -118,6 +131,19 @@ public class FNAFRoomChangeEvent
 }
 
 [Serializable]
+public class FNAFStartRequest
+{
+    public bool ready;
+}
+
+[Serializable]
+public class FNAFStartResponse
+{
+    public bool ok;
+    public bool ready;
+}
+
+[Serializable]
 public class FNAFConfig
 {
     public int version;
@@ -140,6 +166,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAFLoginResponse> OnLoginResponse;
     public event EventHandler<FNAFRegisterResponse> OnRegisterResponse;
     public event EventHandler<FNAFMatchmakingResponse> OnMatchmakingResponse;
+    public event EventHandler<FNAFStartResponse> OnStartResponse;
 
     private WebSocket socket;
     private FNAFConfig config;
@@ -149,7 +176,7 @@ public class FNAFClient : MonoBehaviour
     private FNAFRoom currentRoom;
 
     //string oldConfigPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"CodeStix/Net/local.json");
-    private static string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"CodeStix/user.json");
+    private static string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Application.isEditor ? @"CodeStix/user-editor.json" : @"CodeStix/user.json");
 
     public static FNAFClient Instance { get; private set; }
 
@@ -334,6 +361,10 @@ public class FNAFClient : MonoBehaviour
                 OnMatchmakingResponse.Invoke(null, JsonUtility.FromJson<FNAFMatchmakingResponse>(jsonText));
                 break;
 
+            case nameof(FNAFStartResponse):
+                OnStartResponse.Invoke(null, JsonUtility.FromJson<FNAFStartResponse>(jsonText));
+                break;
+
             case nameof(FNAFRoomChangeEvent):
                 var roomChangeEvent = JsonUtility.FromJson<FNAFRoomChangeEvent>(jsonText);
                 currentRoom = roomChangeEvent.room;
@@ -374,5 +405,10 @@ public class FNAFClient : MonoBehaviour
     public void RequestMatchmaking()
     {
         socket.Send(nameof(FNAFMatchmakingRequest) + ":" + JsonUtility.ToJson(new FNAFMatchmakingRequest()));
+    }
+
+    public void StartGameRequest(bool ready)
+    {
+        socket.Send(nameof(FNAFStartRequest) + ":" + JsonUtility.ToJson(new FNAFStartRequest() { ready = ready }));
     }
 }
