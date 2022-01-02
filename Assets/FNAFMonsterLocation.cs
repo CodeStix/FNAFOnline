@@ -14,10 +14,10 @@ public class FNAFMonsterLocation : MonoBehaviour
      
     private void Start()
     {
-        foreach (GameObject obj in states)
-        {
-            obj.SetActive(false);
-        }
+        //foreach (GameObject obj in states)
+        //{
+        //    obj.SetActive(false);
+        //}
     }
 
     public void SetState(int state)

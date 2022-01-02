@@ -17,6 +17,7 @@ public class FNAF1Game
     public int foxyLocation;
     public int foxyLocationState;
     public float powerLeft;
+    public int currentHour;
     public long startTimeStamp;
     public bool leftLight;
     public bool rightLight;
@@ -408,7 +409,6 @@ public class FNAFClient : MonoBehaviour
             case nameof(FNAFRoomChangeEvent):
                 var roomChangeEvent = JsonUtility.FromJson<FNAFRoomChangeEvent>(jsonText);
                 currentRoom = roomChangeEvent.room;
-                Debug.Log("invoke OnRoomChangeEvent");
                 OnRoomChangeEvent?.Invoke(null, roomChangeEvent);
                 break;
 

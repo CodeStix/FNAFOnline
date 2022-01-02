@@ -35,6 +35,7 @@ public class FNAFOffice1 : MonoBehaviour
     public Sprite leftDoorButtonOffSprite;
     public AudioSource lightSound;
     public AudioSource doorSound;
+    public AudioSource windowScareSound;
     [Range(0f, 1f)]
     public float lightRandomThreshold = 0.85f;
     [Space]
@@ -46,10 +47,17 @@ public class FNAFOffice1 : MonoBehaviour
     public FNAFOffice1Camera[] cameras;
     public FNAFAnimatedSprite cameraSwitchEffect;
     public Text cameraNameText;
+    public int bonnieWindowLocationIndex;
+    public int chicaWindowLocationIndex;
     public FNAFMonsterLocation[] freddyLocations;
     public FNAFMonsterLocation[] chicaLocations;
     public FNAFMonsterLocation[] bonnieLocations;
     public FNAFMonsterLocation[] foxyLocations;
+    [Space]
+    public Text hourText;
+    public Text powerLeftText;
+    public Image usageImage;
+    public Sprite[] usageSprites;
 
     private int freddyLocationIndex = 0;
     private int freddyLocationState = 0;
@@ -68,6 +76,10 @@ public class FNAFOffice1 : MonoBehaviour
     private bool rightDoorDown = false;
     private int currentCamera = 0;
     private int guardCurrentCamera = 0;
+    private bool sawChica = false;
+    private bool sawBonnie = false;
+
+    private readonly string[] HOUR_NAMES = new[] { "12 PM", "1 AM", "2 AM", "3 AM", "4 AM", "5 AM", "6 AM", "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 AM", "1 PM", "2 PM", "3 PM", "4 PM" };
 
     private void Start()
     {
@@ -123,6 +135,7 @@ public class FNAFOffice1 : MonoBehaviour
 
             if (chicaLocationIndex != game.chicaLocation || chicaLocationState != game.chicaLocationState)
             {
+                sawChica = false;
                 chicaLocations[chicaLocationIndex].SetState(-1);
                 chicaLocationIndex = game.chicaLocation;
                 chicaLocationState = game.chicaLocationState;
@@ -131,6 +144,7 @@ public class FNAFOffice1 : MonoBehaviour
 
             if (bonnieLocationIndex != game.bonnieLocation || bonnieLocationState != game.bonnieLocationState)
             {
+                sawBonnie = false;
                 bonnieLocations[bonnieLocationIndex].SetState(-1);
                 bonnieLocationIndex = game.bonnieLocation;
                 bonnieLocationState = game.bonnieLocationState;
@@ -183,10 +197,32 @@ public class FNAFOffice1 : MonoBehaviour
             leftDoorDown = game.leftDoor;
             guardCurrentCamera = game.selectedCameraNumber;
         }
+        else if (e.eventType == "tick")
+        {
+            hourText.text = HOUR_NAMES[game.currentHour];
+            powerLeftText.text = "Power left: <b>" + Mathf.Floor(game.powerLeft) + "</b>%";
+        }
+        else if (e.eventType == "end")
+        {
+            LoadingScreen.LoadScene("Lobby");
+        } 
     }
 
     private void Update()
     {
+        int usage = 0;
+        if (rightDoorDown)
+            usage++;
+        if (leftDoorDown)
+            usage++;
+        if (rightLight)
+            usage++;
+        if (leftLight)
+            usage++;
+        if (guardCurrentCamera >= 0)
+            usage++;
+        usageImage.sprite = usageSprites[usage];
+
         if (enableFan)
         {
             fanRenderer.gameObject.SetActive(true);
@@ -202,7 +238,14 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (leftLight)
         {
-            leftOfficeRenderer.sprite = Random.value > lightRandomThreshold ? leftOfficeLightSprite : leftOfficeNormalSprite;
+            if (bonnieLocationIndex == bonnieWindowLocationIndex && !sawBonnie)
+            {
+                windowScareSound.Play();
+                sawBonnie = true;
+            }
+
+            leftOfficeRenderer.sprite = Random.value > lightRandomThreshold ? 
+                (bonnieLocationIndex == bonnieWindowLocationIndex ? leftOfficeMonsterSprite : leftOfficeLightSprite) : leftOfficeNormalSprite;
             leftLightButtonRenderer.sprite = leftLightButtonOnSprite;
         }
         else
@@ -213,7 +256,14 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (rightLight)
         {
-            rightOfficeRenderer.sprite = Random.value > lightRandomThreshold ? rightOfficeLightSprite : rightOfficeNormalSprite;
+            if (chicaLocationIndex == chicaWindowLocationIndex && !sawChica)
+            {
+                windowScareSound.Play();
+                sawChica = true;
+            }
+
+            rightOfficeRenderer.sprite = Random.value > lightRandomThreshold ? 
+                (chicaLocationIndex == chicaWindowLocationIndex ? rightOfficeMonsterSprite : rightOfficeLightSprite) : rightOfficeNormalSprite;
             rightLightButtonRenderer.sprite = rightLightButtonOnSprite;
         }
         else
