@@ -5,8 +5,7 @@ using UnityEngine;
 public class FNAFOffice1 : MonoBehaviour
 {
     public AudioSource fanSound;
-    public Sprite[] fanTextures;
-    public SpriteRenderer fanRenderer;
+    public FNAFAnimatedSprite fanRenderer;
     [Space]
     public FNAFBetweenAnimation rightDoor;
     public SpriteRenderer officeRenderer;
@@ -41,7 +40,10 @@ public class FNAFOffice1 : MonoBehaviour
     public FNAFBetweenAnimation monitor;
     public AudioSource monitorSound;
     public GameObject monitorEnableObject;
-
+    public AudioSource cameraSwitchSound;
+    [Tooltip("1A, 1B, 1C, 2A, 2B, 3, 4A, 4B, 5, 6, 7")]
+    public FNAFOffice1Camera[] cameras;
+    public FNAFAnimatedSprite cameraSwitchEffect;
 
     private bool monitorOpen = false;
     private int fanFrame = 0;
@@ -50,32 +52,27 @@ public class FNAFOffice1 : MonoBehaviour
     private bool leftDoorDown = false;
     private bool rightLight = false;
     private bool rightDoorDown = false;
-
+    private int currentCamera = 0;
 
     private void Start()
     {
-        
+        UpdateCameras();
     }
 
     private void Update()
     {
         if (enableFan)
         {
-            fanRenderer.enabled = true;
+            fanRenderer.gameObject.SetActive(true);
             if (!fanSound.isPlaying)
                 fanSound.Play();
-            fanRenderer.sprite = fanTextures[fanFrame];
-            if (++fanFrame >= fanTextures.Length)
-                fanFrame = 0;
         }
         else
         {
-            fanRenderer.enabled = false;
+            fanRenderer.gameObject.SetActive(false);
             if (fanSound.isPlaying)
                 fanSound.Stop();
         }
-
-
 
         if (leftLight)
         {
@@ -131,6 +128,8 @@ public class FNAFOffice1 : MonoBehaviour
     private void EnableMonitor()
     {
         monitorEnableObject.SetActive(true);
+        cameraSwitchSound.Play();
+        cameraSwitchEffect.Play();
     }
 
     public void LeftLightToggle()
@@ -172,6 +171,28 @@ public class FNAFOffice1 : MonoBehaviour
         {
             rightDoorButtonRenderer.sprite = rightDoorButtonOffSprite;
             rightDoor.Start();
+        }
+    }
+
+    public void SwitchCamera(int index)
+    {
+        if (currentCamera == index) return;
+
+        cameraSwitchSound.Play();
+        cameraSwitchEffect.Play();
+        currentCamera = index;
+
+        UpdateCameras();
+    }
+
+    private void UpdateCameras()
+    {
+        for (int i = 0; i < cameras.Length; i++)
+        {
+            if (i == currentCamera)
+                cameras[i].gameObject.SetActive(true);
+            else
+                cameras[i].gameObject.SetActive(false);
         }
     }
 }

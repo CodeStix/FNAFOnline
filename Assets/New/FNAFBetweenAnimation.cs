@@ -13,12 +13,12 @@ public class FNAFBetweenAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (index < targetIndex)
+        if (index <= targetIndex)
         {
             index += speed * Time.deltaTime;
             spriteRenderer.sprite = textures[(int)index];
         }
-        if (index > targetIndex)
+        if (index >= targetIndex)
         {
             index -= speed * Time.deltaTime;
             spriteRenderer.sprite = textures[(int)index];
