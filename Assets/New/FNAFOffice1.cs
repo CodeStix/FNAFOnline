@@ -45,6 +45,7 @@ public class FNAFOffice1 : MonoBehaviour
     public FNAFOffice1Camera[] cameras;
     public FNAFAnimatedSprite cameraSwitchEffect;
 
+    private bool canToggleMonitor = true;
     private bool monitorOpen = false;
     private int fanFrame = 0;
     private bool enableFan = true;
@@ -110,6 +111,8 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void ToggleMonitor()
     {
+        if (!canToggleMonitor) return;
+        canToggleMonitor = false;
         monitorOpen = !monitorOpen;
         if (monitorOpen)
         {
@@ -122,7 +125,13 @@ public class FNAFOffice1 : MonoBehaviour
             monitorSound.Stop();
             monitor.Start();
             monitorEnableObject.SetActive(false);
+            Invoke(nameof(DisableMonitor), 0.25f);
         }
+    }
+
+    private void DisableMonitor()
+    {
+        canToggleMonitor = true;
     }
 
     private void EnableMonitor()
@@ -130,15 +139,18 @@ public class FNAFOffice1 : MonoBehaviour
         monitorEnableObject.SetActive(true);
         cameraSwitchSound.Play();
         cameraSwitchEffect.Play();
+        canToggleMonitor = true;
     }
 
     public void LeftLightToggle()
     {
+        if (monitorOpen) return;
         leftLight = !leftLight;
     }
 
     public void LeftDoorToggle()
     {
+        if (monitorOpen) return;
         doorSound.Play();
         leftDoorDown = !leftDoorDown;
         if (leftDoorDown)
@@ -155,11 +167,13 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void RightLightToggle()
     {
+        if (monitorOpen) return;
         rightLight = !rightLight;
     }
 
     public void RightDoorToggle()
     {
+        if (monitorOpen) return;
         doorSound.Play();
         rightDoorDown = !rightDoorDown;
         if (rightDoorDown)

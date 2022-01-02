@@ -5,8 +5,8 @@ using UnityEngine;
 public class FNAFOffice1Camera : MonoBehaviour
 {
     public string cameraName;
-    public GameObject enableWhenFreddy;
-    public GameObject enableWhenChica;
-    public GameObject enableWhenBonnie;
-    public GameObject enableWhenFoxy;
+    public GameObject[] whenFreddy;
+    public GameObject[] whenChica;
+    public GameObject[] whenBonnie;
+    public GameObject[] whenFoxy;
 }

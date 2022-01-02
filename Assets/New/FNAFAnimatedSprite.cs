@@ -8,6 +8,7 @@ public class FNAFAnimatedSprite : MonoBehaviour
     public Sprite[] textures;
     public float speed = 10;
     public bool loop = true;
+    public bool shuffle = false;
     [Space]
     public Image orImage;
     public SpriteRenderer orSpriteRenderer;
@@ -23,7 +24,7 @@ public class FNAFAnimatedSprite : MonoBehaviour
     {
         if ((int)current < textures.Length)
         {
-            if (orImage != null)
+            if (orImage != null) 
                 orImage.sprite = textures[(int)current];
             if (orSpriteRenderer != null)
                 orSpriteRenderer.sprite = textures[(int)current];
@@ -35,6 +36,19 @@ public class FNAFAnimatedSprite : MonoBehaviour
                 if (loop)
                 {
                     current = 0;
+                    
+                    if (shuffle)
+                    {
+                        // Shuffle textures
+                        for(int i = 0; i < textures.Length; i++)
+                        {
+                            Sprite t = textures[i];
+                            int newIndex = Random.Range(0, textures.Length);
+                            Sprite temp = textures[newIndex];
+                            textures[newIndex] = t;
+                            textures[i] = temp;
+                        }
+                    }
                 }
             }
         }
