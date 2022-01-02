@@ -6,6 +6,26 @@ using UnityEngine;
 using WebSocketSharp;
 
 [Serializable]
+public class FNAF1Game
+{
+    public int chicaLocation; // Which camera
+    public int chicaLocationState; // Which image to display on camera
+    public int freddyLocation;
+    public int freddyLocationState;
+    public int bonnieLocation;
+    public int bonnieLocationState;
+    public int foxyLocation;
+    public int foxyLocationState;
+    public float powerLeft;
+    public long startTimeStamp;
+    public bool leftLight;
+    public bool rightLight;
+    public bool leftDoor;
+    public bool rightDoor;
+    public int selectedCameraNumber;
+}
+
+[Serializable]
 public class FNAFUser
 {
     public int id;
@@ -42,6 +62,7 @@ public class FNAFRoom
     public int maxPlayers;
     public bool isPrivate;
     public bool inGame;
+    public FNAF1Game game;
 
     public override string ToString()
     {
@@ -141,6 +162,24 @@ public class FNAFStartResponse
 {
     public bool ok;
     public bool ready;
+}
+
+[Serializable]
+public class FNAF1MoveRequest
+{
+    public string monster;
+    public int location;
+    public int locationState;
+}
+
+[Serializable]
+public class FNAF1OfficeChangeRequest
+{
+    public bool leftLight;
+    public bool rightLight;
+    public bool leftDoor;
+    public bool rightDoor;
+    public int selectedCameraNumber;
 }
 
 [Serializable]
@@ -321,54 +360,55 @@ public class FNAFClient : MonoBehaviour
         switch (type)
         {
             case "Connected":
-                OnConnected.Invoke(null, null);
+                OnConnected?.Invoke(null, null);
                 break;
 
             case "Disconnected":
-                OnDisconnected.Invoke(null, null);
+                OnDisconnected?.Invoke(null, null);
                 break;
 
             case nameof(FNAFJoinRoomResponse):
                 var joinRoomData = JsonUtility.FromJson<FNAFJoinRoomResponse>(jsonText);
                 if (joinRoomData.ok)
                     currentRoom = joinRoomData.room;
-                OnJoinRoomResponse.Invoke(null, joinRoomData);
+                OnJoinRoomResponse?.Invoke(null, joinRoomData);
                 break;
 
             case nameof(FNAFLeaveRoomResponse):
                 var leaveRoomData = JsonUtility.FromJson<FNAFLeaveRoomResponse>(jsonText);
                 if (leaveRoomData.ok)
                     currentRoom = null;
-                OnLeaveRoomResponse.Invoke(null, leaveRoomData);
+                OnLeaveRoomResponse?.Invoke(null, leaveRoomData);
                 break;
 
             case nameof(FNAFCreateRoomResponse):
                 var newRoomData = JsonUtility.FromJson<FNAFCreateRoomResponse>(jsonText);
                 if (newRoomData.ok)
                     currentRoom = newRoomData.room;
-                OnCreateRoomResponse.Invoke(null, newRoomData);
+                OnCreateRoomResponse?.Invoke(null, newRoomData);
                 break;
 
             case nameof(FNAFLoginResponse):
-                OnLoginResponse.Invoke(null, JsonUtility.FromJson<FNAFLoginResponse>(jsonText));
+                OnLoginResponse?.Invoke(null, JsonUtility.FromJson<FNAFLoginResponse>(jsonText));
                 break;
 
             case nameof(FNAFRegisterResponse):
-                OnRegisterResponse.Invoke(null, JsonUtility.FromJson<FNAFRegisterResponse>(jsonText));
+                OnRegisterResponse?.Invoke(null, JsonUtility.FromJson<FNAFRegisterResponse>(jsonText));
                 break;
 
             case nameof(FNAFMatchmakingResponse):
-                OnMatchmakingResponse.Invoke(null, JsonUtility.FromJson<FNAFMatchmakingResponse>(jsonText));
+                OnMatchmakingResponse?.Invoke(null, JsonUtility.FromJson<FNAFMatchmakingResponse>(jsonText));
                 break;
 
             case nameof(FNAFStartResponse):
-                OnStartResponse.Invoke(null, JsonUtility.FromJson<FNAFStartResponse>(jsonText));
+                OnStartResponse?.Invoke(null, JsonUtility.FromJson<FNAFStartResponse>(jsonText));
                 break;
 
             case nameof(FNAFRoomChangeEvent):
                 var roomChangeEvent = JsonUtility.FromJson<FNAFRoomChangeEvent>(jsonText);
                 currentRoom = roomChangeEvent.room;
-                OnRoomChangeEvent.Invoke(null, roomChangeEvent);
+                Debug.Log("invoke OnRoomChangeEvent");
+                OnRoomChangeEvent?.Invoke(null, roomChangeEvent);
                 break;
 
             default:
@@ -410,5 +450,15 @@ public class FNAFClient : MonoBehaviour
     public void StartGameRequest(bool ready)
     {
         socket.Send(nameof(FNAFStartRequest) + ":" + JsonUtility.ToJson(new FNAFStartRequest() { ready = ready }));
+    }
+
+    public void FNAF1RequestMove(string monster, int location, int locationState)
+    {
+        socket.Send(nameof(FNAF1MoveRequest) + ":" + JsonUtility.ToJson(new FNAF1MoveRequest() { monster = monster, location = location, locationState = locationState }));
+    }
+
+    public void FNAF1RequestOfficeChange(FNAF1OfficeChangeRequest req)
+    {
+        socket.Send(nameof(FNAF1OfficeChangeRequest) + ":" + JsonUtility.ToJson(req));
     }
 }

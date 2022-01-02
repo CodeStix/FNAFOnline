@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FNAFOffice1 : MonoBehaviour
 {
@@ -44,10 +45,22 @@ public class FNAFOffice1 : MonoBehaviour
     [Tooltip("1A, 1B, 1C, 2A, 2B, 3, 4A, 4B, 5, 6, 7")]
     public FNAFOffice1Camera[] cameras;
     public FNAFAnimatedSprite cameraSwitchEffect;
+    public Text cameraNameText;
+    public FNAFMonsterLocation[] freddyLocations;
+    public FNAFMonsterLocation[] chicaLocations;
+    public FNAFMonsterLocation[] bonnieLocations;
+    public FNAFMonsterLocation[] foxyLocations;
 
+    private int freddyLocationIndex = 0;
+    private int freddyLocationState = 0;
+    private int chicaLocationIndex = 0;
+    private int chicaLocationState = 0;
+    private int bonnieLocationIndex = 0;
+    private int bonnieLocationState = 0;
+    private int foxyLocationIndex = 0;
+    private int foxyLocationState = 0;
     private bool canToggleMonitor = true;
     private bool monitorOpen = false;
-    private int fanFrame = 0;
     private bool enableFan = true;
     private bool leftLight = false;
     private bool leftDoorDown = false;
@@ -57,7 +70,97 @@ public class FNAFOffice1 : MonoBehaviour
 
     private void Start()
     {
+        // for testing purposes
+
+        Invoke(nameof(TestJoinRoom), 1.0f);
+
         UpdateCameras();
+
+        freddyLocations[0].SetState(0);
+        chicaLocations[0].SetState(0);
+        bonnieLocations[0].SetState(0);
+        foxyLocations[0].SetState(0);
+
+    }
+
+    private void TestJoinRoom()
+    {
+        FNAFClient.Instance.JoinRoom(null);
+        Invoke(nameof(TestStartGame), 1.0f);
+    }
+
+    private void TestStartGame()
+    {
+        FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
+        FNAFClient.Instance.StartGameRequest(true);
+    }
+
+
+    private void OnEnable()
+    {
+        //Debug.Log("register OnRoomChangeEvent");
+        //FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
+    }
+
+    private void OnDisable()
+    {
+        //Debug.Log("unregister OnRoomChangeEvent");
+        //FNAFClient.Instance.OnRoomChangeEvent -= Instance_OnRoomChangeEvent;
+    }
+
+    private void Instance_OnRoomChangeEvent(object sender, FNAFRoomChangeEvent e)
+    {
+        // Sync office to received room
+        FNAF1Game game = e.room.game;
+
+        Debug.Log("received" + e.eventType);
+
+        if (e.eventType == "move")
+        {
+            Debug.Log("received move event");
+
+            if (freddyLocationIndex != game.freddyLocation || freddyLocationState != game.freddyLocationState)
+            {
+                Debug.Log("moving freddy to " + game.freddyLocation);
+                freddyLocations[freddyLocationIndex].SetState(-1);
+                freddyLocationIndex = game.freddyLocation;
+                freddyLocationState = game.freddyLocationState;
+                freddyLocations[freddyLocationIndex].SetState(freddyLocationState);
+            }
+
+            if (chicaLocationIndex != game.chicaLocation || chicaLocationState != game.chicaLocationState)
+            {
+                Debug.Log("moving chica to " + game.chicaLocation);
+                chicaLocations[chicaLocationIndex].SetState(-1);
+                chicaLocationIndex = game.chicaLocation;
+                chicaLocationState = game.chicaLocationState;
+                chicaLocations[chicaLocationIndex].SetState(chicaLocationState);
+            }
+
+            if (bonnieLocationIndex != game.bonnieLocation || bonnieLocationState != game.bonnieLocationState)
+            {
+                Debug.Log("moving bonnie to " + game.bonnieLocation);
+                bonnieLocations[bonnieLocationIndex].SetState(-1);
+                bonnieLocationIndex = game.bonnieLocation;
+                bonnieLocationState = game.bonnieLocationState;
+                bonnieLocations[bonnieLocationIndex].SetState(bonnieLocationState);
+            }
+
+            if (foxyLocationIndex != game.foxyLocation || foxyLocationState != game.foxyLocationState)
+            {
+                Debug.Log("moving foxy to " + game.foxyLocation);
+                foxyLocations[foxyLocationIndex].SetState(-1);
+                foxyLocationIndex = game.foxyLocation;
+                foxyLocationState = game.foxyLocationState;
+                foxyLocations[foxyLocationIndex].SetState(foxyLocationState);
+            }
+        }
+        else if (e.eventType == "officeChange")
+        {
+            // TODO
+        }
+
+
     }
 
     private void Update()
@@ -195,6 +298,7 @@ public class FNAFOffice1 : MonoBehaviour
         cameraSwitchSound.Play();
         cameraSwitchEffect.Play();
         currentCamera = index;
+        cameraNameText.text = cameras[index].cameraName;
 
         UpdateCameras();
     }
