@@ -8,18 +8,11 @@ public class FNAFMonsterLocation : MonoBehaviour
     [Tooltip("Optional, the move button that controls this location")]
     public FNAFMoveButton moveButton;
     [Tooltip("Optional, the camera that is looking at this location")]
-    public FNAFOffice1Camera lookingCamera; 
+    public FNAFOffice1Camera lookingCamera;
+    public bool isFar = true; // Will be used to know if should play far or close sound
 
     private int current = -1;
      
-    private void Start()
-    {
-        //foreach (GameObject obj in states)
-        //{
-        //    obj.SetActive(false);
-        //}
-    }
-
     public void SetState(int state)
     {
         if (state == current) return;

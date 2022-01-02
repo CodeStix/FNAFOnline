@@ -1,7 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+
+[System.Serializable]
+public class FNAFMoveSounds
+{
+    [Range(0f, 1f)]
+    public float farChance = 0.3f;
+    public AudioSource[] farSounds;
+    [Range(0f, 1f)]
+    public float closeChance = 0.7f;
+    public AudioSource[] closeSounds;
+
+    public void PlayFar()
+    {
+        if (Random.value > farChance) return;
+        farSounds[Random.Range(0, farSounds.Length)].Play();
+    }
+
+    public void PlayClose()
+    {
+        if (Random.value > closeChance) return;
+        closeSounds[Random.Range(0, closeSounds.Length)].Play();
+    }
+}
 
 public class FNAFOffice1 : MonoBehaviour
 {
@@ -53,11 +77,17 @@ public class FNAFOffice1 : MonoBehaviour
     public FNAFMonsterLocation[] chicaLocations;
     public FNAFMonsterLocation[] bonnieLocations;
     public FNAFMonsterLocation[] foxyLocations;
+    public FNAFMoveSounds freddyMoveSounds;
+    public FNAFMoveSounds chicaMoveSounds;
+    public FNAFMoveSounds bonnieMoveSounds;
+    public FNAFMoveSounds foxyMoveSounds;
     [Space]
     public Text hourText;
     public Text powerLeftText;
     public Image usageImage;
     public Sprite[] usageSprites;
+    [Space]
+    public UnityEvent onMoveAnyone;
 
     private int freddyLocationIndex = 0;
     private int freddyLocationState = 0;
@@ -125,12 +155,18 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (e.eventType == "move")
         {
+            onMoveAnyone?.Invoke();
+
             if (freddyLocationIndex != game.freddyLocation || freddyLocationState != game.freddyLocationState)
             {
                 freddyLocations[freddyLocationIndex].SetState(-1);
                 freddyLocationIndex = game.freddyLocation;
                 freddyLocationState = game.freddyLocationState;
                 freddyLocations[freddyLocationIndex].SetState(freddyLocationState);
+                if (freddyLocations[freddyLocationIndex].isFar)
+                    freddyMoveSounds.PlayFar();
+                else
+                    freddyMoveSounds.PlayClose();
             }
 
             if (chicaLocationIndex != game.chicaLocation || chicaLocationState != game.chicaLocationState)
@@ -140,6 +176,10 @@ public class FNAFOffice1 : MonoBehaviour
                 chicaLocationIndex = game.chicaLocation;
                 chicaLocationState = game.chicaLocationState;
                 chicaLocations[chicaLocationIndex].SetState(chicaLocationState);
+                if (chicaLocations[chicaLocationIndex].isFar)
+                    chicaMoveSounds.PlayFar();
+                else
+                    chicaMoveSounds.PlayClose();
             }
 
             if (bonnieLocationIndex != game.bonnieLocation || bonnieLocationState != game.bonnieLocationState)
@@ -149,6 +189,10 @@ public class FNAFOffice1 : MonoBehaviour
                 bonnieLocationIndex = game.bonnieLocation;
                 bonnieLocationState = game.bonnieLocationState;
                 bonnieLocations[bonnieLocationIndex].SetState(bonnieLocationState);
+                if (bonnieLocations[bonnieLocationIndex].isFar)
+                    bonnieMoveSounds.PlayFar();
+                else
+                    bonnieMoveSounds.PlayClose();
             }
 
             if (foxyLocationIndex != game.foxyLocation || foxyLocationState != game.foxyLocationState)
@@ -157,6 +201,10 @@ public class FNAFOffice1 : MonoBehaviour
                 foxyLocationIndex = game.foxyLocation;
                 foxyLocationState = game.foxyLocationState;
                 foxyLocations[foxyLocationIndex].SetState(foxyLocationState);
+                if (foxyLocations[foxyLocationIndex].isFar)
+                    foxyMoveSounds.PlayFar();
+                else
+                    foxyMoveSounds.PlayClose();
             }
         }
         else if (e.eventType == "officeChange")
