@@ -67,6 +67,7 @@ public class FNAFOffice1 : MonoBehaviour
     private bool rightLight = false;
     private bool rightDoorDown = false;
     private int currentCamera = 0;
+    private int guardCurrentCamera = 0;
 
     private void Start()
     {
@@ -95,17 +96,14 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.StartGameRequest(true);
     }
 
-
     private void OnEnable()
     {
-        //Debug.Log("register OnRoomChangeEvent");
-        //FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
+        FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
     }
 
     private void OnDisable()
     {
-        //Debug.Log("unregister OnRoomChangeEvent");
-        //FNAFClient.Instance.OnRoomChangeEvent -= Instance_OnRoomChangeEvent;
+        FNAFClient.Instance.OnRoomChangeEvent -= Instance_OnRoomChangeEvent;
     }
 
     private void Instance_OnRoomChangeEvent(object sender, FNAFRoomChangeEvent e)
@@ -113,15 +111,10 @@ public class FNAFOffice1 : MonoBehaviour
         // Sync office to received room
         FNAF1Game game = e.room.game;
 
-        Debug.Log("received" + e.eventType);
-
         if (e.eventType == "move")
         {
-            Debug.Log("received move event");
-
             if (freddyLocationIndex != game.freddyLocation || freddyLocationState != game.freddyLocationState)
             {
-                Debug.Log("moving freddy to " + game.freddyLocation);
                 freddyLocations[freddyLocationIndex].SetState(-1);
                 freddyLocationIndex = game.freddyLocation;
                 freddyLocationState = game.freddyLocationState;
@@ -130,7 +123,6 @@ public class FNAFOffice1 : MonoBehaviour
 
             if (chicaLocationIndex != game.chicaLocation || chicaLocationState != game.chicaLocationState)
             {
-                Debug.Log("moving chica to " + game.chicaLocation);
                 chicaLocations[chicaLocationIndex].SetState(-1);
                 chicaLocationIndex = game.chicaLocation;
                 chicaLocationState = game.chicaLocationState;
@@ -139,7 +131,6 @@ public class FNAFOffice1 : MonoBehaviour
 
             if (bonnieLocationIndex != game.bonnieLocation || bonnieLocationState != game.bonnieLocationState)
             {
-                Debug.Log("moving bonnie to " + game.bonnieLocation);
                 bonnieLocations[bonnieLocationIndex].SetState(-1);
                 bonnieLocationIndex = game.bonnieLocation;
                 bonnieLocationState = game.bonnieLocationState;
@@ -148,7 +139,6 @@ public class FNAFOffice1 : MonoBehaviour
 
             if (foxyLocationIndex != game.foxyLocation || foxyLocationState != game.foxyLocationState)
             {
-                Debug.Log("moving foxy to " + game.foxyLocation);
                 foxyLocations[foxyLocationIndex].SetState(-1);
                 foxyLocationIndex = game.foxyLocation;
                 foxyLocationState = game.foxyLocationState;
@@ -157,10 +147,42 @@ public class FNAFOffice1 : MonoBehaviour
         }
         else if (e.eventType == "officeChange")
         {
-            // TODO
+            if (rightDoorDown != game.rightDoor)
+            {
+                doorSound.Play();
+                if (game.rightDoor)
+                {
+                    rightDoorButtonRenderer.sprite = rightDoorButtonOnSprite;
+                    rightDoor.End();
+                }
+                else
+                {
+                    rightDoorButtonRenderer.sprite = rightDoorButtonOffSprite;
+                    rightDoor.Start();
+                }
+            }
+
+            if (leftDoorDown != game.leftDoor)
+            {
+                doorSound.Play();
+                if (game.leftDoor)
+                {
+                    leftDoorButtonRenderer.sprite = leftDoorButtonOnSprite;
+                    leftDoor.End();
+                }
+                else
+                {
+                    leftDoorButtonRenderer.sprite = leftDoorButtonOffSprite;
+                    leftDoor.Start();
+                }
+            }
+
+            rightLight = game.rightLight;
+            leftLight = game.leftLight;
+            rightDoorDown = game.rightDoor;
+            leftDoorDown = game.leftDoor;
+            guardCurrentCamera = game.selectedCameraNumber;
         }
-
-
     }
 
     private void Update()
@@ -230,6 +252,8 @@ public class FNAFOffice1 : MonoBehaviour
             monitorEnableObject.SetActive(false);
             Invoke(nameof(DisableMonitor), 0.25f);
         }
+
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, rightDoorDown, monitorOpen ? currentCamera : -1);
     }
 
     private void DisableMonitor()
@@ -248,47 +272,26 @@ public class FNAFOffice1 : MonoBehaviour
     public void LeftLightToggle()
     {
         if (monitorOpen) return;
-        leftLight = !leftLight;
+        FNAFClient.Instance.FNAF1RequestOfficeChange(!leftLight, leftDoorDown, rightLight, rightDoorDown, guardCurrentCamera);
     }
 
     public void LeftDoorToggle()
     {
         if (monitorOpen) return;
-        doorSound.Play();
-        leftDoorDown = !leftDoorDown;
-        if (leftDoorDown)
-        {
-            leftDoorButtonRenderer.sprite = leftDoorButtonOnSprite;
-            leftDoor.End();
-        }
-        else
-        {
-            leftDoorButtonRenderer.sprite = leftDoorButtonOffSprite;
-            leftDoor.Start();
-        }
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, !leftDoorDown, rightLight, rightDoorDown, guardCurrentCamera);
     }
 
     public void RightLightToggle()
     {
         if (monitorOpen) return;
-        rightLight = !rightLight;
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, !rightLight, rightDoorDown, guardCurrentCamera);
     }
 
     public void RightDoorToggle()
     {
         if (monitorOpen) return;
-        doorSound.Play();
-        rightDoorDown = !rightDoorDown;
-        if (rightDoorDown)
-        {
-            rightDoorButtonRenderer.sprite = rightDoorButtonOnSprite;
-            rightDoor.End();
-        }
-        else
-        {
-            rightDoorButtonRenderer.sprite = rightDoorButtonOffSprite;
-            rightDoor.Start();
-        }
+
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, !rightDoorDown, guardCurrentCamera);
     }
 
     public void SwitchCamera(int index)
@@ -299,6 +302,8 @@ public class FNAFOffice1 : MonoBehaviour
         cameraSwitchEffect.Play();
         currentCamera = index;
         cameraNameText.text = cameras[index].cameraName;
+
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, rightDoorDown, index);
 
         UpdateCameras();
     }

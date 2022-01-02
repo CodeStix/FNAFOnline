@@ -31,10 +31,11 @@ public class FNAFUser
     public int id;
     public string name;
     public bool ready;
+    public string role;
 
     public override string ToString()
     {
-        return $"User id={id} name={name} ready={(ready ? "yes" : "no")}";
+        return $"User id={id} name={name} ready={(ready ? "yes" : "no")} role={role}";
     }
 }
 
@@ -457,8 +458,8 @@ public class FNAFClient : MonoBehaviour
         socket.Send(nameof(FNAF1MoveRequest) + ":" + JsonUtility.ToJson(new FNAF1MoveRequest() { monster = monster, location = location, locationState = locationState }));
     }
 
-    public void FNAF1RequestOfficeChange(FNAF1OfficeChangeRequest req)
+    public void FNAF1RequestOfficeChange(bool leftLight, bool leftDoor, bool rightLight, bool rightDoor, int selectedCameraNumber)
     {
-        socket.Send(nameof(FNAF1OfficeChangeRequest) + ":" + JsonUtility.ToJson(req));
+        socket.Send(nameof(FNAF1OfficeChangeRequest) + ":" + JsonUtility.ToJson(new FNAF1OfficeChangeRequest() { leftLight = leftLight, leftDoor = leftDoor, rightLight = rightLight, rightDoor = rightDoor, selectedCameraNumber = selectedCameraNumber }));
     }
 }
