@@ -12,18 +12,32 @@ public class FNAFAnimatedSprite : MonoBehaviour
     [Space]
     public Image orImage;
     public SpriteRenderer orSpriteRenderer;
+    public AudioSource optionalAudio;
 
     private float current = 0;
 
-    void Start()
+    private bool wasEnabled = false;
+
+    private void OnDisable()
     {
-        
+        wasEnabled = gameObject.activeSelf;
+    }
+
+    private void OnEnable()
+    {
+        if (!wasEnabled)
+        {
+            current = 0;
+        }
     }
 
     void Update()
     {
         if ((int)current < textures.Length)
         {
+            if (current == 0 && optionalAudio != null)
+                optionalAudio.Play();
+
             if (orImage != null) 
                 orImage.sprite = textures[(int)current];
             if (orSpriteRenderer != null)
@@ -36,7 +50,7 @@ public class FNAFAnimatedSprite : MonoBehaviour
                 if (loop)
                 {
                     current = 0;
-                    
+
                     if (shuffle)
                     {
                         // Shuffle textures
