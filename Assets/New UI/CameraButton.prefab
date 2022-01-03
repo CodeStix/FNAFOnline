@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.76862746}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -227,7 +227,6 @@ GameObject:
   - component: {fileID: 7996152912742898493}
   - component: {fileID: 8901614164852048535}
   - component: {fileID: 2383702117214379102}
-  - component: {fileID: 5496437103657943502}
   m_Layer: 5
   m_Name: ActiveBackground
   m_TagString: Untagged
@@ -292,24 +291,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5496437103657943502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3406758666807532569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89d26241caf7734880be9302c3eec3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 21300000, guid: 64288b8c8a9246b439400837805d62ba, type: 3}
-  - {fileID: 21300000, guid: f02019ca978de8e48b82eb04b5d6a3fd, type: 3}
-  speed: 2
-  loop: 1
-  shuffle: 0
-  orImage: {fileID: 2383702117214379102}
-  orSpriteRenderer: {fileID: 0}
-  optionalAudio: {fileID: 0}

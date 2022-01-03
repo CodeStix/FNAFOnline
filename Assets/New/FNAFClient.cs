@@ -191,6 +191,7 @@ public class FNAF1MoveRequest
 public class FNAF1MoveResponse
 {
     public bool ok;
+    public bool gotCaught;
     public float cooldownTime;
 }
 

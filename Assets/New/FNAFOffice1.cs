@@ -67,7 +67,10 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource cameraSwitchSound;
     [Tooltip("1A, 1B, 1C, 2A, 2B, 3, 4A, 4B, 5, 6, 7")]
     public FNAFOffice1Camera[] cameras;
-    public FNAFAnimatedSprite[] cameraButtons;
+    public Image[] cameraButtons;
+    public Sprite cameraButtonNormal;
+    public Sprite cameraButtonActive;
+    public Sprite cameraButtonLookedAt;
     public FNAFAnimatedSprite cameraSwitchEffect;
     public Text cameraNameText;
     public int bonnieAttackLocationIndex;
@@ -110,6 +113,7 @@ public class FNAFOffice1 : MonoBehaviour
     public GameObject[] requiresPowerAfton; 
     public AudioSource powerErrorSound;
     public AudioSource powerDownSound;
+    public GameObject caughtMovingObject;
     [Space]
     public UnityEvent onMoveAnyone;
     public UnityEvent onJumpscare;
@@ -136,6 +140,8 @@ public class FNAFOffice1 : MonoBehaviour
     private float moveTimer = 0f;
     private bool moveTimerDone = true;
     private float powerLeft = 100f;
+    private float cameraButtonBlink = 0f;
+    private float caughtMovingTime = 0f;
 
     private string role;
     private bool isAfton = false;
@@ -174,8 +180,6 @@ public class FNAFOffice1 : MonoBehaviour
         chicaLocations[0].SetState(0);
         bonnieLocations[0].SetState(0);
         foxyLocations[0].SetState(0);
-
-      
     }
 
     private void TestJoinRoom()
@@ -221,6 +225,10 @@ public class FNAFOffice1 : MonoBehaviour
         {
             onMoveAnyone?.Invoke();
             StartTimer(e.cooldownTime);
+            if (e.gotCaught)
+            {
+                caughtMovingTime = 8f;
+            }
         }
     }
 
@@ -317,7 +325,20 @@ public class FNAFOffice1 : MonoBehaviour
             leftLight = game.leftLight;
             rightDoorDown = game.rightDoor;
             leftDoorDown = game.leftDoor;
+
+            if (isAfton && guardCurrentCamera >= 0)
+            {
+                cameraButtons[guardCurrentCamera].sprite = cameraButtonNormal;
+            }
+
             guardCurrentCamera = game.selectedCameraNumber;
+            Debug.Log("camera looked at" + guardCurrentCamera);
+
+            if (isAfton && guardCurrentCamera >= 0)
+            {
+                Debug.Log("setting sprite");
+                cameraButtons[guardCurrentCamera].sprite = cameraButtonLookedAt;
+            }
         }
         else if (e.eventType == "tick")
         {
@@ -438,10 +459,31 @@ public class FNAFOffice1 : MonoBehaviour
         usageImage.sprite = usageSprites[usage];
 
         officeRenderer.sprite = powerLeft > 0f ? normalOfficeSprite : darkOfficeSprite;
-        freddyAttackButton.interactable = moveTimerDone && freddyLocationIndex == freddyAttackLocationIndex;
-        chicaAttackButton.interactable = moveTimerDone && chicaLocationIndex == chicaAttackLocationIndex;
-        bonnieAttackButton.interactable = moveTimerDone && bonnieLocationIndex == bonnieAttackLocationIndex;
-        foxyAttackButton.interactable = moveTimerDone && foxyLocationIndex == foxyAttackLocationIndex;
+        freddyAttackButton.interactable = moveTimerDone && !rightDoor && freddyLocationIndex == freddyAttackLocationIndex;
+        chicaAttackButton.interactable = moveTimerDone && !rightDoor && chicaLocationIndex == chicaAttackLocationIndex;
+        bonnieAttackButton.interactable = moveTimerDone && !leftDoor && bonnieLocationIndex == bonnieAttackLocationIndex;
+        foxyAttackButton.interactable = moveTimerDone && !leftDoor && foxyLocationIndex == foxyAttackLocationIndex;
+
+        if (cameraButtonBlink > 0f)
+        {
+            cameraButtonBlink -= Time.deltaTime;
+        }
+        else
+        {
+            cameraButtons[currentCamera].sprite = cameraButtons[currentCamera].sprite == cameraButtonActive ? cameraButtonNormal : cameraButtonActive;
+            
+            cameraButtonBlink = 0.5f;
+        }
+
+        if (caughtMovingTime > 0f)
+        {
+            caughtMovingTime -= Time.deltaTime;
+            caughtMovingObject.SetActive(true);
+        }
+        else
+        {
+            caughtMovingObject.SetActive(false);
+        }
 
         if (leftLight && powerLeft > 0f)
         {
@@ -616,10 +658,15 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (currentCamera == index) return;
 
+        cameraButtons[currentCamera].sprite = cameraButtonNormal;
+        cameraButtonBlink = 0.5f;
+
         cameraSwitchSound.Play();
         cameraSwitchEffect.Play();
         currentCamera = index;
         cameraNameText.text = cameras[index].cameraName;
+
+        cameraButtons[currentCamera].sprite = cameraButtonActive;
 
         if (!isAfton)
         {
@@ -636,12 +683,10 @@ public class FNAFOffice1 : MonoBehaviour
             if (i == currentCamera)
             {
                 cameras[i].gameObject.SetActive(true);
-                cameraButtons[i].gameObject.SetActive(true);
             }
             else
             {
                 cameras[i].gameObject.SetActive(false);
-                cameraButtons[i].gameObject.SetActive(false);
             }
         }
     }
