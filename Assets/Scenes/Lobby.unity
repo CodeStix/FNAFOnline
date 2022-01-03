@@ -446,7 +446,7 @@ MonoBehaviour:
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
-  m_FlexibleWidth: 1
+  m_FlexibleWidth: 2
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
 --- !u!1001 &98050409
@@ -922,7 +922,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1337339560}
+      objectReference: {fileID: 0}
     - target: {fileID: 114400586012850414, guid: dca2e6bfb9a7a4545871db27e5c8e0b4,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -1092,13 +1092,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: -1
+  m_MinWidth: 100
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
-  m_FlexibleWidth: 0.2
+  m_FlexibleWidth: -1
   m_FlexibleHeight: -1
-  m_LayoutPriority: 1
+  m_LayoutPriority: 2
 --- !u!1 &517873444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,19 +2030,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1337339559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 276747827, guid: 8033a32029000124fae0b2b2877e0501, type: 3}
+  m_Script: {fileID: 11500000, guid: bd061a0e1ec3bf7428d335a3dd1b8fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatSource: 1
-  personalChatReceiver: 
-  chatItemPrefab: {fileID: 114603045780217548, guid: ea62c8e3380e1fc4c87b89f672fa4680,
+  messagePrefab: {fileID: 5174142878408109266, guid: ea62c8e3380e1fc4c87b89f672fa4680,
     type: 3}
-  chatTitleFormat: ---- {0} Chat {1} ----
-  titleText: {fileID: 1156515915}
-  chatInput: {fileID: 70451478}
-  enableEnterSubmit: 1
-  chatSendButton: {fileID: 408843208}
-  chatRect: {fileID: 1337339562}
+  inputField: {fileID: 70451478}
+  sendButton: {fileID: 408843208}
 --- !u!114 &1337339561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2057,18 +2051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &1337339562 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114620201012218160, guid: cd9460c54000ea146bc63fee10395754,
-    type: 3}
-  m_PrefabInstance: {fileID: 1337339557}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1357463164
 GameObject:
   m_ObjectHideFlags: 0

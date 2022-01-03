@@ -215,6 +215,12 @@ public class FNAF1AttackRequest
 }
 
 [Serializable]
+public class FNAFChatRequest
+{
+    public string message;
+}
+
+[Serializable]
 public class FNAFConfig
 {
     public int version;
@@ -228,6 +234,13 @@ public class FNAFUserChangeEvent
     public FNAFUser user;
 }
 
+[Serializable]
+public class FNAFChatEvent
+{
+    public string message;
+    public int senderId;
+}
+
 public class FNAFClient : MonoBehaviour
 {
     public string connectionUrl = "ws://localhost:8080";
@@ -237,6 +250,7 @@ public class FNAFClient : MonoBehaviour
 
     public event EventHandler<FNAFRoomChangeEvent> OnRoomChangeEvent;
     public event EventHandler<FNAFUserChangeEvent> OnUserChangeEvent;
+    public event EventHandler<FNAFChatEvent> OnChatEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
     public event EventHandler<FNAFJoinRoomResponse> OnJoinRoomResponse;
@@ -460,6 +474,10 @@ public class FNAFClient : MonoBehaviour
                 OnFNAF1MoveResponse?.Invoke(null, JsonUtility.FromJson<FNAF1MoveResponse>(jsonText));
                 break;
 
+            case nameof(FNAFChatEvent):
+                OnChatEvent?.Invoke(null, JsonUtility.FromJson<FNAFChatEvent>(jsonText));
+                break;
+
             default:
                 Debug.LogWarning("Received unknown message type from server: " + type);
                 break;
@@ -514,5 +532,10 @@ public class FNAFClient : MonoBehaviour
     public void FNAF1RequestAttack(string monster)
     {
         socket.Send(nameof(FNAF1AttackRequest) + ":" + JsonUtility.ToJson(new FNAF1AttackRequest() { monster = monster }));
+    }
+
+    public void ChatRequest(string message)
+    {
+        socket.Send(nameof(FNAFChatRequest) + ":" + JsonUtility.ToJson(new FNAFChatRequest() { message = message }));
     }
 }
