@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 133766898}
   - component: {fileID: 133766900}
   m_Layer: 0
-  m_Name: Stx Unity Client
+  m_Name: FNAFClient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
