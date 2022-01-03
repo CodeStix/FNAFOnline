@@ -67,6 +67,7 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource cameraSwitchSound;
     [Tooltip("1A, 1B, 1C, 2A, 2B, 3, 4A, 4B, 5, 6, 7")]
     public FNAFOffice1Camera[] cameras;
+    public FNAFAnimatedSprite[] cameraButtons;
     public FNAFAnimatedSprite cameraSwitchEffect;
     public Text cameraNameText;
     public int bonnieWindowLocationIndex;
@@ -539,9 +540,15 @@ public class FNAFOffice1 : MonoBehaviour
         for (int i = 0; i < cameras.Length; i++)
         {
             if (i == currentCamera)
+            {
                 cameras[i].gameObject.SetActive(true);
+                cameraButtons[i].gameObject.SetActive(true);
+            }
             else
+            {
                 cameras[i].gameObject.SetActive(false);
+                cameraButtons[i].gameObject.SetActive(false);
+            }
         }
     }
 }
