@@ -70,8 +70,10 @@ public class FNAFOffice1 : MonoBehaviour
     public FNAFAnimatedSprite[] cameraButtons;
     public FNAFAnimatedSprite cameraSwitchEffect;
     public Text cameraNameText;
-    public int bonnieWindowLocationIndex;
-    public int chicaWindowLocationIndex;
+    public int bonnieAttackLocationIndex;
+    public int chicaAttackLocationIndex;
+    public int freddyAttackLocationIndex;
+    public int foxyAttackLocationIndex;
     public FNAFMonsterLocation[] freddyLocations;
     public FNAFMonsterLocation[] chicaLocations;
     public FNAFMonsterLocation[] bonnieLocations;
@@ -80,6 +82,21 @@ public class FNAFOffice1 : MonoBehaviour
     public FNAFMoveSounds chicaMoveSounds;
     public FNAFMoveSounds bonnieMoveSounds;
     public FNAFMoveSounds foxyMoveSounds;
+    public Button freddyAttackButton;
+    public Button chicaAttackButton;
+    public Button bonnieAttackButton;
+    public Button foxyAttackButton;
+    public GameObject freddyJumpScare;
+    public GameObject chicaJumpScare;
+    public GameObject bonnieJumpScare;
+    public GameObject foxyJumpScare;
+    public GameObject deathOverlay;
+    public GameObject aftonGuardView;
+    public GameObject aftonFreddyJumpScare;
+    public GameObject aftonChicaJumpScare;
+    public GameObject aftonBonnieJumpScare;
+    public GameObject aftonFoxyJumpScare;
+    public GameObject aftonDeathOverlay;
     [Space]
     public Text hourText;
     public Text powerLeftText;
@@ -90,10 +107,12 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource timerSound;
     public AudioSource timerDoneSound;
     public GameObject[] requiresPower; // Objects that will be disabled when power is zero
+    public GameObject[] requiresPowerAfton; 
     public AudioSource powerErrorSound;
     public AudioSource powerDownSound;
     [Space]
     public UnityEvent onMoveAnyone;
+    public UnityEvent onJumpscare;
     public UnityEvent whenGuard;
 
     private int freddyLocationIndex = 0;
@@ -138,8 +157,16 @@ public class FNAFOffice1 : MonoBehaviour
             isAfton = role == "afton";
             if (!isAfton) whenGuard.Invoke();
 
+            if (isAfton)
+                StartTimer(FNAFClient.Instance.GetRoom().game.settings.initialPower);
+
             Debug.Log("Starting game, role = " + role);
         }
+
+        freddyAttackButton.onClick.AddListener(() => FNAFClient.Instance.FNAF1RequestAttack("Freddy"));
+        chicaAttackButton.onClick.AddListener(() => FNAFClient.Instance.FNAF1RequestAttack("Chica"));
+        bonnieAttackButton.onClick.AddListener(() => FNAFClient.Instance.FNAF1RequestAttack("Bonnie"));
+        foxyAttackButton.onClick.AddListener(() => FNAFClient.Instance.FNAF1RequestAttack("Foxy"));
 
         UpdateCameras();
 
@@ -148,8 +175,7 @@ public class FNAFOffice1 : MonoBehaviour
         bonnieLocations[0].SetState(0);
         foxyLocations[0].SetState(0);
 
-        if (isAfton)
-            StartTimer(10f);
+      
     }
 
     private void TestJoinRoom()
@@ -172,7 +198,7 @@ public class FNAFOffice1 : MonoBehaviour
         isAfton = role == "afton";
         if (!isAfton) whenGuard.Invoke();
         if (isAfton)
-            StartTimer(10f);
+            StartTimer(FNAFClient.Instance.GetRoom().game.settings.startingMoveTime);
         Debug.Log("Joined random new room for testing, role = " + role);
     }
 
@@ -311,14 +337,15 @@ public class FNAFOffice1 : MonoBehaviour
                     leftDoor.Start();
                     doorSound.Play();
                 }
-                foreach (GameObject obj in requiresPower)
+                
+                foreach (GameObject obj in isAfton ? requiresPowerAfton : requiresPower)
                 {
                     obj.SetActive(false);
                 }
             }
             else if (game.powerLeft > 0f && powerLeft <= 0f)
             {
-                foreach(GameObject obj in requiresPower)
+                foreach (GameObject obj in isAfton ? requiresPowerAfton : requiresPower)
                 {
                     obj.SetActive(true);
                 }
@@ -330,6 +357,69 @@ public class FNAFOffice1 : MonoBehaviour
         {
             LoadingScreen.LoadScene("Lobby");
         } 
+        else if (e.eventType == "attack")
+        {
+            if (isAfton)
+                StartCoroutine(AftonJumpscareSequence(game.attackingMonster));
+            else
+                StartCoroutine(JumpscareSequence(game.attackingMonster));
+        }
+    }
+
+    private IEnumerator AftonJumpscareSequence(string monster)
+    {
+        aftonGuardView.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        switch (monster)
+        {
+            case "Freddy":
+                aftonFreddyJumpScare.SetActive(true);
+                break;
+            case "Chica":
+                aftonChicaJumpScare.SetActive(true);
+                break;
+            case "Bonnie":
+                aftonBonnieJumpScare.SetActive(true);
+                break;
+            case "Foxy":
+                aftonFoxyJumpScare.SetActive(true);
+                break;
+        }
+        yield return new WaitForSeconds(1.0f);
+        aftonFreddyJumpScare.SetActive(false);
+        aftonChicaJumpScare.SetActive(false);
+        aftonBonnieJumpScare.SetActive(false);
+        aftonFoxyJumpScare.SetActive(false);
+        aftonDeathOverlay.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        //onWin?.Invoke();
+    }
+
+    private IEnumerator JumpscareSequence(string monster)
+    {
+        yield return new WaitForSeconds(2.0f);
+        onJumpscare?.Invoke();
+        switch (monster)
+        {
+            case "Freddy":
+                freddyJumpScare.SetActive(true);
+                break;
+            case "Chica":
+                chicaJumpScare.SetActive(true);
+                break;
+            case "Bonnie":
+                bonnieJumpScare.SetActive(true);
+                break;
+            case "Foxy":
+                foxyJumpScare.SetActive(true);
+                break;
+        }
+        yield return new WaitForSeconds(1.0f);
+        freddyJumpScare.SetActive(false);
+        chicaJumpScare.SetActive(false);
+        bonnieJumpScare.SetActive(false);
+        foxyJumpScare.SetActive(false);
+        deathOverlay.SetActive(true);
     }
 
     private void Update()
@@ -348,17 +438,21 @@ public class FNAFOffice1 : MonoBehaviour
         usageImage.sprite = usageSprites[usage];
 
         officeRenderer.sprite = powerLeft > 0f ? normalOfficeSprite : darkOfficeSprite;
+        freddyAttackButton.interactable = moveTimerDone && freddyLocationIndex == freddyAttackLocationIndex;
+        chicaAttackButton.interactable = moveTimerDone && chicaLocationIndex == chicaAttackLocationIndex;
+        bonnieAttackButton.interactable = moveTimerDone && bonnieLocationIndex == bonnieAttackLocationIndex;
+        foxyAttackButton.interactable = moveTimerDone && foxyLocationIndex == foxyAttackLocationIndex;
 
         if (leftLight && powerLeft > 0f)
         {
-            if (bonnieLocationIndex == bonnieWindowLocationIndex && !sawBonnie)
+            if (bonnieLocationIndex == bonnieAttackLocationIndex && !sawBonnie)
             {
                 windowScareSound.Play();
                 sawBonnie = true;
             }
 
             leftOfficeRenderer.sprite = Random.value > lightRandomThreshold ? 
-                (bonnieLocationIndex == bonnieWindowLocationIndex ? leftOfficeMonsterSprite : leftOfficeLightSprite) : leftOfficeNormalSprite;
+                (bonnieLocationIndex == bonnieAttackLocationIndex ? leftOfficeMonsterSprite : leftOfficeLightSprite) : leftOfficeNormalSprite;
             leftLightButtonRenderer.sprite = leftLightButtonOnSprite;
         }
         else
@@ -369,14 +463,14 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (rightLight && powerLeft > 0f)
         {
-            if (chicaLocationIndex == chicaWindowLocationIndex && !sawChica)
+            if (chicaLocationIndex == chicaAttackLocationIndex && !sawChica)
             {
                 windowScareSound.Play();
                 sawChica = true;
             }
 
             rightOfficeRenderer.sprite = Random.value > lightRandomThreshold ? 
-                (chicaLocationIndex == chicaWindowLocationIndex ? rightOfficeMonsterSprite : rightOfficeLightSprite) : rightOfficeNormalSprite;
+                (chicaLocationIndex == chicaAttackLocationIndex ? rightOfficeMonsterSprite : rightOfficeLightSprite) : rightOfficeNormalSprite;
             rightLightButtonRenderer.sprite = rightLightButtonOnSprite;
         }
         else

@@ -6,8 +6,21 @@ using UnityEngine;
 using WebSocketSharp;
 
 [Serializable]
+public class FNAF1GameSettings
+{
+    public float secondsPerHour;
+    public float secondsPerMove;
+    public float maxMoveTimeRandomness;
+    public float decreaseMoveTimeOverNight;
+    public float startingMoveTime;
+    public float initialPower;
+    public int hours;
+}
+
+[Serializable]
 public class FNAF1Game
 {
+    public FNAF1GameSettings settings;
     public int chicaLocation; // Which camera
     public int chicaLocationState; // Which image to display on camera
     public int freddyLocation;
@@ -24,6 +37,7 @@ public class FNAF1Game
     public bool leftDoor;
     public bool rightDoor;
     public int selectedCameraNumber;
+    public string attackingMonster;
 }
 
 [Serializable]
@@ -188,6 +202,12 @@ public class FNAF1OfficeChangeRequest
     public bool leftDoor;
     public bool rightDoor;
     public int selectedCameraNumber;
+}
+
+[Serializable]
+public class FNAF1AttackRequest
+{
+    public string monster;
 }
 
 [Serializable]
@@ -472,5 +492,10 @@ public class FNAFClient : MonoBehaviour
     public void FNAF1RequestOfficeChange(bool leftLight, bool leftDoor, bool rightLight, bool rightDoor, int selectedCameraNumber)
     {
         socket.Send(nameof(FNAF1OfficeChangeRequest) + ":" + JsonUtility.ToJson(new FNAF1OfficeChangeRequest() { leftLight = leftLight, leftDoor = leftDoor, rightLight = rightLight, rightDoor = rightDoor, selectedCameraNumber = selectedCameraNumber }));
+    }
+
+    public void FNAF1RequestAttack(string monster)
+    {
+        socket.Send(nameof(FNAF1AttackRequest) + ":" + JsonUtility.ToJson(new FNAF1AttackRequest() { monster = monster }));
     }
 }
