@@ -46,10 +46,11 @@ public class FNAFUser
 {
     public int id;
     public string name;
+    public int night;
 
     public override string ToString()
     {
-        return $"User id={id} name={name}";
+        return $"User id={id} name={name} night={night}";
     }
 }
 

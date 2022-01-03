@@ -58,6 +58,7 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource lightSound;
     public AudioSource doorSound;
     public AudioSource windowScareSound;
+    public AudioSource doorKnockSound;
     [Range(0f, 1f)]
     public float lightRandomThreshold = 0.85f;
     [Space]
@@ -283,6 +284,8 @@ public class FNAFOffice1 : MonoBehaviour
 
             if (foxyLocationIndex != game.foxyLocation || foxyLocationState != game.foxyLocationState)
             {
+                if (foxyLocationIndex == foxyAttackLocationIndex && game.foxyLocation != foxyAttackLocationIndex)
+                    doorKnockSound.Play();
                 foxyLocations[foxyLocationIndex].SetState(-1);
                 foxyLocationIndex = game.foxyLocation;
                 foxyLocationState = game.foxyLocationState;

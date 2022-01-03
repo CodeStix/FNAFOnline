@@ -8,7 +8,7 @@ public class FNAFLobbyPlayer : MonoBehaviour
     [Header("UI Items")]
     public Image avatarImage;
     public Text nameText;
-    public Text levelText;
+    public Text nightText;
     public Button addFriendButton;
 
     public Text statusText;
@@ -26,7 +26,7 @@ public class FNAFLobbyPlayer : MonoBehaviour
 
     void Start()
     {
-        levelText.text = "<color=#eeee00>LVL ?</color>";
+        nightText.text = "<color=#eeee00>Night 1</color>";
         //UseFor(null);
     }
 
@@ -40,8 +40,8 @@ public class FNAFLobbyPlayer : MonoBehaviour
             avatarImage.sprite = defaultAvatar;
             nameText.text = user.user.name;
             nameText.enabled = true;
-            levelText.enabled = true;
-            statusText.enabled = true;
+            nightText.enabled = true;
+            nightText.text = $"<color=#e?eee00>Night {user.user.night}</color>";
             statusText.text = user.ready ? readyText : notReadyText;
             ownerImage.enabled = currentRoom.ownerId == user.user.id;
             kickButton.enabled = true;
@@ -53,18 +53,13 @@ public class FNAFLobbyPlayer : MonoBehaviour
         {
             avatarImage.sprite = nobodyAvatar;
             nameText.enabled = false;
-            levelText.enabled = false;
-            statusText.enabled = false;
+            nightText.enabled = false;
+            statusText.text = nobodyText;
             ownerImage.enabled = false;
             kickButton.enabled = false;
             addFriendButton.enabled = false;
         }
     }
-
-    //public void SetReady(bool ready)
-    //{
-    //    statusText.text = ready ? readyText : notReadyText;
-    //}
 
     public void Kick()
     {

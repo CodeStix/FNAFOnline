@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4876598453495170}
   - component: {fileID: 212439418824842658}
-  - component: {fileID: 114735236569143654}
+  - component: {fileID: 740646651}
   m_Layer: 0
   m_Name: Dining Area
   m_TagString: Untagged
@@ -46,6 +46,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -57,6 +59,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -80,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114735236569143654
+--- !u!114 &740646651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,12 +92,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062459968298026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c79c24954b47b47a576e81815215e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2400d9a1581d9ba4b8a083e5ea0a1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxX: 4
   minX: -4
-  panSpeed: 0.004
+  maxX: 4
+  speed: 0.05
 --- !u!1 &1330595308727744
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4378308609087876}
   - component: {fileID: 212914782855086338}
-  - component: {fileID: 114431284223929846}
+  - component: {fileID: 740646647}
   m_Layer: 0
   m_Name: PrizeCorner
   m_TagString: Untagged
@@ -141,6 +144,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -152,6 +157,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -175,7 +181,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114431284223929846
+--- !u!114 &740646647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,12 +190,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1330595308727744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c79c24954b47b47a576e81815215e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2400d9a1581d9ba4b8a083e5ea0a1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxX: 4
   minX: -4
-  panSpeed: 0.004
+  maxX: 4
+  speed: 0.05
 --- !u!1 &1544313792004848
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +294,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -299,6 +307,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -332,7 +341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4215963869206676}
   - component: {fileID: 212217470820716206}
-  - component: {fileID: 114445515613164100}
+  - component: {fileID: 740646649}
   m_Layer: 0
   m_Name: Office2
   m_TagString: Untagged
@@ -368,6 +377,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -379,6 +390,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -402,7 +414,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114445515613164100
+--- !u!114 &740646649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -411,12 +423,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1728921827183482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c79c24954b47b47a576e81815215e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2400d9a1581d9ba4b8a083e5ea0a1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxX: 4
   minX: -4
-  panSpeed: 0.004
+  maxX: 4
+  speed: 0.05
 --- !u!1 &1745320035343710
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4477419448775148}
   - component: {fileID: 212075207764528300}
-  - component: {fileID: 114887810599283424}
+  - component: {fileID: 740646653}
   m_Layer: 0
   m_Name: Office1
   m_TagString: Untagged
@@ -463,6 +475,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -474,6 +488,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -497,7 +512,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114887810599283424
+--- !u!114 &740646653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -506,12 +521,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745320035343710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c79c24954b47b47a576e81815215e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2400d9a1581d9ba4b8a083e5ea0a1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxX: 4
   minX: -4
-  panSpeed: 0.004
+  maxX: 4
+  speed: 0.05
 --- !u!1 &1922834372313578
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4741667606673864}
   - component: {fileID: 212589561627941634}
-  - component: {fileID: 114970485845485890}
+  - component: {fileID: 740646650}
   m_Layer: 0
   m_Name: Restroom
   m_TagString: Untagged
@@ -558,6 +573,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -569,6 +586,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -592,7 +610,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114970485845485890
+--- !u!114 &740646650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -601,12 +619,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1922834372313578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c79c24954b47b47a576e81815215e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2400d9a1581d9ba4b8a083e5ea0a1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxX: 4
   minX: -4
-  panSpeed: 0.004
+  maxX: 4
+  speed: 0.05
 --- !u!1 &1981313716747238
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4599448216264946}
   - component: {fileID: 212180152659700930}
-  - component: {fileID: 114401087727625820}
+  - component: {fileID: 740646648}
   m_Layer: 0
   m_Name: Backstage
   m_TagString: Untagged
@@ -653,6 +671,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -664,6 +684,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -687,7 +708,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114401087727625820
+--- !u!114 &740646648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -696,9 +717,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1981313716747238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c79c24954b47b47a576e81815215e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2400d9a1581d9ba4b8a083e5ea0a1d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxX: 4
   minX: -4
-  panSpeed: 0.004
+  maxX: 4
+  speed: 0.05
