@@ -118,6 +118,10 @@ public class FNAFOffice1 : MonoBehaviour
     public UnityEvent onMoveAnyone;
     public UnityEvent onJumpscare;
     public UnityEvent whenGuard;
+    public UnityEvent onGuardWin;
+    public UnityEvent onAftonWin;
+    public UnityEvent onGuardLose;
+    public UnityEvent onAftonLose;
 
     private int freddyLocationIndex = 0;
     private int freddyLocationState = 0;
@@ -164,7 +168,7 @@ public class FNAFOffice1 : MonoBehaviour
             if (!isAfton) whenGuard.Invoke();
 
             if (isAfton)
-                StartTimer(FNAFClient.Instance.GetRoom().game.settings.initialPower);
+                StartTimer(FNAFClient.Instance.GetRoom().game.settings.startingMoveTime);
 
             Debug.Log("Starting game, role = " + role);
         }
@@ -376,7 +380,8 @@ public class FNAFOffice1 : MonoBehaviour
         }
         else if (e.eventType == "end")
         {
-            LoadingScreen.LoadScene("Lobby");
+            StartCoroutine(GameEndSequence(game.guardAlive));
+            
         } 
         else if (e.eventType == "attack")
         {
@@ -387,10 +392,36 @@ public class FNAFOffice1 : MonoBehaviour
         }
     }
 
+    private IEnumerator GameEndSequence(bool guardAlive)
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        if (isAfton)
+        {
+            if (guardAlive)
+                onAftonLose.Invoke();
+            else
+                onAftonWin.Invoke();
+        }
+        else
+        {
+            if (guardAlive)
+                onGuardWin.Invoke();
+            else 
+                onGuardLose.Invoke();
+        }
+
+        yield return new WaitForSeconds(10.0f);
+
+        LoadingScreen.LoadScene("Lobby");
+    }
+
     private IEnumerator AftonJumpscareSequence(string monster)
     {
         aftonGuardView.SetActive(true);
+
         yield return new WaitForSeconds(2.0f);
+
         switch (monster)
         {
             case "Freddy":
@@ -406,20 +437,22 @@ public class FNAFOffice1 : MonoBehaviour
                 aftonFoxyJumpScare.SetActive(true);
                 break;
         }
+
         yield return new WaitForSeconds(1.0f);
+
         aftonFreddyJumpScare.SetActive(false);
         aftonChicaJumpScare.SetActive(false);
         aftonBonnieJumpScare.SetActive(false);
         aftonFoxyJumpScare.SetActive(false);
         aftonDeathOverlay.SetActive(true);
-        yield return new WaitForSeconds(4.0f);
-        //onWin?.Invoke();
     }
 
     private IEnumerator JumpscareSequence(string monster)
     {
         yield return new WaitForSeconds(2.0f);
+
         onJumpscare?.Invoke();
+
         switch (monster)
         {
             case "Freddy":
@@ -435,7 +468,9 @@ public class FNAFOffice1 : MonoBehaviour
                 foxyJumpScare.SetActive(true);
                 break;
         }
+
         yield return new WaitForSeconds(1.0f);
+
         freddyJumpScare.SetActive(false);
         chicaJumpScare.SetActive(false);
         bonnieJumpScare.SetActive(false);
@@ -459,10 +494,10 @@ public class FNAFOffice1 : MonoBehaviour
         usageImage.sprite = usageSprites[usage];
 
         officeRenderer.sprite = powerLeft > 0f ? normalOfficeSprite : darkOfficeSprite;
-        freddyAttackButton.interactable = moveTimerDone && !rightDoor && freddyLocationIndex == freddyAttackLocationIndex;
-        chicaAttackButton.interactable = moveTimerDone && !rightDoor && chicaLocationIndex == chicaAttackLocationIndex;
-        bonnieAttackButton.interactable = moveTimerDone && !leftDoor && bonnieLocationIndex == bonnieAttackLocationIndex;
-        foxyAttackButton.interactable = moveTimerDone && !leftDoor && foxyLocationIndex == foxyAttackLocationIndex;
+        freddyAttackButton.interactable = moveTimerDone && !rightDoorDown && freddyLocationIndex == freddyAttackLocationIndex;
+        chicaAttackButton.interactable = moveTimerDone && !rightDoorDown && chicaLocationIndex == chicaAttackLocationIndex;
+        bonnieAttackButton.interactable = moveTimerDone && !leftDoorDown && bonnieLocationIndex == bonnieAttackLocationIndex;
+        foxyAttackButton.interactable = moveTimerDone && !leftDoorDown && foxyLocationIndex == foxyAttackLocationIndex;
 
         if (cameraButtonBlink > 0f)
         {

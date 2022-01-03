@@ -38,6 +38,7 @@ public class FNAF1Game
     public bool rightDoor;
     public int selectedCameraNumber;
     public string attackingMonster;
+    public bool guardAlive;
 }
 
 [Serializable]
