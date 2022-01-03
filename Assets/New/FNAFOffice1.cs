@@ -102,6 +102,10 @@ public class FNAFOffice1 : MonoBehaviour
     public GameObject aftonFoxyJumpScare;
     public GameObject aftonDeathOverlay;
     [Space]
+    public Text nightText;
+    public Text secondNightText;
+    public Text roleText;
+    public GameObject nightStartOverlay;
     public Text hourText;
     public Text powerLeftText;
     public Image usageImage;
@@ -164,14 +168,7 @@ public class FNAFOffice1 : MonoBehaviour
         }
         else
         {
-            role = FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
-            isAfton = role == "afton";
-            if (!isAfton) whenGuard.Invoke();
-
-            if (isAfton)
-                StartTimer(FNAFClient.Instance.GetRoom().game.settings.startingMoveTime);
-
-            Debug.Log("Starting game, role = " + role);
+            StartGame();
         }
 
         freddyAttackButton.onClick.AddListener(() => FNAFClient.Instance.FNAF1RequestAttack("Freddy"));
@@ -187,6 +184,32 @@ public class FNAFOffice1 : MonoBehaviour
         foxyLocations[0].SetState(0);
     }
 
+    private void StartGame()
+    {
+        nightStartOverlay.SetActive(true);
+        Invoke(nameof(RemoveStartOverlay), 5.0f);
+
+        role = FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
+        isAfton = role == "afton";
+        if (!isAfton) whenGuard.Invoke();
+
+        if (isAfton)
+            StartTimer(FNAFClient.Instance.GetRoom().game.settings.startingMoveTime);
+
+        roleText.text = isAfton ? "You control the animatronics." : "You are the guard.";
+
+        string nightString = "Night " + FNAFClient.Instance.GetUser().night;
+        secondNightText.text = nightString;
+        nightText.text = nightString;
+
+        Debug.Log("Starting game, role = " + role);
+    }
+
+    private void RemoveStartOverlay()
+    {
+        nightStartOverlay.SetActive(false);
+    }
+
     private void TestJoinRoom()
     {
         FNAFClient.Instance.JoinRoom(null);
@@ -198,17 +221,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
         FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse;
         FNAFClient.Instance.StartGameRequest(true);
-        Invoke(nameof(TestStartedGame), 2.0f);
-    }
-
-    private void TestStartedGame()
-    {
-        role = FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
-        isAfton = role == "afton";
-        if (!isAfton) whenGuard.Invoke();
-        if (isAfton)
-            StartTimer(FNAFClient.Instance.GetRoom().game.settings.startingMoveTime);
-        Debug.Log("Joined random new room for testing, role = " + role);
+        Invoke(nameof(StartGame), 2.0f);
     }
 
     private void OnEnable()

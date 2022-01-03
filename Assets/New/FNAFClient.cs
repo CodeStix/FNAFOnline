@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using WebSocketSharp;
 
@@ -83,7 +84,7 @@ public class FNAFRoom
 
     public override string ToString()
     {
-        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")}";
+        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
     }
 }
 
@@ -221,6 +222,12 @@ public class FNAFConfig
     public string token;
 }
 
+[Serializable]
+public class FNAFUserChangeEvent
+{
+    public FNAFUser user;
+}
+
 public class FNAFClient : MonoBehaviour
 {
     public string connectionUrl = "ws://localhost:8080";
@@ -229,6 +236,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<CloseEventArgs> OnDisconnected;
 
     public event EventHandler<FNAFRoomChangeEvent> OnRoomChangeEvent;
+    public event EventHandler<FNAFUserChangeEvent> OnUserChangeEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
     public event EventHandler<FNAFJoinRoomResponse> OnJoinRoomResponse;
@@ -440,6 +448,12 @@ public class FNAFClient : MonoBehaviour
                 var roomChangeEvent = JsonUtility.FromJson<FNAFRoomChangeEvent>(jsonText);
                 currentRoom = roomChangeEvent.room;
                 OnRoomChangeEvent?.Invoke(null, roomChangeEvent);
+                break;
+
+            case nameof(FNAFUserChangeEvent):
+                var userChangeEvent = JsonUtility.FromJson<FNAFUserChangeEvent>(jsonText);
+                me = userChangeEvent.user;
+                OnUserChangeEvent?.Invoke(null, userChangeEvent);
                 break;
 
             case nameof(FNAF1MoveResponse):

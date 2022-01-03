@@ -69,16 +69,12 @@ public class FNAFLobbyPanel : MonoBehaviour
 
     public void UpdatePlayersUI()
     {
-        Debug.Log("lobby " + room.ToString());
-        Debug.Log("lobby users " + string.Join(", ", room.users.Select((e) => e.ToString())));
-
         roomCodeText.text = room.id;
         for (int i = 0; i < playerSpots.Count; i++)
         {
             FNAFLobbyPlayer pl = playerSpots[i];
             if (i >= room.maxPlayers)
             {
-                Debug.Log("player spot hide " + i);
                 // Hide spot
                 pl.gameObject.SetActive(false);
             }
@@ -87,24 +83,17 @@ public class FNAFLobbyPanel : MonoBehaviour
                 pl.gameObject.SetActive(true);
                 if (i < room.users.Count)
                 {
-                    Debug.Log("show player " + room.users[i]);
                     // Show player in spot
                     pl.UseFor(room.users[i]);
                 }
                 else
                 {
-                    Debug.Log("empty player " + i);
                     // Show available empty spot
                     pl.UseFor(null);
                 }
             }
         }
     }
-
-    //public void UpdateReadyUI()
-    //{
-    //    readyButtonText.text = ready ? readyText : notReadyText;
-    //}
 
     public void Leave()
     {

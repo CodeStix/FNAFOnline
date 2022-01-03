@@ -24,12 +24,6 @@ public class FNAFLobbyPlayer : MonoBehaviour
 
     private FNAFRoomUser user;
 
-    void Start()
-    {
-        nightText.text = "<color=#eeee00>Night 1</color>";
-        //UseFor(null);
-    }
-
     public void UseFor(FNAFRoomUser user)
     {
         this.user = user;
@@ -41,7 +35,7 @@ public class FNAFLobbyPlayer : MonoBehaviour
             nameText.text = user.user.name;
             nameText.enabled = true;
             nightText.enabled = true;
-            nightText.text = $"<color=#e?eee00>Night {user.user.night}</color>";
+            nightText.text = $"<color=#eeee00>Night {user.user.night}</color>";
             statusText.text = user.ready ? readyText : notReadyText;
             ownerImage.enabled = currentRoom.ownerId == user.user.id;
             kickButton.enabled = true;
