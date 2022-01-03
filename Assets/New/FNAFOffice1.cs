@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -86,8 +87,12 @@ public class FNAFOffice1 : MonoBehaviour
     public Text powerLeftText;
     public Image usageImage;
     public Sprite[] usageSprites;
+    public Image timerImage;
+    public Text timerText;
+    public AudioSource timerSound;
+    public AudioSource timerDoneSound;
     [Space]
-    public UnityEvent onMoveAnyone;
+    public UnityEvent onMoveAnyone; 
 
     private int freddyLocationIndex = 0;
     private int freddyLocationState = 0;
@@ -108,6 +113,12 @@ public class FNAFOffice1 : MonoBehaviour
     private int guardCurrentCamera = 0;
     private bool sawChica = false;
     private bool sawBonnie = false;
+    private float moveTimer = 0f;
+    private bool moveTimerDone = true;
+
+    public bool MayMove => moveTimerDone;
+    public string Role => FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
+    public bool IsAfton => Role == "afton";
 
     private readonly string[] HOUR_NAMES = new[] { "12 PM", "1 AM", "2 AM", "3 AM", "4 AM", "5 AM", "6 AM", "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 AM", "1 PM", "2 PM", "3 PM", "4 PM" };
 
@@ -124,6 +135,7 @@ public class FNAFOffice1 : MonoBehaviour
         bonnieLocations[0].SetState(0);
         foxyLocations[0].SetState(0);
 
+        StartTimer(10f);
     }
 
     private void TestJoinRoom()
@@ -135,17 +147,30 @@ public class FNAFOffice1 : MonoBehaviour
     private void TestStartGame()
     {
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
+        FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse;
         FNAFClient.Instance.StartGameRequest(true);
     }
 
     private void OnEnable()
     {
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
+        FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse;
     }
 
     private void OnDisable()
     {
         FNAFClient.Instance.OnRoomChangeEvent -= Instance_OnRoomChangeEvent;
+        FNAFClient.Instance.OnFNAF1MoveResponse -= Instance_OnFNAF1MoveResponse;
+    }
+
+    private void Instance_OnFNAF1MoveResponse(object sender, FNAF1MoveResponse e)
+    {
+        // This function gets called if the server processed this clients animatronic move request
+        if (e.ok)
+        {
+            onMoveAnyone?.Invoke();
+            StartTimer(e.cooldownTime);
+        }
     }
 
     private void Instance_OnRoomChangeEvent(object sender, FNAFRoomChangeEvent e)
@@ -155,8 +180,6 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (e.eventType == "move")
         {
-            onMoveAnyone?.Invoke();
-
             if (freddyLocationIndex != game.freddyLocation || freddyLocationState != game.freddyLocationState)
             {
                 freddyLocations[freddyLocationIndex].SetState(-1);
@@ -320,6 +343,9 @@ public class FNAFOffice1 : MonoBehaviour
             rightLightButtonRenderer.sprite = rightLightButtonOffSprite;
         }
 
+        timerSound.volume = monitorOpen ? 1f : 0f;
+        timerDoneSound.volume = monitorOpen ? 0.8f : 0.4f;
+
         if (leftLight || rightLight)
         {
             if (!lightSound.isPlaying)
@@ -330,6 +356,34 @@ public class FNAFOffice1 : MonoBehaviour
             if (lightSound.isPlaying)
                 lightSound.Stop();
         }
+
+        if (moveTimer > 0f)
+        {
+            moveTimer -= Time.deltaTime;
+            timerText.text = "" + Mathf.Ceil(moveTimer);
+        }
+        else
+        {
+            if (!moveTimerDone)
+                EndTimer();
+        }
+    }
+
+    private void StartTimer(float time)
+    {
+        timerImage.enabled = true;
+        timerSound.Play();
+        moveTimer = time;
+        moveTimerDone = false;
+    }
+
+    private void EndTimer()
+    {
+        timerSound.Stop();
+        timerDoneSound.Play();
+        timerImage.enabled = false;
+        timerText.text = "Move!";
+        moveTimerDone = true;
     }
 
     public void ToggleMonitor()

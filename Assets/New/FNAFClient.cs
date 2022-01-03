@@ -31,12 +31,10 @@ public class FNAFUser
 {
     public int id;
     public string name;
-    public bool ready;
-    public string role;
 
     public override string ToString()
     {
-        return $"User id={id} name={name} ready={(ready ? "yes" : "no")} role={role}";
+        return $"User id={id} name={name}";
     }
 }
 
@@ -45,10 +43,11 @@ public class FNAFRoomUser
 {
     public FNAFUser user;
     public bool ready;
+    public string role;
 
     public override string ToString()
     {
-        return user.ToString() + " ready=" + (ready ? "yes" : "no");
+        return user.ToString() + " ready=" + (ready ? "yes" : "no") + " role=" + role;
     }
 }
 
@@ -175,6 +174,13 @@ public class FNAF1MoveRequest
 }
 
 [Serializable]
+public class FNAF1MoveResponse
+{
+    public bool ok;
+    public float cooldownTime;
+}
+
+[Serializable]
 public class FNAF1OfficeChangeRequest
 {
     public bool leftLight;
@@ -208,6 +214,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAFRegisterResponse> OnRegisterResponse;
     public event EventHandler<FNAFMatchmakingResponse> OnMatchmakingResponse;
     public event EventHandler<FNAFStartResponse> OnStartResponse;
+    public event EventHandler<FNAF1MoveResponse> OnFNAF1MoveResponse;
 
     private WebSocket socket;
     private FNAFConfig config;
@@ -410,6 +417,10 @@ public class FNAFClient : MonoBehaviour
                 var roomChangeEvent = JsonUtility.FromJson<FNAFRoomChangeEvent>(jsonText);
                 currentRoom = roomChangeEvent.room;
                 OnRoomChangeEvent?.Invoke(null, roomChangeEvent);
+                break;
+
+            case nameof(FNAF1MoveResponse):
+                OnFNAF1MoveResponse?.Invoke(null, JsonUtility.FromJson<FNAF1MoveResponse>(jsonText));
                 break;
 
             default:

@@ -8,9 +8,9 @@ public class FNAFMoveButton : MonoBehaviour
 {
     public string monsterName;
     public int locationIndex;
-    //public bool startLocation = false;
     public FNAFMoveButton[] enableWhenAt;
     public FNAFMoveButton[] disableWhenAt;
+    public FNAFOffice1 controller;
 
     private bool isHere = false;
     private Button button;
@@ -86,7 +86,7 @@ public class FNAFMoveButton : MonoBehaviour
         if (mayMoveHere)
         {
             button.image.enabled = true;
-            if (canMoveHere)
+            if (canMoveHere && controller.MayMove)
             {
                 button.interactable = true;
             }
