@@ -92,7 +92,8 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource powerErrorSound;
     public AudioSource powerDownSound;
     [Space]
-    public UnityEvent onMoveAnyone; 
+    public UnityEvent onMoveAnyone;
+    public UnityEvent whenGuard;
 
     private int freddyLocationIndex = 0;
     private int freddyLocationState = 0;
@@ -116,17 +117,28 @@ public class FNAFOffice1 : MonoBehaviour
     private bool moveTimerDone = true;
     private float powerLeft = 100f;
 
+    private string role;
+    private bool isAfton = false;
+
     public bool MayMove => moveTimerDone;
-    public string Role => FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
-    public bool IsAfton => Role == "afton";
 
     private readonly string[] HOUR_NAMES = new[] { "12 PM", "1 AM", "2 AM", "3 AM", "4 AM", "5 AM", "6 AM", "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 AM", "1 PM", "2 PM", "3 PM", "4 PM" };
 
     private void Start()
     {
-        // for testing purposes
+        if (FNAFClient.Instance == null || FNAFClient.Instance.GetRoom() == null)
+        {
+            Debug.Log("Joining random new room for testing");
+            Invoke(nameof(TestJoinRoom), 1.0f);
+        }
+        else
+        {
+            role = FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
+            isAfton = role == "afton";
+            if (!isAfton) whenGuard.Invoke();
 
-        Invoke(nameof(TestJoinRoom), 1.0f);
+            Debug.Log("Starting game, role = " + role);
+        }
 
         UpdateCameras();
 
@@ -135,7 +147,8 @@ public class FNAFOffice1 : MonoBehaviour
         bonnieLocations[0].SetState(0);
         foxyLocations[0].SetState(0);
 
-        StartTimer(10f);
+        if (isAfton)
+            StartTimer(10f);
     }
 
     private void TestJoinRoom()
@@ -149,6 +162,17 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
         FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse;
         FNAFClient.Instance.StartGameRequest(true);
+        Invoke(nameof(TestStartedGame), 2.0f);
+    }
+
+    private void TestStartedGame()
+    {
+        role = FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
+        isAfton = role == "afton";
+        if (!isAfton) whenGuard.Invoke();
+        if (isAfton)
+            StartTimer(10f);
+        Debug.Log("Joined random new room for testing, role = " + role);
     }
 
     private void OnEnable()
@@ -422,7 +446,10 @@ public class FNAFOffice1 : MonoBehaviour
             Invoke(nameof(DisableMonitor), 0.25f);
         }
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, rightDoorDown, monitorOpen ? currentCamera : -1);
+        if (!isAfton)
+        {
+            FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, rightDoorDown, monitorOpen ? currentCamera : -1);
+        }
     }
 
     private void DisableMonitor()
@@ -442,7 +469,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f)
+        if (powerLeft <= 0f || isAfton)
         {
             powerErrorSound.Play();
             return;
@@ -455,7 +482,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f)
+        if (powerLeft <= 0f || isAfton)
         {
             powerErrorSound.Play();
             return;
@@ -468,7 +495,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f)
+        if (powerLeft <= 0f || isAfton)
         {
             powerErrorSound.Play();
             return;
@@ -481,7 +508,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f)
+        if (powerLeft <= 0f || isAfton)
         {
             powerErrorSound.Play();
             return;
@@ -499,7 +526,10 @@ public class FNAFOffice1 : MonoBehaviour
         currentCamera = index;
         cameraNameText.text = cameras[index].cameraName;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, rightDoorDown, index);
+        if (!isAfton)
+        {
+            FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, rightDoorDown, index);
+        }
 
         UpdateCameras();
     }
