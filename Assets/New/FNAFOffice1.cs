@@ -30,9 +30,6 @@ public class FNAFMoveSounds
 
 public class FNAFOffice1 : MonoBehaviour
 {
-    public AudioSource fanSound;
-    public FNAFAnimatedSprite fanRenderer;
-    [Space]
     public FNAFBetweenAnimation rightDoor;
     public SpriteRenderer officeRenderer;
     public Sprite normalOfficeSprite;
@@ -91,6 +88,9 @@ public class FNAFOffice1 : MonoBehaviour
     public Text timerText;
     public AudioSource timerSound;
     public AudioSource timerDoneSound;
+    public GameObject[] requiresPower; // Objects that will be disabled when power is zero
+    public AudioSource powerErrorSound;
+    public AudioSource powerDownSound;
     [Space]
     public UnityEvent onMoveAnyone; 
 
@@ -104,7 +104,6 @@ public class FNAFOffice1 : MonoBehaviour
     private int foxyLocationState = 0;
     private bool canToggleMonitor = true;
     private bool monitorOpen = false;
-    private bool enableFan = true;
     private bool leftLight = false;
     private bool leftDoorDown = false;
     private bool rightLight = false;
@@ -115,6 +114,7 @@ public class FNAFOffice1 : MonoBehaviour
     private bool sawBonnie = false;
     private float moveTimer = 0f;
     private bool moveTimerDone = true;
+    private float powerLeft = 100f;
 
     public bool MayMove => moveTimerDone;
     public string Role => FNAFClient.Instance.GetRoom().users.First((e) => e.user.id == FNAFClient.Instance.GetUser().id).role;
@@ -272,6 +272,34 @@ public class FNAFOffice1 : MonoBehaviour
         {
             hourText.text = HOUR_NAMES[game.currentHour];
             powerLeftText.text = "Power left: <b>" + Mathf.Floor(game.powerLeft) + "</b>%";
+
+            if (game.powerLeft <= 0f && powerLeft > 0f)
+            {
+                powerDownSound.Play();
+                if (rightDoorDown)
+                {
+                    rightDoor.Start();
+                    doorSound.Play();
+                }
+                if (leftDoorDown)
+                {
+                    leftDoor.Start();
+                    doorSound.Play();
+                }
+                foreach (GameObject obj in requiresPower)
+                {
+                    obj.SetActive(false);
+                }
+            }
+            else if (game.powerLeft > 0f && powerLeft <= 0f)
+            {
+                foreach(GameObject obj in requiresPower)
+                {
+                    obj.SetActive(true);
+                }
+            }
+
+            powerLeft = game.powerLeft;
         }
         else if (e.eventType == "end")
         {
@@ -294,20 +322,9 @@ public class FNAFOffice1 : MonoBehaviour
             usage++;
         usageImage.sprite = usageSprites[usage];
 
-        if (enableFan)
-        {
-            fanRenderer.gameObject.SetActive(true);
-            if (!fanSound.isPlaying)
-                fanSound.Play();
-        }
-        else
-        {
-            fanRenderer.gameObject.SetActive(false);
-            if (fanSound.isPlaying)
-                fanSound.Stop();
-        }
+        officeRenderer.sprite = powerLeft > 0f ? normalOfficeSprite : darkOfficeSprite;
 
-        if (leftLight)
+        if (leftLight && powerLeft > 0f)
         {
             if (bonnieLocationIndex == bonnieWindowLocationIndex && !sawBonnie)
             {
@@ -325,7 +342,7 @@ public class FNAFOffice1 : MonoBehaviour
             leftLightButtonRenderer.sprite = leftLightButtonOffSprite;
         }
 
-        if (rightLight)
+        if (rightLight && powerLeft > 0f)
         {
             if (chicaLocationIndex == chicaWindowLocationIndex && !sawChica)
             {
@@ -346,7 +363,7 @@ public class FNAFOffice1 : MonoBehaviour
         timerSound.volume = monitorOpen ? 1f : 0f;
         timerDoneSound.volume = monitorOpen ? 0.8f : 0.4f;
 
-        if (leftLight || rightLight)
+        if ((leftLight || rightLight) && powerLeft > 0f)
         {
             if (!lightSound.isPlaying)
                 lightSound.Play();
@@ -357,7 +374,7 @@ public class FNAFOffice1 : MonoBehaviour
                 lightSound.Stop();
         }
 
-        if (moveTimer > 0f)
+        if (moveTimer > 0f && powerLeft > 0f)
         {
             moveTimer -= Time.deltaTime;
             timerText.text = "" + Mathf.Ceil(moveTimer);
@@ -424,24 +441,51 @@ public class FNAFOffice1 : MonoBehaviour
     public void LeftLightToggle()
     {
         if (monitorOpen) return;
+
+        if (powerLeft <= 0f)
+        {
+            powerErrorSound.Play();
+            return;
+        }
+
         FNAFClient.Instance.FNAF1RequestOfficeChange(!leftLight, leftDoorDown, rightLight, rightDoorDown, guardCurrentCamera);
     }
 
     public void LeftDoorToggle()
     {
         if (monitorOpen) return;
+
+        if (powerLeft <= 0f)
+        {
+            powerErrorSound.Play();
+            return;
+        }
+
         FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, !leftDoorDown, rightLight, rightDoorDown, guardCurrentCamera);
     }
 
     public void RightLightToggle()
     {
         if (monitorOpen) return;
+
+        if (powerLeft <= 0f)
+        {
+            powerErrorSound.Play();
+            return;
+        }
+
         FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, !rightLight, rightDoorDown, guardCurrentCamera);
     }
 
     public void RightDoorToggle()
     {
         if (monitorOpen) return;
+
+        if (powerLeft <= 0f)
+        {
+            powerErrorSound.Play();
+            return;
+        }
 
         FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, !rightDoorDown, guardCurrentCamera);
     }
