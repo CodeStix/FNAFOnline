@@ -132,6 +132,7 @@ public class FNAFOffice1 : MonoBehaviour
     public float randomStaticNoise = 0.98f;
     public float staticReturnSpeed = 1f;
     public Image staticImage;
+    public GameObject itsMe;
     [Space]
     public UnityEvent onMoveAnyone;
     public UnityEvent onJumpscare;
@@ -167,6 +168,7 @@ public class FNAFOffice1 : MonoBehaviour
     private float distortedSignalTime = 0f;
     private float disableFanTime = 0f;
     private float sabotageButtonsTime = 0f;
+    private float itsMeTime = 0f;
 
     private string role;
     private bool isAfton = false;
@@ -434,6 +436,7 @@ public class FNAFOffice1 : MonoBehaviour
                     DistortSignal(10f);
                     break;
                 case "itsme": // Itsme distraction
+                    ItsMeDistraction(4f);
                     break;
                 case "10power": // Sends 10 power
                     break;
@@ -453,11 +456,9 @@ public class FNAFOffice1 : MonoBehaviour
                 case "turnOffFan": // Turns off the fan temporary
                     TurnOffFan(10f);
                     break;
-
                 case "ambience": // Change ambience sound
                     PlayRandomAmbient();
                     break;
-
             }
         }
         else if (e.eventType == "attack")
@@ -467,6 +468,13 @@ public class FNAFOffice1 : MonoBehaviour
             else
                 StartCoroutine(JumpscareSequence(game.attackingMonster));
         }
+    }
+
+    public void ItsMeDistraction(float time)
+    {
+        if (monitorOpen)
+            ToggleMonitor();
+        itsMeTime = time;
     }
 
     public void TurnOffFan(float time)
@@ -669,6 +677,10 @@ public class FNAFOffice1 : MonoBehaviour
         if (!phoneGuySound.isPlaying)
             phone.SetActive(false);
 
+        if (itsMeTime > 0f)
+            itsMeTime -= Time.deltaTime;
+        itsMe.SetActive(itsMeTime > 0f);
+
         if (Application.isEditor)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -683,6 +695,8 @@ public class FNAFOffice1 : MonoBehaviour
                 PlayRandomAmbient();
             if (Input.GetKeyDown(KeyCode.Alpha6))
                 SabotageButtons(10f);
+            if (Input.GetKeyDown(KeyCode.Alpha7))
+                ItsMeDistraction(2f);
         }
 
         if (cameraButtonBlink > 0f)
@@ -787,7 +801,7 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void ToggleMonitor()
     {
-        if (!canToggleMonitor) return;
+        if (!canToggleMonitor || itsMeTime > 0f) return;
         canToggleMonitor = false;
         monitorOpen = !monitorOpen;
         if (monitorOpen)
@@ -806,7 +820,7 @@ public class FNAFOffice1 : MonoBehaviour
             monitorSound.Stop();
             monitor.Start();
             monitorEnableObject.SetActive(false);
-            Invoke(nameof(DisableMonitor), 0.25f);
+            Invoke(nameof(ReenableMonitor), 0.25f);
         }
 
         if (!isAfton)
@@ -815,7 +829,7 @@ public class FNAFOffice1 : MonoBehaviour
         }
     }
 
-    private void DisableMonitor()
+    private void ReenableMonitor()
     {
         canToggleMonitor = true;
     }
