@@ -127,6 +127,7 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource signalLostSound;
     public AudioSource phoneGuySound;
     public AudioClip[] phoneGuyClips;
+    public GameObject phone;
     [Range(0f, 1f)]
     public float randomStaticNoise = 0.98f;
     public float staticReturnSpeed = 1f;
@@ -165,6 +166,7 @@ public class FNAFOffice1 : MonoBehaviour
     private float caughtMovingTime = 0f;
     private float distortedSignalTime = 0f;
     private float disableFanTime = 0f;
+    private float sabotageButtonsTime = 0f;
 
     private string role;
     private bool isAfton = false;
@@ -440,7 +442,8 @@ public class FNAFOffice1 : MonoBehaviour
                 case "fakeSound": // Plays a random animatronic move sound no matter where it is
                     PlayRandomMoveSound();
                     break;
-                case "sabotageButtons": // Buttons are unriable and don't always work (play the error sound)
+                case "sabotageButtons": // Buttons are unreliable and don't always work (play the error sound)
+                    SabotageButtons(10f);
                     break;
                 case "carnavalMusic": // Plays carnaval music
                     PlayCarnavalMusic();
@@ -469,6 +472,11 @@ public class FNAFOffice1 : MonoBehaviour
     public void TurnOffFan(float time)
     {
         disableFanTime = time;
+    }
+
+    public void SabotageButtons(float time)
+    {
+        sabotageButtonsTime = time;
     }
 
     public void PlayRandomMoveSound()
@@ -509,6 +517,15 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (!carnavalSound.isPlaying)
             carnavalSound.Play();
+    }
+
+    public void StopPhoneGuy()
+    {
+        if (phoneGuySound.isPlaying)
+        {
+            phoneGuySound.Stop();
+            cameraSwitchSound.Play();
+        }
     }
 
     private IEnumerator GameEndSequence(bool guardAlive)
@@ -634,7 +651,7 @@ public class FNAFOffice1 : MonoBehaviour
                 signalLostSound.Play();
                 signalLostSound.time = Random.value * signalLostSound.clip.length;
             }
-            signalLostSound.volume = monitorOpen ? 1.0f : 0.2f;
+            signalLostSound.volume = monitorOpen ? 0.5f : 0.08f;
         }
         else
         {
@@ -642,9 +659,15 @@ public class FNAFOffice1 : MonoBehaviour
                 signalLostSound.Stop();
         }
 
+        if (sabotageButtonsTime > 0f)
+            sabotageButtonsTime -= Time.deltaTime;
+
         if (disableFanTime > 0f)
             disableFanTime -= Time.deltaTime;
         fan.SetActive(disableFanTime <= 0f && powerLeft > 0f);
+
+        if (!phoneGuySound.isPlaying)
+            phone.SetActive(false);
 
         if (Application.isEditor)
         {
@@ -658,6 +681,8 @@ public class FNAFOffice1 : MonoBehaviour
                 PlayCarnavalMusic();
             if (Input.GetKeyDown(KeyCode.Alpha5))
                 PlayRandomAmbient();
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+                SabotageButtons(10f);
         }
 
         if (cameraButtonBlink > 0f)
@@ -773,6 +798,11 @@ public class FNAFOffice1 : MonoBehaviour
         }
         else
         {
+            if (phoneGuySound.isPlaying && phoneGuySound.time > 10f)
+            {
+                phone.GetComponent<RectTransform>().anchoredPosition = new Vector2(Screen.width / 2 - Random.Range(0, Screen.width), Screen.height / 2 - Random.Range(0, Screen.height));
+                phone.SetActive(Random.value <= 0.5f);
+            }
             monitorSound.Stop();
             monitor.Start();
             monitorEnableObject.SetActive(false);
@@ -802,7 +832,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f || isAfton)
+        if (powerLeft <= 0f || isAfton || (sabotageButtonsTime > 0f && Random.value > 0.5f))
         {
             powerErrorSound.Play();
             return;
@@ -815,7 +845,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f || isAfton)
+        if (powerLeft <= 0f || isAfton || (sabotageButtonsTime > 0f && Random.value > 0.5f))
         {
             powerErrorSound.Play();
             return;
@@ -828,7 +858,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f || isAfton)
+        if (powerLeft <= 0f || isAfton || (sabotageButtonsTime > 0f && Random.value > 0.5f))
         {
             powerErrorSound.Play();
             return;
@@ -841,7 +871,7 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (monitorOpen) return;
 
-        if (powerLeft <= 0f || isAfton)
+        if (powerLeft <= 0f || isAfton || (sabotageButtonsTime > 0f && Random.value > 0.5f))
         {
             powerErrorSound.Play();
             return;
