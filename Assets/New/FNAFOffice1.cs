@@ -133,6 +133,8 @@ public class FNAFOffice1 : MonoBehaviour
     public float staticReturnSpeed = 1f;
     public Image staticImage;
     public GameObject itsMe;
+    public Image powerIssueOverlay;
+    public AudioSource powerIssueSound;
     [Space]
     public UnityEvent onMoveAnyone;
     public UnityEvent onJumpscare;
@@ -169,6 +171,7 @@ public class FNAFOffice1 : MonoBehaviour
     private float disableFanTime = 0f;
     private float sabotageButtonsTime = 0f;
     private float itsMeTime = 0f;
+    private float powerIssueTime = 0f;
 
     private string role;
     private bool isAfton = false;
@@ -292,9 +295,15 @@ public class FNAFOffice1 : MonoBehaviour
                 freddyLocationState = game.freddyLocationState;
                 freddyLocations[freddyLocationIndex].SetState(freddyLocationState);
                 if (freddyLocations[freddyLocationIndex].isFar)
+                {
                     freddyMoveSounds.PlayFar();
+                }
                 else
+                {
                     freddyMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
             }
 
             if (chicaLocationIndex != game.chicaLocation || chicaLocationState != game.chicaLocationState)
@@ -305,9 +314,15 @@ public class FNAFOffice1 : MonoBehaviour
                 chicaLocationState = game.chicaLocationState;
                 chicaLocations[chicaLocationIndex].SetState(chicaLocationState);
                 if (chicaLocations[chicaLocationIndex].isFar)
-                    chicaMoveSounds.PlayFar();
+                {
+                    chicaMoveSounds.PlayFar(); 
+                }
                 else
+                {
                     chicaMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
             }
 
             if (bonnieLocationIndex != game.bonnieLocation || bonnieLocationState != game.bonnieLocationState)
@@ -318,9 +333,15 @@ public class FNAFOffice1 : MonoBehaviour
                 bonnieLocationState = game.bonnieLocationState;
                 bonnieLocations[bonnieLocationIndex].SetState(bonnieLocationState);
                 if (bonnieLocations[bonnieLocationIndex].isFar)
+                {
                     bonnieMoveSounds.PlayFar();
+                }
                 else
+                {
                     bonnieMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
             }
 
             if (foxyLocationIndex != game.foxyLocation || foxyLocationState != game.foxyLocationState)
@@ -332,10 +353,18 @@ public class FNAFOffice1 : MonoBehaviour
                 foxyLocationState = game.foxyLocationState;
                 foxyLocations[foxyLocationIndex].SetState(foxyLocationState);
                 if (foxyLocations[foxyLocationIndex].isFar)
+                {
                     foxyMoveSounds.PlayFar();
-                else
+                }
+                else 
+                { 
                     foxyMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
             }
+
+           
         }
         else if (e.eventType == "officeChange")
         {
@@ -438,10 +467,6 @@ public class FNAFOffice1 : MonoBehaviour
                 case "itsme": // Itsme distraction
                     ItsMeDistraction(4f);
                     break;
-                case "10power": // Sends 10 power
-                    break;
-                case "disableRandomCamera": // Disables a random camera button
-                    break;
                 case "fakeSound": // Plays a random animatronic move sound no matter where it is
                     PlayRandomMoveSound();
                     break;
@@ -451,13 +476,20 @@ public class FNAFOffice1 : MonoBehaviour
                 case "carnavalMusic": // Plays carnaval music
                     PlayCarnavalMusic();
                     break;
-                case "goldenFreddy": // Golden freddy appears in the office, use monitor to make him dissapear
-                    break;
                 case "turnOffFan": // Turns off the fan temporary
                     TurnOffFan(10f);
                     break;
                 case "ambience": // Change ambience sound
                     PlayRandomAmbient();
+                    break;
+                case "powerIssue":
+                    PowerIssue(5f);
+                    break;
+                case "10power": // Sends 10 power
+                    break;
+                case "disableRandomCamera": // Disables a random camera button
+                    break;
+                case "goldenFreddy": // Golden freddy appears in the office, use monitor to make him dissapear
                     break;
             }
         }
@@ -468,6 +500,11 @@ public class FNAFOffice1 : MonoBehaviour
             else
                 StartCoroutine(JumpscareSequence(game.attackingMonster));
         }
+    }
+
+    public void PowerIssue(float time)
+    {
+        powerIssueTime = time;
     }
 
     public void ItsMeDistraction(float time)
@@ -681,6 +718,21 @@ public class FNAFOffice1 : MonoBehaviour
             itsMeTime -= Time.deltaTime;
         itsMe.SetActive(itsMeTime > 0f);
 
+        if (powerIssueTime > 0f)
+        {
+            powerIssueTime -= Time.deltaTime;
+            if (Random.value > 0.8f)
+            {
+                powerIssueOverlay.gameObject.SetActive(Random.value > 0.8f);
+                if (!powerIssueSound.isPlaying && Random.value > 0.8f)
+                    powerIssueSound.Play();
+            }
+        }
+        else
+        {
+            powerIssueOverlay.gameObject.SetActive(false);
+        }
+
         if (Application.isEditor)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -697,6 +749,8 @@ public class FNAFOffice1 : MonoBehaviour
                 SabotageButtons(10f);
             if (Input.GetKeyDown(KeyCode.Alpha7))
                 ItsMeDistraction(2f);
+            if (Input.GetKeyDown(KeyCode.Alpha8))
+                PowerIssue(5f);
         }
 
         if (cameraButtonBlink > 0f)
@@ -814,7 +868,7 @@ public class FNAFOffice1 : MonoBehaviour
         {
             if (phoneGuySound.isPlaying && phoneGuySound.time > 10f)
             {
-                phone.GetComponent<RectTransform>().anchoredPosition = new Vector2(Screen.width / 2 - Random.Range(0, Screen.width), Screen.height / 2 - Random.Range(0, Screen.height));
+                phone.transform.position = new Vector2(Random.Range(-8f, 8f), Random.Range(-3.6f, 3.6f));
                 phone.SetActive(Random.value <= 0.5f);
             }
             monitorSound.Stop();
