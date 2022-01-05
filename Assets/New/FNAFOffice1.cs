@@ -59,7 +59,10 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource doorSound;
     public AudioSource windowScareSound;
     public AudioSource doorKnockSound;
-    public AudioSource[] ambientSounds; 
+    public GameObject fan;
+    public AudioSource ambientSound;
+    public AudioClip[] ambientClips;
+    public AudioSource carnavalSound;
     [Range(0f, 1f)]
     public float lightRandomThreshold = 0.85f;
     [Space]
@@ -161,6 +164,7 @@ public class FNAFOffice1 : MonoBehaviour
     private float cameraButtonBlink = 0f;
     private float caughtMovingTime = 0f;
     private float distortedSignalTime = 0f;
+    private float disableFanTime = 0f;
 
     private string role;
     private bool isAfton = false;
@@ -193,7 +197,15 @@ public class FNAFOffice1 : MonoBehaviour
         bonnieLocations[0].SetState(0);
         foxyLocations[0].SetState(0);
 
-        ambientSounds[Random.Range(0, ambientSounds.Length)].Play();
+        PlayRandomAmbient();
+    }
+
+    public void PlayRandomAmbient()
+    {
+        if (ambientSound.isPlaying)
+            ambientSound.Stop();
+        ambientSound.clip = ambientClips[Random.Range(0, ambientClips.Length)];
+        ambientSound.Play();
     }
 
     private void StartGame()
@@ -413,15 +425,36 @@ public class FNAFOffice1 : MonoBehaviour
         {
             switch(game.currentDistraction)
             {
-                case "phone":
-                    phoneGuySound.clip = phoneGuyClips[Random.Range(0, phoneGuyClips.Length)];
-                    phoneGuySound.Stop();
+                case "phone": // Phone guy
+                    PlayPhoneGuy();
                     break;
-                case "signal":
-                    distortedSignalTime = 10f;
+                case "signal": // Lost signal for 10 seconds
+                    DistortSignal(10f);
                     break;
-                case "itsme":
+                case "itsme": // Itsme distraction
                     break;
+                case "10power": // Sends 10 power
+                    break;
+                case "disableRandomCamera": // Disables a random camera button
+                    break;
+                case "fakeSound": // Plays a random animatronic move sound no matter where it is
+                    PlayRandomMoveSound();
+                    break;
+                case "sabotageButtons": // Buttons are unriable and don't always work (play the error sound)
+                    break;
+                case "carnavalMusic": // Plays carnaval music
+                    PlayCarnavalMusic();
+                    break;
+                case "goldenFreddy": // Golden freddy appears in the office, use monitor to make him dissapear
+                    break;
+                case "turnOffFan": // Turns off the fan temporary
+                    TurnOffFan(10f);
+                    break;
+
+                case "ambience": // Change ambience sound
+                    PlayRandomAmbient();
+                    break;
+
             }
         }
         else if (e.eventType == "attack")
@@ -431,6 +464,51 @@ public class FNAFOffice1 : MonoBehaviour
             else
                 StartCoroutine(JumpscareSequence(game.attackingMonster));
         }
+    }
+
+    public void TurnOffFan(float time)
+    {
+        disableFanTime = time;
+    }
+
+    public void PlayRandomMoveSound()
+    {
+        switch(Random.Range(0, 4))
+        {
+            case 0:
+                freddyMoveSounds.PlayClose();
+                break;
+            case 1:
+                chicaMoveSounds.PlayClose();
+                break;
+            case 2:
+                foxyMoveSounds.PlayClose();
+                break;
+            case 3:
+                bonnieMoveSounds.PlayClose();
+                break;
+        }
+    }
+
+    public void PlayPhoneGuy()
+    {
+        if (!phoneGuySound.isPlaying)
+        {
+            phoneGuySound.clip = phoneGuyClips[Random.Range(0, phoneGuyClips.Length)];
+            phoneGuySound.Play();
+        }
+    }
+
+    public void DistortSignal(float time)
+    {
+        if (time > distortedSignalTime)
+            distortedSignalTime = time;
+    }
+
+    public void PlayCarnavalMusic()
+    {
+        if (!carnavalSound.isPlaying)
+            carnavalSound.Play();
     }
 
     private IEnumerator GameEndSequence(bool guardAlive)
@@ -556,6 +634,7 @@ public class FNAFOffice1 : MonoBehaviour
                 signalLostSound.Play();
                 signalLostSound.time = Random.value * signalLostSound.clip.length;
             }
+            signalLostSound.volume = monitorOpen ? 1.0f : 0.2f;
         }
         else
         {
@@ -563,8 +642,23 @@ public class FNAFOffice1 : MonoBehaviour
                 signalLostSound.Stop();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            distortedSignalTime = 10f;
+        if (disableFanTime > 0f)
+            disableFanTime -= Time.deltaTime;
+        fan.SetActive(disableFanTime <= 0f && powerLeft > 0f);
+
+        if (Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                DistortSignal(10f);
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                TurnOffFan(10f);
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                PlayPhoneGuy();
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+                PlayCarnavalMusic();
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+                PlayRandomAmbient();
+        }
 
         if (cameraButtonBlink > 0f)
         {
