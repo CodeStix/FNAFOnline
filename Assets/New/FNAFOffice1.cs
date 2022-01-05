@@ -59,6 +59,7 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource doorSound;
     public AudioSource windowScareSound;
     public AudioSource doorKnockSound;
+    public AudioSource[] ambientSounds; 
     [Range(0f, 1f)]
     public float lightRandomThreshold = 0.85f;
     [Space]
@@ -119,6 +120,14 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource powerErrorSound;
     public AudioSource powerDownSound;
     public GameObject caughtMovingObject;
+    public Color staticColor;
+    public AudioSource signalLostSound;
+    public AudioSource phoneGuySound;
+    public AudioClip[] phoneGuyClips;
+    [Range(0f, 1f)]
+    public float randomStaticNoise = 0.98f;
+    public float staticReturnSpeed = 1f;
+    public Image staticImage;
     [Space]
     public UnityEvent onMoveAnyone;
     public UnityEvent onJumpscare;
@@ -151,6 +160,7 @@ public class FNAFOffice1 : MonoBehaviour
     private float powerLeft = 100f;
     private float cameraButtonBlink = 0f;
     private float caughtMovingTime = 0f;
+    private float distortedSignalTime = 0f;
 
     private string role;
     private bool isAfton = false;
@@ -182,6 +192,8 @@ public class FNAFOffice1 : MonoBehaviour
         chicaLocations[0].SetState(0);
         bonnieLocations[0].SetState(0);
         foxyLocations[0].SetState(0);
+
+        ambientSounds[Random.Range(0, ambientSounds.Length)].Play();
     }
 
     private void StartGame()
@@ -352,11 +364,9 @@ public class FNAFOffice1 : MonoBehaviour
             }
 
             guardCurrentCamera = game.selectedCameraNumber;
-            Debug.Log("camera looked at" + guardCurrentCamera);
 
             if (isAfton && guardCurrentCamera >= 0)
             {
-                Debug.Log("setting sprite");
                 cameraButtons[guardCurrentCamera].sprite = cameraButtonLookedAt;
             }
         }
@@ -399,6 +409,21 @@ public class FNAFOffice1 : MonoBehaviour
             StartCoroutine(GameEndSequence(game.guardAlive));
             
         } 
+        else if (e.eventType == "distraction")
+        {
+            switch(game.currentDistraction)
+            {
+                case "phone":
+                    phoneGuySound.clip = phoneGuyClips[Random.Range(0, phoneGuyClips.Length)];
+                    phoneGuySound.Stop();
+                    break;
+                case "signal":
+                    distortedSignalTime = 10f;
+                    break;
+                case "itsme":
+                    break;
+            }
+        }
         else if (e.eventType == "attack")
         {
             if (isAfton)
@@ -514,6 +539,32 @@ public class FNAFOffice1 : MonoBehaviour
         chicaAttackButton.interactable = moveTimerDone && !rightDoorDown && chicaLocationIndex == chicaAttackLocationIndex;
         bonnieAttackButton.interactable = moveTimerDone && !leftDoorDown && bonnieLocationIndex == bonnieAttackLocationIndex;
         foxyAttackButton.interactable = moveTimerDone && !leftDoorDown && foxyLocationIndex == foxyAttackLocationIndex;
+
+        staticImage.color = Color.Lerp(staticImage.color, staticColor, Time.deltaTime * staticReturnSpeed);
+
+        if (Random.value > randomStaticNoise)
+        {
+            staticImage.color = Color.white;
+        }
+
+        if (distortedSignalTime > 0f)
+        {
+            distortedSignalTime -= Time.deltaTime;
+            staticImage.color = new Color(1f, 1f, 1f, 0.85f);
+            if (!signalLostSound.isPlaying)
+            {
+                signalLostSound.Play();
+                signalLostSound.time = Random.value * signalLostSound.clip.length;
+            }
+        }
+        else
+        {
+            if (signalLostSound.isPlaying)
+                signalLostSound.Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            distortedSignalTime = 10f;
 
         if (cameraButtonBlink > 0f)
         {
