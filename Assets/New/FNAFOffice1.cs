@@ -135,6 +135,8 @@ public class FNAFOffice1 : MonoBehaviour
     public GameObject itsMe;
     public Image powerIssueOverlay;
     public AudioSource powerIssueSound;
+    public Button[] distractionButtons;
+    public GameObject distractionLoading;
     [Space]
     public UnityEvent onMoveAnyone;
     public UnityEvent onJumpscare;
@@ -172,6 +174,7 @@ public class FNAFOffice1 : MonoBehaviour
     private float sabotageButtonsTime = 0f;
     private float itsMeTime = 0f;
     private float powerIssueTime = 0f;
+    private float distractionLoadingTime = 0f;
 
     private string role;
     private bool isAfton = false;
@@ -205,6 +208,7 @@ public class FNAFOffice1 : MonoBehaviour
         foxyLocations[0].SetState(0);
 
         PlayRandomAmbient();
+        ShuffleDistractions();
     }
 
     public void PlayRandomAmbient()
@@ -458,16 +462,16 @@ public class FNAFOffice1 : MonoBehaviour
         {
             switch(game.currentDistraction)
             {
-                case "phone": // Phone guy
+                case "phoneGuy": // Phone guy
                     PlayPhoneGuy();
                     break;
-                case "signal": // Lost signal for 10 seconds
+                case "lostSignal": // Lost signal for 10 seconds
                     DistortSignal(10f);
                     break;
-                case "itsme": // Itsme distraction
+                case "itsMe": // Itsme distraction
                     ItsMeDistraction(4f);
                     break;
-                case "fakeSound": // Plays a random animatronic move sound no matter where it is
+                case "fakeMoveSound": // Plays a random animatronic move sound no matter where it is
                     PlayRandomMoveSound();
                     break;
                 case "sabotageButtons": // Buttons are unreliable and don't always work (play the error sound)
@@ -479,7 +483,7 @@ public class FNAFOffice1 : MonoBehaviour
                 case "turnOffFan": // Turns off the fan temporary
                     TurnOffFan(10f);
                     break;
-                case "ambience": // Change ambience sound
+                case "ambienceChange": // Change ambience sound
                     PlayRandomAmbient();
                     break;
                 case "powerIssue":
@@ -487,10 +491,10 @@ public class FNAFOffice1 : MonoBehaviour
                     break;
                 case "10power": // Sends 10 power
                     break;
-                case "disableRandomCamera": // Disables a random camera button
-                    break;
-                case "goldenFreddy": // Golden freddy appears in the office, use monitor to make him dissapear
-                    break;
+                //case "disableRandomCamera": // Disables a random camera button
+                //    break;
+                //case "goldenFreddy": // Golden freddy appears in the office, use monitor to make him dissapear
+                //    break;
             }
         }
         else if (e.eventType == "attack")
@@ -500,6 +504,63 @@ public class FNAFOffice1 : MonoBehaviour
             else
                 StartCoroutine(JumpscareSequence(game.attackingMonster));
         }
+    }
+
+    private string GetNameForDistraction(string id)
+    {
+        switch(id)
+        {
+            case "phoneGuy":
+                return "Call Phone Guy";
+            case "lostSignal":
+                return "Distort Signal";
+            case "itsMe":
+                return "Its Me Distraction";
+            case "fakeMoveSound":
+                return "Play Movement Sounds";
+            case "sabotageButtons":
+                return "Sabotage Buttons";
+            case "carnavalMusic":
+                return "Play Circus Music";
+            case "turnOffFan":
+                return "Turn Off Fan";
+            case "ambienceChange":
+                return "Change Background Sound";
+            case "powerIssue":
+                return "Create Power Issue";
+            case "10power":
+                return "Send 10% power";
+            default:
+                return "Invalid distraction";
+        }
+    }
+
+    public void ShuffleDistractions()
+    {
+        string[] distractions = new[] { "phoneGuy", "lostSignal", "itsMe", "fakeMoveSound", "sabotageButtons", "carnavalMusic", "turnOffFan", "ambienceChange", "powerIssue", "10power" };
+        for(int i = 0; i < distractions.Length; i++)
+        {
+            int n = Random.Range(0, distractions.Length);
+            string temp = distractions[n];
+            distractions[n] = distractions[i];
+            distractions[i] = temp;
+        }
+
+        for(int i = 0; i < distractionButtons.Length; i++)
+        {
+            Button button = distractionButtons[i];
+            button.onClick.RemoveAllListeners();
+            button.GetComponentInChildren<Text>().text = GetNameForDistraction(distractions[i]);
+            button.onClick.AddListener(() => SendDistraction(distractions[i]));
+        }
+    }
+
+    public void SendDistraction(string distractionName)
+    {
+        onMoveAnyone?.Invoke();
+        Debug.Log("Distract " + distractionName);
+        distractionLoadingTime = 5f;
+        ShuffleDistractions();
     }
 
     public void PowerIssue(float time)
@@ -710,6 +771,12 @@ public class FNAFOffice1 : MonoBehaviour
         if (disableFanTime > 0f)
             disableFanTime -= Time.deltaTime;
         fan.SetActive(disableFanTime <= 0f && powerLeft > 0f);
+
+        if (distractionLoadingTime > 0f)
+            distractionLoadingTime -= Time.deltaTime;
+        foreach(Button button in distractionButtons)
+            button.gameObject.SetActive(distractionLoadingTime <= 0f);
+        distractionLoading.SetActive(distractionLoadingTime > 0f);
 
         if (!phoneGuySound.isPlaying)
             phone.SetActive(false);
