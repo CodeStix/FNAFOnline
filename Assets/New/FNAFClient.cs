@@ -6,9 +6,28 @@ using System.Linq;
 using UnityEngine;
 using WebSocketSharp;
 
+[System.Serializable]
+public class FNAF1OfficeState
+{
+    public int chicaLocation; // Which camera
+    public int chicaLocationState; // Which image to display on camera
+    public int freddyLocation;
+    public int freddyLocationState;
+    public int bonnieLocation;
+    public int bonnieLocationState;
+    public int foxyLocation;
+    public int foxyLocationState;
+    public bool leftLight;
+    public bool rightLight;
+    public bool leftDoor;
+    public bool rightDoor;
+    public float powerLeft;
+}
+
 [Serializable]
 public class FNAF1GameSettings
 {
+    public string gameMode;
     public float secondsPerHour;
     public float secondsPerMove;
     public float maxMoveTimeRandomness;
@@ -19,28 +38,40 @@ public class FNAF1GameSettings
 }
 
 [Serializable]
+public class FNAFGamePlayer
+{
+    public int id;
+    public int selectedCameraNumber;
+    public bool alive;
+    public int controlledByPlayerId;
+    public FNAF1OfficeState office;
+}
+
+[Serializable]
 public class FNAF1Game
 {
-    public FNAF1GameSettings settings;
-    public int chicaLocation; // Which camera
-    public int chicaLocationState; // Which image to display on camera
-    public int freddyLocation;
-    public int freddyLocationState;
-    public int bonnieLocation;
-    public int bonnieLocationState;
-    public int foxyLocation;
-    public int foxyLocationState;
-    public float powerLeft;
-    public int currentHour;
     public long startTimeStamp;
-    public bool leftLight;
-    public bool rightLight;
-    public bool leftDoor;
-    public bool rightDoor;
-    public int selectedCameraNumber;
-    public string attackingMonster;
-    public string currentDistraction;
-    public bool guardAlive;
+    public int currentHour;
+    public FNAF1OfficeState office; // Used when gameMode is classic
+    public List<FNAFGamePlayer> players;
+
+    //public float powerLeft;
+    //public string attackingMonster;
+    //public bool guardAlive;
+    //public string currentDistraction;
+    //public bool leftLight;
+    //public bool rightLight;
+    //public bool leftDoor;
+    //public bool rightDoor;
+    //public int selectedCameraNumber;
+    //public int chicaLocation; // Which camera
+    //public int chicaLocationState; // Which image to display on camera
+    //public int freddyLocation;
+    //public int freddyLocationState;
+    //public int bonnieLocation;
+    //public int bonnieLocationState;
+    //public int foxyLocation;
+    //public int foxyLocationState;
 }
 
 [Serializable]
@@ -61,11 +92,10 @@ public class FNAFRoomUser
 {
     public FNAFUser user;
     public bool ready;
-    public string role;
 
     public override string ToString()
     {
-        return user.ToString() + " ready=" + (ready ? "yes" : "no") + " role=" + role;
+        return user.ToString() + " ready=" + (ready ? "yes" : "no");
     }
 }
 
@@ -76,16 +106,17 @@ public class FNAFRoom
     public string name;
     public int ownerId;
     public string ownerName;
-    public int playerCount;
     public List<FNAFRoomUser> users;
     public int maxPlayers;
+    public int playerCount;
     public bool isPrivate;
     public bool inGame;
+    public FNAF1GameSettings settings;
     public FNAF1Game game;
 
     public override string ToString()
     {
-        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
+        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={users.Count}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
     }
 }
 
@@ -210,12 +241,6 @@ public class FNAF1OfficeChangeRequest
 }
 
 [Serializable]
-public class FNAF1AttackRequest
-{
-    public string monster;
-}
-
-[Serializable]
 public class FNAFChatRequest
 {
     public string message;
@@ -242,8 +267,33 @@ public class FNAFChatEvent
     public int senderId;
 }
 
+[Serializable]
+public class FNAF1DistractRequest
+{
+    public string distraction;
+}
+
+[Serializable]
+public class FNAF1AttackRequest
+{
+    public string monster;
+}
+
+[Serializable]
+public class FNAFDistractEvent
+{
+    public string distraction;
+}
+
+[Serializable]
+public class FNAFAttackEvent
+{
+    public string monster;
+}
+
 public class FNAFClient : MonoBehaviour
 {
+    // wss://fnafws.codestix.nl
     public string connectionUrl = "ws://localhost:8080";
 
     public event EventHandler OnConnected;
@@ -252,6 +302,8 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAFRoomChangeEvent> OnRoomChangeEvent;
     public event EventHandler<FNAFUserChangeEvent> OnUserChangeEvent;
     public event EventHandler<FNAFChatEvent> OnChatEvent;
+    public event EventHandler<FNAFDistractEvent> OnDistractEvent;
+    public event EventHandler<FNAFAttackEvent> OnAttackEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
     public event EventHandler<FNAFJoinRoomResponse> OnJoinRoomResponse;
@@ -475,6 +527,14 @@ public class FNAFClient : MonoBehaviour
                 OnFNAF1MoveResponse?.Invoke(null, JsonUtility.FromJson<FNAF1MoveResponse>(jsonText));
                 break;
 
+            case nameof(FNAFAttackEvent):
+                OnAttackEvent?.Invoke(null, JsonUtility.FromJson<FNAFAttackEvent>(jsonText));
+                break;
+
+            case nameof(FNAFDistractEvent):
+                OnDistractEvent?.Invoke(null, JsonUtility.FromJson<FNAFDistractEvent>(jsonText));
+                break;
+
             case nameof(FNAFChatEvent):
                 OnChatEvent?.Invoke(null, JsonUtility.FromJson<FNAFChatEvent>(jsonText));
                 break;
@@ -533,6 +593,11 @@ public class FNAFClient : MonoBehaviour
     public void FNAF1RequestAttack(string monster)
     {
         socket.Send(nameof(FNAF1AttackRequest) + ":" + JsonUtility.ToJson(new FNAF1AttackRequest() { monster = monster }));
+    }
+
+    public void FNAF1RequestDistract(string distraction)
+    {
+        socket.Send(nameof(FNAF1DistractRequest) + ":" + JsonUtility.ToJson(new FNAF1DistractRequest() { distraction = distraction }));
     }
 
     public void ChatRequest(string message)
