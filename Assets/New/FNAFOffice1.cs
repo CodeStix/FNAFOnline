@@ -284,7 +284,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1AttackEvent += Instance_OnFNAF1AttackEvent;
         FNAFClient.Instance.OnFNAF1DistractEvent += Instance_OnFNAF1DistractEvent;
         FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
-        FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse1;
+        FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.StartGameRequest(true);
         Invoke(nameof(StartGame), 2.0f);
     }
@@ -296,9 +296,8 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1AttackEvent += Instance_OnFNAF1AttackEvent;
         FNAFClient.Instance.OnFNAF1DistractEvent += Instance_OnFNAF1DistractEvent;
         FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
-        FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse1;
+        FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
     }
-
 
     private void OnDisable()
     {
@@ -307,34 +306,31 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1AttackEvent -= Instance_OnFNAF1AttackEvent;
         FNAFClient.Instance.OnFNAF1DistractEvent -= Instance_OnFNAF1DistractEvent;
         FNAFClient.Instance.OnFNAF1DistractResponse -= Instance_OnFNAF1DistractResponse;
-        FNAFClient.Instance.OnFNAF1MoveResponse -= Instance_OnFNAF1MoveResponse1;
+        FNAFClient.Instance.OnFNAF1AttackResponse -= Instance_OnFNAF1AttackResponse;
     }
 
-    private void Instance_OnFNAF1AttackEvent(object sender, FNAF1AttackEvent e)
+    private void Instance_OnFNAF1AttackResponse(object sender, FNAF1AttackResponse e)
     {
-        
-    }
-
-    private void Instance_OnFNAF1MoveResponse1(object sender, FNAF1MoveResponse e)
-    {
-        if (!e.ok) return;
-
-        FNAF1OfficeState controlsOffice = Room.settings.gameMode == "classic" ? Room.game.office : Room.game.players.First((e) => e.controlledByPlayerId == User.id).office;
-        for (int i = 0; i < freddyLocations.Length; i++)
-            freddyLocations[i].SetMoveButton(controlsOffice.freddyLocation == i);
-        for (int i = 0; i < chicaLocations.Length; i++)
-            chicaLocations[i].SetMoveButton(controlsOffice.chicaLocation == i);
-        for (int i = 0; i < bonnieLocations.Length; i++)
-            bonnieLocations[i].SetMoveButton(controlsOffice.bonnieLocation == i);
-        for (int i = 0; i < foxyLocations.Length; i++)
-            foxyLocations[i].SetMoveButton(controlsOffice.foxyLocation == i);
+        if (e.ok)
+        {
+            StartCoroutine(AftonJumpscareSequence(e.monster));
+        }
     }
 
     private void Instance_OnFNAF1DistractResponse(object sender, FNAF1DistractResponse e)
     {
-        
+        if (e.ok)
+        {
+            Debug.Log("distraction cooldownTime = " + e.cooldownTime);
+            distractionLoadingTime = e.cooldownTime;
+            ShuffleDistractions();
+        }
     }
 
+    private void Instance_OnFNAF1AttackEvent(object sender, FNAF1AttackEvent e)
+    {
+        StartCoroutine(JumpscareSequence(e.monster));
+    }
 
     private void Instance_OnFNAF1DistractEvent(object sender, FNAF1DistractEvent e)
     {
@@ -368,11 +364,17 @@ public class FNAFOffice1 : MonoBehaviour
             case "powerIssue":
                 PowerIssue(5f);
                 break;
-            case "10power": // Sends 10 power
-                break;
-                //case "disableRandomCamera": // Disables a random camera button
+                //case "10power": // Is handled on server
                 //    break;
-                //case "goldenFreddy": // Golden freddy appears in the office, use monitor to make him dissapear
+                //case "disableRandomCamera": // Idea: Disables a random camera button
+                //    break;
+                //case "goldenFreddy": // Idea: Golden freddy appears in the office, use monitor to make him dissapear
+                //    break;
+                //case "rogue": // Idea: all the cameras show animatronics
+                //    break;
+                //case "moveAll": // Idea: all the animatronics move in one random direction
+                //    break;
+                //case "mirror": // Idea: the office gets mirrored
                 //    break;
         }
     }
@@ -400,6 +402,16 @@ public class FNAFOffice1 : MonoBehaviour
         FNAF1OfficeState office = e.room.settings.gameMode == "classic" ? game.office : player.office;
         if (e.eventType == "move")
         {
+            FNAF1OfficeState controlsOffice = Room.settings.gameMode == "classic" ? Room.game.office : Room.game.players.First((e) => e.controlledByPlayerId == User.id).office;
+            for (int i = 0; i < freddyLocations.Length; i++)
+                freddyLocations[i].SetMoveButton(controlsOffice.freddyLocation == i);
+            for (int i = 0; i < chicaLocations.Length; i++)
+                chicaLocations[i].SetMoveButton(controlsOffice.chicaLocation == i);
+            for (int i = 0; i < bonnieLocations.Length; i++)
+                bonnieLocations[i].SetMoveButton(controlsOffice.bonnieLocation == i);
+            for (int i = 0; i < foxyLocations.Length; i++)
+                foxyLocations[i].SetMoveButton(controlsOffice.foxyLocation == i);
+
             if (freddyLocationIndex != office.freddyLocation || freddyLocationState != office.freddyLocationState)
             {
                 freddyLocations[freddyLocationIndex].SetState(-1);
@@ -531,6 +543,7 @@ public class FNAFOffice1 : MonoBehaviour
             {
                 for(int i = 0; i < cameraButtons.Length; i++)
                     cameraButtons[i].sprite = cameraButtonNormal;
+
                 if (Player.controlledByPlayerId == 0)
                 {
                     // Show the selected cameras to the controller
@@ -577,15 +590,7 @@ public class FNAFOffice1 : MonoBehaviour
         else if (e.eventType == "end")
         {
             StartCoroutine(GameEndSequence());
-            
         } 
-        else if (e.eventType == "attack")
-        {
-            //if (Player.controlledByPlayerId != 0)
-            //    StartCoroutine(AftonJumpscareSequence(game.attackingMonster));
-            //else
-            //    StartCoroutine(JumpscareSequence(game.attackingMonster));
-        }
     }
 
     private string GetNameForDistraction(string id)
@@ -630,19 +635,21 @@ public class FNAFOffice1 : MonoBehaviour
 
         for(int i = 0; i < distractionButtons.Length; i++)
         {
+            string distraction = distractions[i];
             Button button = distractionButtons[i];
+            button.GetComponentInChildren<Text>().text = GetNameForDistraction(distraction);
             button.onClick.RemoveAllListeners();
-            button.GetComponentInChildren<Text>().text = GetNameForDistraction(distractions[i]);
-            button.onClick.AddListener(() => SendDistraction(distractions[i]));
+            button.onClick.AddListener(() => SendDistraction(distraction));
         }
     }
 
     public void SendDistraction(string distractionName)
     {
+        distractionLoadingTime = 5000000f;
         onMoveAnyone?.Invoke();
+
         Debug.Log("Send distraction " + distractionName);
-        distractionLoadingTime = 5f;
-        ShuffleDistractions();
+        FNAFClient.Instance.FNAF1RequestDistract(distractionName);
     }
 
     public void PowerIssue(float time)
@@ -720,18 +727,31 @@ public class FNAFOffice1 : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
 
-        if (Player.controlledByPlayerId != 0)
+        if (Room.settings.gameMode == "classic")
         {
-            if (Player.alive)
-                onAftonLose.Invoke();
+            bool somePlayerAlive = Room.game.players.Any((e) => e.alive && e.controlledByPlayerId != 0);
+            if (Player.controlledByPlayerId != 0)
+            {
+                // Guard
+                if (somePlayerAlive)
+                    onGuardWin.Invoke();
+                else
+                    onGuardLose.Invoke();
+            }
             else
-                onAftonWin.Invoke();
+            {
+                // Controller
+                if (somePlayerAlive)
+                    onAftonLose.Invoke();
+                else
+                    onAftonWin.Invoke();
+            }
         }
-        else
+        else if (Room.settings.gameMode == "duel")
         {
             if (Player.alive)
                 onGuardWin.Invoke();
-            else 
+            else
                 onGuardLose.Invoke();
         }
 
@@ -769,6 +789,11 @@ public class FNAFOffice1 : MonoBehaviour
         aftonBonnieJumpScare.SetActive(false);
         aftonFoxyJumpScare.SetActive(false);
         aftonDeathOverlay.SetActive(true);
+
+        yield return new WaitForSeconds(3.0f);
+
+        aftonDeathOverlay.SetActive(false);
+        aftonGuardView.SetActive(false);
     }
 
     private IEnumerator JumpscareSequence(string monster)

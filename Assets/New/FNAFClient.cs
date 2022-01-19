@@ -215,6 +215,7 @@ public class FNAF1MoveResponse
 [Serializable]
 public class FNAF1AttackResponse
 {
+    public string monster;
     public bool ok;
 }
 
@@ -222,6 +223,7 @@ public class FNAF1AttackResponse
 public class FNAF1DistractResponse
 {
     public bool ok;
+    public float cooldownTime;
 }
 
 [Serializable]
