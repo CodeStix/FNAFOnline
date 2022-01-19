@@ -281,7 +281,10 @@ public class FNAFOffice1 : MonoBehaviour
     {
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
         FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse;
-        FNAFClient.Instance.OnAttackEvent += Instance_OnAttackEvent;
+        FNAFClient.Instance.OnFNAF1AttackEvent += Instance_OnFNAF1AttackEvent;
+        FNAFClient.Instance.OnFNAF1DistractEvent += Instance_OnFNAF1DistractEvent;
+        FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
+        FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse1;
         FNAFClient.Instance.StartGameRequest(true);
         Invoke(nameof(StartGame), 2.0f);
     }
@@ -290,25 +293,52 @@ public class FNAFOffice1 : MonoBehaviour
     {
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
         FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse;
-        FNAFClient.Instance.OnAttackEvent += Instance_OnAttackEvent;
-        FNAFClient.Instance.OnDistractEvent += Instance_OnDistractEvent;
+        FNAFClient.Instance.OnFNAF1AttackEvent += Instance_OnFNAF1AttackEvent;
+        FNAFClient.Instance.OnFNAF1DistractEvent += Instance_OnFNAF1DistractEvent;
+        FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
+        FNAFClient.Instance.OnFNAF1MoveResponse += Instance_OnFNAF1MoveResponse1;
     }
+
 
     private void OnDisable()
     {
         FNAFClient.Instance.OnRoomChangeEvent -= Instance_OnRoomChangeEvent;
         FNAFClient.Instance.OnFNAF1MoveResponse -= Instance_OnFNAF1MoveResponse;
-        FNAFClient.Instance.OnAttackEvent -= Instance_OnAttackEvent;
-        FNAFClient.Instance.OnDistractEvent += Instance_OnDistractEvent;
+        FNAFClient.Instance.OnFNAF1AttackEvent -= Instance_OnFNAF1AttackEvent;
+        FNAFClient.Instance.OnFNAF1DistractEvent -= Instance_OnFNAF1DistractEvent;
+        FNAFClient.Instance.OnFNAF1DistractResponse -= Instance_OnFNAF1DistractResponse;
+        FNAFClient.Instance.OnFNAF1MoveResponse -= Instance_OnFNAF1MoveResponse1;
     }
 
-    private void Instance_OnAttackEvent(object sender, FNAFAttackEvent e)
+    private void Instance_OnFNAF1AttackEvent(object sender, FNAF1AttackEvent e)
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    private void Instance_OnDistractEvent(object sender, FNAFDistractEvent e)
+    private void Instance_OnFNAF1MoveResponse1(object sender, FNAF1MoveResponse e)
     {
+        if (!e.ok) return;
+
+        FNAF1OfficeState controlsOffice = Room.settings.gameMode == "classic" ? Room.game.office : Room.game.players.First((e) => e.controlledByPlayerId == User.id).office;
+        for (int i = 0; i < freddyLocations.Length; i++)
+            freddyLocations[i].SetMoveButton(controlsOffice.freddyLocation == i);
+        for (int i = 0; i < chicaLocations.Length; i++)
+            chicaLocations[i].SetMoveButton(controlsOffice.chicaLocation == i);
+        for (int i = 0; i < bonnieLocations.Length; i++)
+            bonnieLocations[i].SetMoveButton(controlsOffice.bonnieLocation == i);
+        for (int i = 0; i < foxyLocations.Length; i++)
+            foxyLocations[i].SetMoveButton(controlsOffice.foxyLocation == i);
+    }
+
+    private void Instance_OnFNAF1DistractResponse(object sender, FNAF1DistractResponse e)
+    {
+        
+    }
+
+
+    private void Instance_OnFNAF1DistractEvent(object sender, FNAF1DistractEvent e)
+    {
+        Debug.Log("Received distraction event: " + e.distraction);
         switch (e.distraction)
         {
             case "phoneGuy": // Phone guy
@@ -361,8 +391,6 @@ public class FNAFOffice1 : MonoBehaviour
         }
     }
 
-    
-
     private void Instance_OnRoomChangeEvent(object sender, FNAFRoomChangeEvent e)
     {
         // Sync office to received room
@@ -370,19 +398,8 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFGamePlayer player = game.players.First((e) => e.id == FNAFClient.Instance.GetUser().id);
 
         FNAF1OfficeState office = e.room.settings.gameMode == "classic" ? game.office : player.office;
-        FNAF1OfficeState controlsOffice = e.room.settings.gameMode == "classic" ? game.office : game.players.First((e) => e.controlledByPlayerId == User.id).office;
-
         if (e.eventType == "move")
         {
-            for (int i = 0; i < freddyLocations.Length; i++)
-                freddyLocations[i].SetMoveButton(controlsOffice.freddyLocation == i);
-            for (int i = 0; i < chicaLocations.Length; i++)
-                chicaLocations[i].SetMoveButton(controlsOffice.chicaLocation == i);
-            for (int i = 0; i < bonnieLocations.Length; i++)
-                bonnieLocations[i].SetMoveButton(controlsOffice.bonnieLocation == i);
-            for (int i = 0; i < foxyLocations.Length; i++)
-                foxyLocations[i].SetMoveButton(controlsOffice.foxyLocation == i);
-
             if (freddyLocationIndex != office.freddyLocation || freddyLocationState != office.freddyLocationState)
             {
                 freddyLocations[freddyLocationIndex].SetState(-1);
@@ -404,6 +421,12 @@ public class FNAFOffice1 : MonoBehaviour
             if (chicaLocationIndex != office.chicaLocation || chicaLocationState != office.chicaLocationState)
             {
                 sawChica = false;
+                if (chicaLocationIndex == chicaAttackLocationIndex && rightLight)
+                {
+                    // If moved away from window, disable light
+                    FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, false, rightDoorDown, monitorOpen ? currentCamera : -1);
+                }
+
                 chicaLocations[chicaLocationIndex].SetState(-1);
                 chicaLocationIndex = office.chicaLocation;
                 chicaLocationState = office.chicaLocationState;
@@ -423,6 +446,12 @@ public class FNAFOffice1 : MonoBehaviour
             if (bonnieLocationIndex != office.bonnieLocation || bonnieLocationState != office.bonnieLocationState)
             {
                 sawBonnie = false;
+                if (bonnieLocationIndex == bonnieAttackLocationIndex && leftLight)
+                {
+                    // If moved away from window, disable light
+                    FNAFClient.Instance.FNAF1RequestOfficeChange(false, leftDoorDown, rightLight, rightDoorDown, monitorOpen ? currentCamera : -1);
+                }
+
                 bonnieLocations[bonnieLocationIndex].SetState(-1);
                 bonnieLocationIndex = office.bonnieLocation;
                 bonnieLocationState = office.bonnieLocationState;
@@ -611,7 +640,7 @@ public class FNAFOffice1 : MonoBehaviour
     public void SendDistraction(string distractionName)
     {
         onMoveAnyone?.Invoke();
-        Debug.Log("Distract " + distractionName);
+        Debug.Log("Send distraction " + distractionName);
         distractionLoadingTime = 5f;
         ShuffleDistractions();
     }
@@ -1047,14 +1076,14 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(!leftLight, leftDoorDown, rightLight, rightDoorDown, currentCamera);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(!leftLight, leftDoorDown, rightLight, rightDoorDown, monitorOpen ? currentCamera : -1);
     }
 
     public void LeftDoorToggle()
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, !leftDoorDown, rightLight, rightDoorDown, currentCamera);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, !leftDoorDown, rightLight, rightDoorDown, monitorOpen ? currentCamera : -1);
     }
 
 
@@ -1062,14 +1091,14 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, !rightLight, rightDoorDown, currentCamera);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, !rightLight, rightDoorDown, monitorOpen ? currentCamera : -1);
     }
 
     public void RightDoorToggle()
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, !rightDoorDown, currentCamera);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(leftLight, leftDoorDown, rightLight, !rightDoorDown, monitorOpen ? currentCamera : -1);
     }
 
     public void SwitchCamera(int index)

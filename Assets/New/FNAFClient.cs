@@ -54,24 +54,6 @@ public class FNAF1Game
     public int currentHour;
     public FNAF1OfficeState office; // Used when gameMode is classic
     public List<FNAFGamePlayer> players;
-
-    //public float powerLeft;
-    //public string attackingMonster;
-    //public bool guardAlive;
-    //public string currentDistraction;
-    //public bool leftLight;
-    //public bool rightLight;
-    //public bool leftDoor;
-    //public bool rightDoor;
-    //public int selectedCameraNumber;
-    //public int chicaLocation; // Which camera
-    //public int chicaLocationState; // Which image to display on camera
-    //public int freddyLocation;
-    //public int freddyLocationState;
-    //public int bonnieLocation;
-    //public int bonnieLocationState;
-    //public int foxyLocation;
-    //public int foxyLocationState;
 }
 
 [Serializable]
@@ -231,6 +213,18 @@ public class FNAF1MoveResponse
 }
 
 [Serializable]
+public class FNAF1AttackResponse
+{
+    public bool ok;
+}
+
+[Serializable]
+public class FNAF1DistractResponse
+{
+    public bool ok;
+}
+
+[Serializable]
 public class FNAF1OfficeChangeRequest
 {
     public bool leftLight;
@@ -280,13 +274,13 @@ public class FNAF1AttackRequest
 }
 
 [Serializable]
-public class FNAFDistractEvent
+public class FNAF1DistractEvent
 {
     public string distraction;
 }
 
 [Serializable]
-public class FNAFAttackEvent
+public class FNAF1AttackEvent
 {
     public string monster;
 }
@@ -303,8 +297,8 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAFRoomChangeEvent> OnRoomChangeEvent;
     public event EventHandler<FNAFUserChangeEvent> OnUserChangeEvent;
     public event EventHandler<FNAFChatEvent> OnChatEvent;
-    public event EventHandler<FNAFDistractEvent> OnDistractEvent;
-    public event EventHandler<FNAFAttackEvent> OnAttackEvent;
+    public event EventHandler<FNAF1DistractEvent> OnFNAF1DistractEvent;
+    public event EventHandler<FNAF1AttackEvent> OnFNAF1AttackEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
     public event EventHandler<FNAFJoinRoomResponse> OnJoinRoomResponse;
@@ -314,6 +308,8 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAFMatchmakingResponse> OnMatchmakingResponse;
     public event EventHandler<FNAFStartResponse> OnStartResponse;
     public event EventHandler<FNAF1MoveResponse> OnFNAF1MoveResponse;
+    public event EventHandler<FNAF1AttackResponse> OnFNAF1AttackResponse;
+    public event EventHandler<FNAF1DistractResponse> OnFNAF1DistractResponse;
 
     private WebSocket socket;
     private FNAFConfig config;
@@ -463,7 +459,7 @@ public class FNAFClient : MonoBehaviour
         string type = rawData.Substring(0, splitIndex);
         string jsonText = rawData.Substring(splitIndex + 1);
 
-        Debug.Log("Received " + rawData);
+        //Debug.Log("Received " + rawData);
 
         switch (type)
         {
@@ -528,12 +524,20 @@ public class FNAFClient : MonoBehaviour
                 OnFNAF1MoveResponse?.Invoke(null, JsonUtility.FromJson<FNAF1MoveResponse>(jsonText));
                 break;
 
-            case nameof(FNAFAttackEvent):
-                OnAttackEvent?.Invoke(null, JsonUtility.FromJson<FNAFAttackEvent>(jsonText));
+            case nameof(FNAF1AttackEvent):
+                OnFNAF1AttackEvent?.Invoke(null, JsonUtility.FromJson<FNAF1AttackEvent>(jsonText));
                 break;
 
-            case nameof(FNAFDistractEvent):
-                OnDistractEvent?.Invoke(null, JsonUtility.FromJson<FNAFDistractEvent>(jsonText));
+            case nameof(FNAF1DistractEvent):
+                OnFNAF1DistractEvent?.Invoke(null, JsonUtility.FromJson<FNAF1DistractEvent>(jsonText));
+                break;
+
+            case nameof(FNAF1AttackResponse):
+                OnFNAF1AttackResponse?.Invoke(null, JsonUtility.FromJson<FNAF1AttackResponse>(jsonText));
+                break;
+
+            case nameof(FNAF1DistractResponse):
+                OnFNAF1DistractResponse?.Invoke(null, JsonUtility.FromJson<FNAF1DistractResponse>(jsonText));
                 break;
 
             case nameof(FNAFChatEvent):
