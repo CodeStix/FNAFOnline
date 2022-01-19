@@ -9,8 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class JoinMenu : MonoBehaviour
 {
-    public int playerCount = 4;
-    public bool hidden = false;
     [Header("Random")]
     public Button joinRandomButton;
     [Header("With Code")]
@@ -46,7 +44,7 @@ public class JoinMenu : MonoBehaviour
     public void JoinNew(bool isPrivate)
     {
         FNAFClient.Instance.OnCreateRoomResponse += Instance_OnCreateRoomResponse;
-        FNAFClient.Instance.CreateRoom(2, isPrivate);
+        FNAFClient.Instance.CreateRoom(4, isPrivate);
     }
 
     private void Instance_OnCreateRoomResponse(object sender, FNAFCreateRoomResponse e)

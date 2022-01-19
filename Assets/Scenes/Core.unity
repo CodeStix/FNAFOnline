@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionUrl: ws://localhost:8080
+  testMode: 1
 --- !u!1001 &210604290
 PrefabInstance:
   m_ObjectHideFlags: 0

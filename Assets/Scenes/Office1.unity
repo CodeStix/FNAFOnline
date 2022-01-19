@@ -1085,7 +1085,6 @@ MonoBehaviour:
   states:
   - {fileID: 853599645}
   moveButton: {fileID: 117747928}
-  lookingCamera: {fileID: 323668753}
   isFar: 1
 --- !u!1 &117903093
 GameObject:
@@ -1243,7 +1242,6 @@ MonoBehaviour:
   states:
   - {fileID: 1276149063}
   moveButton: {fileID: 117903098}
-  lookingCamera: {fileID: 1320027120}
   isFar: 1
 --- !u!1 &154025535
 GameObject:
@@ -2356,7 +2354,6 @@ MonoBehaviour:
   states:
   - {fileID: 64977292}
   moveButton: {fileID: 225935622}
-  lookingCamera: {fileID: 1320027120}
   isFar: 1
 --- !u!1 &230576539
 GameObject:
@@ -2800,7 +2797,6 @@ MonoBehaviour:
   states:
   - {fileID: 864800726}
   moveButton: {fileID: 233170064}
-  lookingCamera: {fileID: 1699541865}
   isFar: 1
 --- !u!1 &240417923
 GameObject:
@@ -4208,7 +4204,6 @@ MonoBehaviour:
   states:
   - {fileID: 111404229}
   moveButton: {fileID: 328006387}
-  lookingCamera: {fileID: 240417926}
   isFar: 0
 --- !u!1001 &332399757
 PrefabInstance:
@@ -4975,7 +4970,6 @@ MonoBehaviour:
   states:
   - {fileID: 850462906}
   moveButton: {fileID: 375095070}
-  lookingCamera: {fileID: 323668753}
   isFar: 1
 --- !u!1 &388775345
 GameObject:
@@ -7283,7 +7277,6 @@ MonoBehaviour:
   states:
   - {fileID: 230576539}
   moveButton: {fileID: 584163076}
-  lookingCamera: {fileID: 323668753}
   isFar: 1
 --- !u!1 &584341523
 GameObject:
@@ -7610,7 +7603,6 @@ MonoBehaviour:
   states:
   - {fileID: 2119752790}
   moveButton: {fileID: 614102447}
-  lookingCamera: {fileID: 918988488}
   isFar: 0
 --- !u!1 &623272279
 GameObject:
@@ -8491,7 +8483,6 @@ MonoBehaviour:
   states:
   - {fileID: 1664458351}
   moveButton: {fileID: 636060531}
-  lookingCamera: {fileID: 1959753799}
   isFar: 1
 --- !u!850595691 &675238914
 LightingSettings:
@@ -8969,7 +8960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -45.27}
+  m_AnchoredPosition: {x: 0, y: -45.26999}
   m_SizeDelta: {x: 391.66, y: 45.27}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &714687273
@@ -10437,7 +10428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: []
   moveButton: {fileID: 824406142}
-  lookingCamera: {fileID: 0}
   isFar: 0
 --- !u!1 &845589273
 GameObject:
@@ -11299,7 +11289,6 @@ MonoBehaviour:
   - {fileID: 429137805}
   - {fileID: 85295689}
   moveButton: {fileID: 892357637}
-  lookingCamera: {fileID: 1699541865}
   isFar: 1
 --- !u!1 &900021023
 GameObject:
@@ -12787,7 +12776,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: []
   moveButton: {fileID: 957904819}
-  lookingCamera: {fileID: 0}
   isFar: 0
 --- !u!1001 &963414900
 PrefabInstance:
@@ -13637,7 +13625,6 @@ MonoBehaviour:
   states:
   - {fileID: 1166834200}
   moveButton: {fileID: 1053814666}
-  lookingCamera: {fileID: 1959753799}
   isFar: 1
 --- !u!1 &1056748167
 GameObject:
@@ -14771,7 +14758,6 @@ MonoBehaviour:
   - {fileID: 1914631324}
   - {fileID: 464858991}
   moveButton: {fileID: 1124790020}
-  lookingCamera: {fileID: 878916462}
   isFar: 0
 --- !u!1001 &1132238419
 PrefabInstance:
@@ -16878,7 +16864,6 @@ MonoBehaviour:
   - {fileID: 693954242}
   - {fileID: 1544237942}
   moveButton: {fileID: 1289737710}
-  lookingCamera: {fileID: 954254170}
   isFar: 0
 --- !u!1 &1298047650
 GameObject:
@@ -18180,7 +18165,6 @@ MonoBehaviour:
   states:
   - {fileID: 1677084026}
   moveButton: {fileID: 1458592911}
-  lookingCamera: {fileID: 1777908245}
   isFar: 1
 --- !u!1 &1461785633
 GameObject:
@@ -18428,7 +18412,6 @@ MonoBehaviour:
   states:
   - {fileID: 623272279}
   moveButton: {fileID: 1466264895}
-  lookingCamera: {fileID: 323668753}
   isFar: 0
 --- !u!1 &1479892075
 GameObject:
@@ -18725,7 +18708,6 @@ MonoBehaviour:
   states:
   - {fileID: 1779286048}
   moveButton: {fileID: 1495449440}
-  lookingCamera: {fileID: 1777908245}
   isFar: 1
 --- !u!1 &1517533945
 GameObject:
@@ -19174,7 +19156,6 @@ MonoBehaviour:
   states:
   - {fileID: 562125569}
   moveButton: {fileID: 1526833358}
-  lookingCamera: {fileID: 1959753799}
   isFar: 1
 --- !u!1 &1535851483
 GameObject:
@@ -21101,7 +21082,6 @@ MonoBehaviour:
   - {fileID: 1443724905}
   - {fileID: 1102784074}
   moveButton: {fileID: 1729688865}
-  lookingCamera: {fileID: 625660367}
   isFar: 1
 --- !u!224 &1731030612 stripped
 RectTransform:
@@ -23038,7 +23018,6 @@ MonoBehaviour:
   states:
   - {fileID: 900021023}
   moveButton: {fileID: 1864709251}
-  lookingCamera: {fileID: 1777908245}
   isFar: 1
 --- !u!1 &1867029017
 GameObject:
@@ -24090,7 +24069,6 @@ MonoBehaviour:
   states:
   - {fileID: 1706417422}
   moveButton: {fileID: 1942110433}
-  lookingCamera: {fileID: 1320027120}
   isFar: 1
 --- !u!1 &1942508520
 GameObject:
@@ -24250,7 +24228,6 @@ MonoBehaviour:
   - {fileID: 808178028}
   - {fileID: 1859287077}
   moveButton: {fileID: 1942508525}
-  lookingCamera: {fileID: 1343850933}
   isFar: 0
 --- !u!1 &1943988654
 GameObject:
@@ -24409,7 +24386,6 @@ MonoBehaviour:
   states:
   - {fileID: 915666470}
   moveButton: {fileID: 1943988659}
-  lookingCamera: {fileID: 954254170}
   isFar: 0
 --- !u!1 &1959753797
 GameObject:
@@ -25242,7 +25218,6 @@ MonoBehaviour:
   states:
   - {fileID: 496474911}
   moveButton: {fileID: 2053334337}
-  lookingCamera: {fileID: 1343850933}
   isFar: 0
 --- !u!1 &2058614402
 GameObject:

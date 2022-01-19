@@ -255,6 +255,10 @@ public class FNAFOffice1 : MonoBehaviour
         if (enableControlUI)
         {
             StartTimer(FNAFClient.Instance.GetRoom().settings.startingMoveTime);
+            freddyLocations[0].SetMoveButton(true);
+            chicaLocations[0].SetMoveButton(true);
+            bonnieLocations[0].SetMoveButton(true);
+            foxyLocations[0].SetMoveButton(true);
         }
         else
         {
@@ -357,6 +361,8 @@ public class FNAFOffice1 : MonoBehaviour
         }
     }
 
+    
+
     private void Instance_OnRoomChangeEvent(object sender, FNAFRoomChangeEvent e)
     {
         // Sync office to received room
@@ -364,9 +370,19 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFGamePlayer player = game.players.First((e) => e.id == FNAFClient.Instance.GetUser().id);
 
         FNAF1OfficeState office = e.room.settings.gameMode == "classic" ? game.office : player.office;
+        FNAF1OfficeState controlsOffice = e.room.settings.gameMode == "classic" ? game.office : game.players.First((e) => e.controlledByPlayerId == User.id).office;
 
         if (e.eventType == "move")
         {
+            for (int i = 0; i < freddyLocations.Length; i++)
+                freddyLocations[i].SetMoveButton(controlsOffice.freddyLocation == i);
+            for (int i = 0; i < chicaLocations.Length; i++)
+                chicaLocations[i].SetMoveButton(controlsOffice.chicaLocation == i);
+            for (int i = 0; i < bonnieLocations.Length; i++)
+                bonnieLocations[i].SetMoveButton(controlsOffice.bonnieLocation == i);
+            for (int i = 0; i < foxyLocations.Length; i++)
+                foxyLocations[i].SetMoveButton(controlsOffice.foxyLocation == i);
+
             if (freddyLocationIndex != office.freddyLocation || freddyLocationState != office.freddyLocationState)
             {
                 freddyLocations[freddyLocationIndex].SetState(-1);

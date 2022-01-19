@@ -295,6 +295,7 @@ public class FNAFClient : MonoBehaviour
 {
     // wss://fnafws.codestix.nl
     public string connectionUrl = "ws://localhost:8080";
+    public bool testMode = false;
 
     public event EventHandler OnConnected;
     public event EventHandler<CloseEventArgs> OnDisconnected;
@@ -368,7 +369,7 @@ public class FNAFClient : MonoBehaviour
 
     private void LoadConfig()
     {
-        if (File.Exists(configPath))
+        if (File.Exists(configPath) && !(testMode && !Application.isEditor))
         {
             string fileContents = File.ReadAllText(configPath);
             config = JsonUtility.FromJson<FNAFConfig>(fileContents);
