@@ -5,10 +5,24 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using WebSocketSharp;
+using Newtonsoft.Json;
+
+[System.Serializable]
+public class FNAF1OfficeCameraState
+{
+    public int cameraIndex;
+    public FNAFUser byPlayer;
+}
 
 [System.Serializable]
 public class FNAF1OfficeState
 {
+    public FNAF1OfficeState()
+    {
+        camerasLookedAt = new List<FNAF1OfficeCameraState>();
+        powerLeft = 100f;
+    }
+
     public int chicaLocation; // Which camera
     public int chicaLocationState; // Which image to display on camera
     public int freddyLocation;
@@ -22,10 +36,11 @@ public class FNAF1OfficeState
     public bool leftDoor;
     public bool rightDoor;
     public float powerLeft;
+    public List<FNAF1OfficeCameraState> camerasLookedAt;
 }
 
 [Serializable]
-public class FNAF1GameSettings
+public class FNAFGame
 {
     public string gameMode;
     public float secondsPerHour;
@@ -35,26 +50,27 @@ public class FNAF1GameSettings
     public float startingMoveTime;
     public float initialPower;
     public int hours;
+    public List<FNAFGamePlayer> players;
 }
 
 [Serializable]
 public class FNAFGamePlayer
 {
-    public int id;
-    public int selectedCameraNumber;
+    public FNAFUser user;
     public bool alive;
-    public int controlledByPlayerId;
-    public FNAF1OfficeState office;
+    public FNAFUser controlledByUser;
+    public long allowDistractTimestamp;
+    public long allowMoveTimestamp;
 }
 
-[Serializable]
-public class FNAF1Game
-{
-    public long startTimeStamp;
-    public int currentHour;
-    public FNAF1OfficeState office; // Used when gameMode is classic
-    public List<FNAFGamePlayer> players;
-}
+//[Serializable]
+//public class FNAF1Game
+//{
+//    public long startTimeStamp;
+//    public int currentHour;
+//    public FNAF1OfficeState office; // Used when gameMode is classic
+//    public List<FNAFGamePlayer> players;
+//}
 
 [Serializable]
 public class FNAFUser
@@ -70,35 +86,23 @@ public class FNAFUser
 }
 
 [Serializable]
-public class FNAFRoomUser
-{
-    public FNAFUser user;
-    public bool ready;
-
-    public override string ToString()
-    {
-        return user.ToString() + " ready=" + (ready ? "yes" : "no");
-    }
-}
-
-[Serializable]
 public class FNAFRoom
 {
     public string id;
     public string name;
     public int ownerId;
     public string ownerName;
-    public List<FNAFRoomUser> users;
-    public int maxPlayers;
+    public List<FNAFUser> users;
     public int playerCount;
+    public int maxPlayers;
     public bool isPrivate;
     public bool inGame;
-    public FNAF1GameSettings settings;
-    public FNAF1Game game;
+    public List<int> readyUserIds;
+    public FNAFGame game;
 
     public override string ToString()
     {
-        return $"Room id={id} name={name} ownerName={ownerName} ownerId={ownerId} playerCount={users.Count}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
+        return $"Room id={id} name={name} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
     }
 }
 
@@ -184,13 +188,13 @@ public class FNAFRoomChangeEvent
 }
 
 [Serializable]
-public class FNAFStartRequest
+public class FNAFReadyRequest
 {
     public bool ready;
 }
 
 [Serializable]
-public class FNAFStartResponse
+public class FNAFReadyResponse
 {
     public bool ok;
     public bool ready;
@@ -259,8 +263,8 @@ public class FNAFUserChangeEvent
 [Serializable]
 public class FNAFChatEvent
 {
+    public FNAFUser sender;
     public string message;
-    public int senderId;
 }
 
 [Serializable]
@@ -287,6 +291,13 @@ public class FNAF1AttackEvent
     public string monster;
 }
 
+[Serializable]
+public class FNAF1OfficeEvent
+{
+    public FNAF1OfficeState office;
+    public float currentHour;
+}
+
 public class FNAFClient : MonoBehaviour
 {
     // wss://fnafws.codestix.nl
@@ -301,6 +312,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAFChatEvent> OnChatEvent;
     public event EventHandler<FNAF1DistractEvent> OnFNAF1DistractEvent;
     public event EventHandler<FNAF1AttackEvent> OnFNAF1AttackEvent;
+    public event EventHandler<FNAF1OfficeEvent> OnFNAF1OfficeEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
     public event EventHandler<FNAFJoinRoomResponse> OnJoinRoomResponse;
@@ -308,7 +320,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAFLoginResponse> OnLoginResponse;
     public event EventHandler<FNAFRegisterResponse> OnRegisterResponse;
     public event EventHandler<FNAFMatchmakingResponse> OnMatchmakingResponse;
-    public event EventHandler<FNAFStartResponse> OnStartResponse;
+    public event EventHandler<FNAFReadyResponse> OnReadyResponse;
     public event EventHandler<FNAF1MoveResponse> OnFNAF1MoveResponse;
     public event EventHandler<FNAF1AttackResponse> OnFNAF1AttackResponse;
     public event EventHandler<FNAF1DistractResponse> OnFNAF1DistractResponse;
@@ -370,7 +382,7 @@ public class FNAFClient : MonoBehaviour
         if (File.Exists(configPath) && !(testMode && !Application.isEditor))
         {
             string fileContents = File.ReadAllText(configPath);
-            config = JsonUtility.FromJson<FNAFConfig>(fileContents);
+            config = JsonConvert.DeserializeObject<FNAFConfig>(fileContents);
         }
         else
         {
@@ -385,7 +397,7 @@ public class FNAFClient : MonoBehaviour
 
     private void SaveConfig()
     {
-        File.WriteAllText(configPath, JsonUtility.ToJson(config));
+        File.WriteAllText(configPath, JsonConvert.SerializeObject(config));
     }
 
     public void Connect()
@@ -461,7 +473,7 @@ public class FNAFClient : MonoBehaviour
         string type = rawData.Substring(0, splitIndex);
         string jsonText = rawData.Substring(splitIndex + 1);
 
-        //Debug.Log("Received " + rawData);
+        Debug.Log("Received " + rawData);
 
         switch (type)
         {
@@ -474,76 +486,80 @@ public class FNAFClient : MonoBehaviour
                 break;
 
             case nameof(FNAFJoinRoomResponse):
-                var joinRoomData = JsonUtility.FromJson<FNAFJoinRoomResponse>(jsonText);
+                var joinRoomData = JsonConvert.DeserializeObject<FNAFJoinRoomResponse>(jsonText);
                 if (joinRoomData.ok)
                     currentRoom = joinRoomData.room;
                 OnJoinRoomResponse?.Invoke(null, joinRoomData);
                 break;
 
             case nameof(FNAFLeaveRoomResponse):
-                var leaveRoomData = JsonUtility.FromJson<FNAFLeaveRoomResponse>(jsonText);
+                var leaveRoomData = JsonConvert.DeserializeObject<FNAFLeaveRoomResponse>(jsonText);
                 if (leaveRoomData.ok)
                     currentRoom = null;
                 OnLeaveRoomResponse?.Invoke(null, leaveRoomData);
                 break;
 
             case nameof(FNAFCreateRoomResponse):
-                var newRoomData = JsonUtility.FromJson<FNAFCreateRoomResponse>(jsonText);
+                var newRoomData = JsonConvert.DeserializeObject<FNAFCreateRoomResponse>(jsonText);
                 if (newRoomData.ok)
                     currentRoom = newRoomData.room;
                 OnCreateRoomResponse?.Invoke(null, newRoomData);
                 break;
 
             case nameof(FNAFLoginResponse):
-                OnLoginResponse?.Invoke(null, JsonUtility.FromJson<FNAFLoginResponse>(jsonText));
+                OnLoginResponse?.Invoke(null, JsonConvert.DeserializeObject<FNAFLoginResponse>(jsonText));
                 break;
 
             case nameof(FNAFRegisterResponse):
-                OnRegisterResponse?.Invoke(null, JsonUtility.FromJson<FNAFRegisterResponse>(jsonText));
+                OnRegisterResponse?.Invoke(null, JsonConvert.DeserializeObject<FNAFRegisterResponse>(jsonText));
                 break;
 
             case nameof(FNAFMatchmakingResponse):
-                OnMatchmakingResponse?.Invoke(null, JsonUtility.FromJson<FNAFMatchmakingResponse>(jsonText));
+                OnMatchmakingResponse?.Invoke(null, JsonConvert.DeserializeObject<FNAFMatchmakingResponse>(jsonText));
                 break;
 
-            case nameof(FNAFStartResponse):
-                OnStartResponse?.Invoke(null, JsonUtility.FromJson<FNAFStartResponse>(jsonText));
+            case nameof(FNAFReadyResponse):
+                OnReadyResponse?.Invoke(null, JsonConvert.DeserializeObject<FNAFReadyResponse>(jsonText));
                 break;
 
             case nameof(FNAFRoomChangeEvent):
-                var roomChangeEvent = JsonUtility.FromJson<FNAFRoomChangeEvent>(jsonText);
+                var roomChangeEvent = JsonConvert.DeserializeObject<FNAFRoomChangeEvent>(jsonText);
                 currentRoom = roomChangeEvent.room;
                 OnRoomChangeEvent?.Invoke(null, roomChangeEvent);
                 break;
 
             case nameof(FNAFUserChangeEvent):
-                var userChangeEvent = JsonUtility.FromJson<FNAFUserChangeEvent>(jsonText);
+                var userChangeEvent = JsonConvert.DeserializeObject<FNAFUserChangeEvent>(jsonText);
                 me = userChangeEvent.user;
                 OnUserChangeEvent?.Invoke(null, userChangeEvent);
                 break;
 
             case nameof(FNAF1MoveResponse):
-                OnFNAF1MoveResponse?.Invoke(null, JsonUtility.FromJson<FNAF1MoveResponse>(jsonText));
+                OnFNAF1MoveResponse?.Invoke(null, JsonConvert.DeserializeObject<FNAF1MoveResponse>(jsonText));
                 break;
 
             case nameof(FNAF1AttackEvent):
-                OnFNAF1AttackEvent?.Invoke(null, JsonUtility.FromJson<FNAF1AttackEvent>(jsonText));
+                OnFNAF1AttackEvent?.Invoke(null, JsonConvert.DeserializeObject<FNAF1AttackEvent>(jsonText));
                 break;
 
             case nameof(FNAF1DistractEvent):
-                OnFNAF1DistractEvent?.Invoke(null, JsonUtility.FromJson<FNAF1DistractEvent>(jsonText));
+                OnFNAF1DistractEvent?.Invoke(null, JsonConvert.DeserializeObject<FNAF1DistractEvent>(jsonText));
                 break;
 
             case nameof(FNAF1AttackResponse):
-                OnFNAF1AttackResponse?.Invoke(null, JsonUtility.FromJson<FNAF1AttackResponse>(jsonText));
+                OnFNAF1AttackResponse?.Invoke(null, JsonConvert.DeserializeObject<FNAF1AttackResponse>(jsonText));
                 break;
 
             case nameof(FNAF1DistractResponse):
-                OnFNAF1DistractResponse?.Invoke(null, JsonUtility.FromJson<FNAF1DistractResponse>(jsonText));
+                OnFNAF1DistractResponse?.Invoke(null, JsonConvert.DeserializeObject<FNAF1DistractResponse>(jsonText));
                 break;
 
             case nameof(FNAFChatEvent):
-                OnChatEvent?.Invoke(null, JsonUtility.FromJson<FNAFChatEvent>(jsonText));
+                OnChatEvent?.Invoke(null, JsonConvert.DeserializeObject<FNAFChatEvent>(jsonText));
+                break;
+
+            case nameof(FNAF1OfficeEvent):
+                OnFNAF1OfficeEvent?.Invoke(null, JsonConvert.DeserializeObject<FNAF1OfficeEvent>(jsonText));
                 break;
 
             default:
@@ -552,63 +568,68 @@ public class FNAFClient : MonoBehaviour
         }
     }
 
+    public void Send(string messageType, object value)
+    {
+        socket.Send(messageType + ":" + JsonConvert.SerializeObject(value));
+    }
+
     public void RegisterRequest(string name)
     {
-        socket.Send(nameof(FNAFRegisterRequest) + ":" + JsonUtility.ToJson(new FNAFRegisterRequest() { name = name }));
+        Send(nameof(FNAFRegisterRequest), new FNAFRegisterRequest() { name = name });
     }
 
     public void LoginRequest(string token)
     {
-        socket.Send(nameof(FNAFLoginRequest) + ":" + JsonUtility.ToJson(new FNAFLoginRequest() { token = token }));
+        Send(nameof(FNAFLoginRequest), new FNAFLoginRequest() { token = token });
     }
 
     public void CreateRoom(int maxPlayers, bool isPrivate)
     {
-        socket.Send(nameof(FNAFCreateRoomRequest) + ":" + JsonUtility.ToJson(new FNAFCreateRoomRequest() { isPrivate = isPrivate, maxPlayers = maxPlayers }));
+        Send(nameof(FNAFCreateRoomRequest), new FNAFCreateRoomRequest() { isPrivate = isPrivate, maxPlayers = maxPlayers });
     } 
 
     public void JoinRoom(string id)
     {
-        socket.Send(nameof(FNAFJoinRoomRequest) + ":" + JsonUtility.ToJson(new FNAFJoinRoomRequest() { id = id }));
+        Send(nameof(FNAFJoinRoomRequest), new FNAFJoinRoomRequest() { id = id });
     }
 
     public void LeaveRoom()
     {
-        socket.Send(nameof(FNAFLeaveRoomRequest) + ":" + JsonUtility.ToJson(new FNAFLeaveRoomRequest()));
+        Send(nameof(FNAFLeaveRoomRequest), new FNAFLeaveRoomRequest());
     }
 
     public void RequestMatchmaking()
     {
-        socket.Send(nameof(FNAFMatchmakingRequest) + ":" + JsonUtility.ToJson(new FNAFMatchmakingRequest()));
+        Send(nameof(FNAFMatchmakingRequest), new FNAFMatchmakingRequest());
     }
 
-    public void StartGameRequest(bool ready)
+    public void ReadyRequest(bool ready)
     {
-        socket.Send(nameof(FNAFStartRequest) + ":" + JsonUtility.ToJson(new FNAFStartRequest() { ready = ready }));
+        Send(nameof(FNAFReadyRequest), new FNAFReadyRequest() { ready = ready });
     }
 
     public void FNAF1RequestMove(string monster, int location, int locationState)
     {
-        socket.Send(nameof(FNAF1MoveRequest) + ":" + JsonUtility.ToJson(new FNAF1MoveRequest() { monster = monster, location = location, locationState = locationState }));
+        Send(nameof(FNAF1MoveRequest), new FNAF1MoveRequest() { monster = monster, location = location, locationState = locationState });
     }
 
     public void FNAF1RequestOfficeChange(bool leftLight, bool leftDoor, bool rightLight, bool rightDoor, int selectedCameraNumber)
     {
-        socket.Send(nameof(FNAF1OfficeChangeRequest) + ":" + JsonUtility.ToJson(new FNAF1OfficeChangeRequest() { leftLight = leftLight, leftDoor = leftDoor, rightLight = rightLight, rightDoor = rightDoor, selectedCameraNumber = selectedCameraNumber }));
+        Send(nameof(FNAF1OfficeChangeRequest), new FNAF1OfficeChangeRequest() { leftLight = leftLight, leftDoor = leftDoor, rightLight = rightLight, rightDoor = rightDoor, selectedCameraNumber = selectedCameraNumber });
     }
 
     public void FNAF1RequestAttack(string monster)
     {
-        socket.Send(nameof(FNAF1AttackRequest) + ":" + JsonUtility.ToJson(new FNAF1AttackRequest() { monster = monster }));
+        Send(nameof(FNAF1AttackRequest), new FNAF1AttackRequest() { monster = monster });
     }
 
     public void FNAF1RequestDistract(string distraction)
     {
-        socket.Send(nameof(FNAF1DistractRequest) + ":" + JsonUtility.ToJson(new FNAF1DistractRequest() { distraction = distraction }));
+        Send(nameof(FNAF1DistractRequest), new FNAF1DistractRequest() { distraction = distraction });
     }
 
     public void ChatRequest(string message)
     {
-        socket.Send(nameof(FNAFChatRequest) + ":" + JsonUtility.ToJson(new FNAFChatRequest() { message = message }));
+        Send(nameof(FNAFChatRequest), new FNAFChatRequest() { message = message });
     }
 }

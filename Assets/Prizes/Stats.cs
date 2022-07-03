@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Newtonsoft.Json;
 
 public class Stats : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class JConfig<T> where T : IKeyValuePair<string, string>, new()
 
         if (File.Exists(fileName))
         {
-            data = JsonUtility.FromJson<JNamedList<T>>(File.ReadAllText(fileName));
+            data = JsonConvert.DeserializeObject<JNamedList<T>>(File.ReadAllText(fileName));
         }
         else
         {
@@ -120,7 +121,7 @@ public class JConfig<T> where T : IKeyValuePair<string, string>, new()
 
     public void Save()
     {
-        File.WriteAllText(fileName, JsonUtility.ToJson(data));
+        File.WriteAllText(fileName, JsonConvert.SerializeObject(data));
     }
 }
 

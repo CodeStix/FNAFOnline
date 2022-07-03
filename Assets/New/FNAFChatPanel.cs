@@ -35,11 +35,9 @@ public class FNAFChatPanel : MonoBehaviour
 
     private void Instance_OnChatEvent(object sender, FNAFChatEvent e)
     {
-        string senderName = FNAFClient.Instance.GetRoom().users.First((u) => u.user.id == e.senderId).user.name;
-
         FNAFChatMessage message = Instantiate(messagePrefab, transform);
         message.transform.SetSiblingIndex(0);
-        message.authorText.text = senderName;
+        message.authorText.text = e.sender.name;
         message.bodyText.text = e.message;
     }
 

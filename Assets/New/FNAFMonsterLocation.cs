@@ -24,6 +24,8 @@ public class FNAFMonsterLocation : MonoBehaviour
             states[state].SetActive(true);
 
         current = state;
+
+        moveButton.SetIsHere(state >= 0);
     }
 
     public void SetMoveButton(bool isHere)

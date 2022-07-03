@@ -84,12 +84,13 @@ public class FNAFLobbyPanel : MonoBehaviour
                 if (i < room.users.Count)
                 {
                     // Show player in spot
-                    pl.UseFor(room.users[i]);
+                    FNAFUser user = room.users[i];
+                    pl.UseFor(user, room.readyUserIds.Contains(user.id));
                 }
                 else
                 {
                     // Show available empty spot
-                    pl.UseFor(null);
+                    pl.UseFor(null, false);
                 }
             }
         }
@@ -112,13 +113,13 @@ public class FNAFLobbyPanel : MonoBehaviour
 
     public void ReadyToggle()
     {
-        FNAFClient.Instance.OnStartResponse += Instance_OnStartResponse;
-        FNAFClient.Instance.StartGameRequest(!ready);
+        FNAFClient.Instance.OnReadyResponse += Instance_OnReadyResponse;
+        FNAFClient.Instance.ReadyRequest(!ready);
     }
 
-    private void Instance_OnStartResponse(object sender, FNAFStartResponse e)
+    private void Instance_OnReadyResponse(object sender, FNAFReadyResponse e)
     {
-        FNAFClient.Instance.OnStartResponse -= Instance_OnStartResponse;
+        FNAFClient.Instance.OnReadyResponse -= Instance_OnReadyResponse;
 
         if (e.ok)
         {

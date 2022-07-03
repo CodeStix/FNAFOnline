@@ -22,9 +22,9 @@ public class FNAFLobbyPlayer : MonoBehaviour
     public Sprite defaultAvatar;
     public Sprite nobodyAvatar;
 
-    private FNAFRoomUser user;
+    private FNAFUser user;
 
-    public void UseFor(FNAFRoomUser user)
+    public void UseFor(FNAFUser user, bool ready)
     {
         this.user = user;
         if (user != null)
@@ -32,12 +32,12 @@ public class FNAFLobbyPlayer : MonoBehaviour
             FNAFRoom currentRoom = FNAFClient.Instance.GetRoom();
             bool currentIsOwner = currentRoom.ownerId == FNAFClient.Instance.GetUser().id;
             avatarImage.sprite = defaultAvatar;
-            nameText.text = user.user.name;
+            nameText.text = user.name;
             nameText.enabled = true;
             nightText.enabled = true;
-            nightText.text = $"<color=#eeee00>Night {user.user.night}</color>";
-            statusText.text = user.ready ? readyText : notReadyText;
-            ownerImage.enabled = currentRoom.ownerId == user.user.id;
+            nightText.text = $"<color=#eeee00>Night {user.night}</color>";
+            statusText.text = ready ? readyText : notReadyText;
+            ownerImage.enabled = currentRoom.ownerId == user.id;
             kickButton.enabled = true;
             kickButton.interactable = currentIsOwner;
             addFriendButton.enabled = true;
