@@ -313,6 +313,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAF1DistractEvent> OnFNAF1DistractEvent;
     public event EventHandler<FNAF1AttackEvent> OnFNAF1AttackEvent;
     public event EventHandler<FNAF1OfficeEvent> OnFNAF1OfficeEvent;
+    public event EventHandler OnFNAFEndEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
     public event EventHandler<FNAFJoinRoomResponse> OnJoinRoomResponse;
@@ -324,6 +325,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAF1MoveResponse> OnFNAF1MoveResponse;
     public event EventHandler<FNAF1AttackResponse> OnFNAF1AttackResponse;
     public event EventHandler<FNAF1DistractResponse> OnFNAF1DistractResponse;
+    
 
     private WebSocket socket;
     private FNAFConfig config;
@@ -560,6 +562,10 @@ public class FNAFClient : MonoBehaviour
 
             case nameof(FNAF1OfficeEvent):
                 OnFNAF1OfficeEvent?.Invoke(null, JsonConvert.DeserializeObject<FNAF1OfficeEvent>(jsonText));
+                break;
+
+            case "FNAFEnd":
+                OnFNAFEndEvent?.Invoke(null, null);
                 break;
 
             default:

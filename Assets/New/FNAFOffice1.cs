@@ -270,6 +270,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
         FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent += Instance_OnFNAF1OfficeEvent;
+        FNAFClient.Instance.OnFNAFEndEvent += Instance_OnFNAFEndEvent;
         FNAFClient.Instance.ReadyRequest(true);
         Invoke(nameof(StartGame), 2.0f);
     }
@@ -282,6 +283,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
         FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent += Instance_OnFNAF1OfficeEvent;
+        FNAFClient.Instance.OnFNAFEndEvent += Instance_OnFNAFEndEvent;
     }
 
     private void OnDisable()
@@ -292,6 +294,12 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1DistractResponse -= Instance_OnFNAF1DistractResponse;
         FNAFClient.Instance.OnFNAF1AttackResponse -= Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent -= Instance_OnFNAF1OfficeEvent;
+        FNAFClient.Instance.OnFNAFEndEvent -= Instance_OnFNAFEndEvent;
+    }
+
+    private void Instance_OnFNAFEndEvent(object sender, System.EventArgs e)
+    {
+        StartCoroutine(GameEndSequence());
     }
 
     private void Instance_OnFNAF1AttackResponse(object sender, FNAF1AttackResponse e)
@@ -579,18 +587,6 @@ public class FNAFOffice1 : MonoBehaviour
 
         float currentHour = e.currentHour;
         hourText.text = HOUR_NAMES[(int)currentHour];
-    }
-
-    private void Instance_OnRoomChangeEvent(object sender, FNAFRoomChangeEvent e)
-    {
-        // Sync office to received room
-        //FNAF1Game game = e.room.game;
-        //FNAFGamePlayer player = game.players.First((e) => e.id == FNAFClient.Instance.GetUser().id);
-
-        if (e.eventType == "end")
-        {
-            StartCoroutine(GameEndSequence());
-        } 
     }
 
     private string GetNameForDistraction(string id)
