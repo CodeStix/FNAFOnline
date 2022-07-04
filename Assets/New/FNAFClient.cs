@@ -238,6 +238,7 @@ public class FNAF1OfficeChangeRequest
     public bool leftDoor;
     public bool rightDoor;
     public int selectedCameraNumber;
+    public bool cancelPhoneGuy;
 }
 
 [Serializable]
@@ -296,6 +297,7 @@ public class FNAF1OfficeEvent
 {
     public FNAF1OfficeState office;
     public float currentHour;
+    public bool cancelPhoneGuy;
 }
 
 public class FNAFClient : MonoBehaviour
@@ -475,7 +477,7 @@ public class FNAFClient : MonoBehaviour
         string type = rawData.Substring(0, splitIndex);
         string jsonText = rawData.Substring(splitIndex + 1);
 
-        Debug.Log("Received " + rawData);
+        //Debug.Log("Received " + rawData);
 
         switch (type)
         {
@@ -619,9 +621,9 @@ public class FNAFClient : MonoBehaviour
         Send(nameof(FNAF1MoveRequest), new FNAF1MoveRequest() { monster = monster, location = location, locationState = locationState });
     }
 
-    public void FNAF1RequestOfficeChange(bool leftLight, bool leftDoor, bool rightLight, bool rightDoor, int selectedCameraNumber)
+    public void FNAF1RequestOfficeChange(bool leftLight, bool leftDoor, bool rightLight, bool rightDoor, int selectedCameraNumber, bool cancelPhoneGuy = false)
     {
-        Send(nameof(FNAF1OfficeChangeRequest), new FNAF1OfficeChangeRequest() { leftLight = leftLight, leftDoor = leftDoor, rightLight = rightLight, rightDoor = rightDoor, selectedCameraNumber = selectedCameraNumber });
+        Send(nameof(FNAF1OfficeChangeRequest), new FNAF1OfficeChangeRequest() { leftLight = leftLight, leftDoor = leftDoor, rightLight = rightLight, rightDoor = rightDoor, selectedCameraNumber = selectedCameraNumber, cancelPhoneGuy = cancelPhoneGuy });
     }
 
     public void FNAF1RequestAttack(string monster)

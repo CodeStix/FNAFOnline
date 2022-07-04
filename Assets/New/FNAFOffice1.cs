@@ -240,6 +240,8 @@ public class FNAFOffice1 : MonoBehaviour
         if (enableControlUI)
         {
             StartTimer(Room.game.startingMoveTime);
+            distractionLoadingTime = Room.game.startingMoveTime + 45f;
+
             freddyLocations[0].SetMoveButton(true);
             chicaLocations[0].SetMoveButton(true);
             bonnieLocations[0].SetMoveButton(true);
@@ -271,6 +273,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent += Instance_OnFNAF1OfficeEvent;
         FNAFClient.Instance.OnFNAFEndEvent += Instance_OnFNAFEndEvent;
+        FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
         FNAFClient.Instance.ReadyRequest(true);
         Invoke(nameof(StartGame), 2.0f);
     }
@@ -284,6 +287,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent += Instance_OnFNAF1OfficeEvent;
         FNAFClient.Instance.OnFNAFEndEvent += Instance_OnFNAFEndEvent;
+        FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
     }
 
     private void OnDisable()
@@ -295,11 +299,19 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1AttackResponse -= Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent -= Instance_OnFNAF1OfficeEvent;
         FNAFClient.Instance.OnFNAFEndEvent -= Instance_OnFNAFEndEvent;
+        FNAFClient.Instance.OnRoomChangeEvent -= Instance_OnRoomChangeEvent;
     }
 
     private void Instance_OnFNAFEndEvent(object sender, System.EventArgs e)
     {
         StartCoroutine(GameEndSequence());
+    }
+
+    private void Instance_OnRoomChangeEvent(object sender, FNAFRoomChangeEvent e)
+    {
+        //if (e.eventType == "leave")
+        //{
+        //}
     }
 
     private void Instance_OnFNAF1AttackResponse(object sender, FNAF1AttackResponse e)
@@ -418,6 +430,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (officeState.freddyLocation != office.freddyLocation || officeState.freddyLocationState != office.freddyLocationState)
         {
+            staticImage.color = Color.white;
             freddyLocations[officeState.freddyLocation].SetState(-1);
             officeState.freddyLocation = office.freddyLocation;
             officeState.freddyLocationState = office.freddyLocationState;
@@ -436,6 +449,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (officeState.chicaLocation != office.chicaLocation || officeState.chicaLocationState != office.chicaLocationState)
         {
+            staticImage.color = Color.white;
             sawChica = false;
             if (officeState.chicaLocation == chicaAttackLocationIndex && officeState.rightLight)
             {
@@ -461,6 +475,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (officeState.bonnieLocation != office.bonnieLocation || officeState.bonnieLocationState != office.bonnieLocationState)
         {
+            staticImage.color = Color.white;
             sawBonnie = false;
             if (officeState.bonnieLocation == bonnieAttackLocationIndex && officeState.leftLight)
             {
@@ -486,6 +501,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (officeState.foxyLocation != office.foxyLocation || officeState.foxyLocationState != office.foxyLocationState)
         {
+            staticImage.color = Color.white;
             if (officeState.foxyLocation == foxyAttackLocationIndex && office.foxyLocation != foxyAttackLocationIndex)
                 doorKnockSound.Play();
             foxyLocations[officeState.foxyLocation].SetState(-1);
@@ -587,6 +603,15 @@ public class FNAFOffice1 : MonoBehaviour
 
         float currentHour = e.currentHour;
         hourText.text = HOUR_NAMES[(int)currentHour];
+
+        if (e.cancelPhoneGuy)
+        {
+            if (phoneGuySound.isPlaying)
+            {
+                phoneGuySound.Stop();
+                cameraSwitchSound.Play();
+            }
+        }
     }
 
     private string GetNameForDistraction(string id)
@@ -712,11 +737,7 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void StopPhoneGuy()
     {
-        if (phoneGuySound.isPlaying)
-        {
-            phoneGuySound.Stop();
-            cameraSwitchSound.Play();
-        }
+        FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, officeState.leftDoor, officeState.rightLight, officeState.rightDoor, monitorOpen ? currentCamera : -1, true);
     }
 
     private IEnumerator GameEndSequence()
@@ -786,10 +807,9 @@ public class FNAFOffice1 : MonoBehaviour
         aftonFoxyJumpScare.SetActive(false);
         aftonDeathOverlay.SetActive(true);
 
-        yield return new WaitForSeconds(3.0f);
-
-        aftonDeathOverlay.SetActive(false);
-        aftonGuardView.SetActive(false);
+        //yield return new WaitForSeconds(3.0f);
+        //aftonDeathOverlay.SetActive(false);
+        //aftonGuardView.SetActive(false);
     }
 
     private IEnumerator JumpscareSequence(string monster)
@@ -867,13 +887,21 @@ public class FNAFOffice1 : MonoBehaviour
         if (distortedSignalTime > 0f)
         {
             distortedSignalTime -= Time.deltaTime;
-            staticImage.color = new Color(1f, 1f, 1f, 0.85f);
             if (!signalLostSound.isPlaying)
             {
                 signalLostSound.Play();
                 signalLostSound.time = Random.value * signalLostSound.clip.length;
             }
-            signalLostSound.volume = monitorOpen ? 0.5f : 0.08f;
+
+            if (Player.controlledByUser != null)
+            {
+                staticImage.color = new Color(1f, 1f, 1f, 0.85f);
+                signalLostSound.volume = monitorOpen ? 0.5f : 0.08f;
+            }
+            else
+            {
+                signalLostSound.volume = 0.08f;
+            }
         }
         else
         {
@@ -899,7 +927,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (itsMeTime > 0f)
             itsMeTime -= Time.deltaTime;
-        itsMe.SetActive(itsMeTime > 0f);
+        itsMe.SetActive(itsMeTime > 0f && Player.controlledByUser != null);
 
         if (powerIssueTime > 0f)
         {
@@ -1017,6 +1045,11 @@ public class FNAFOffice1 : MonoBehaviour
             if (!moveTimerDone)
                 EndTimer();
         }
+
+        if (officeState.powerLeft <= 0f && monitorOpen)
+        {
+            DisableMonitor();
+        }
     }
 
     private void StartTimer(float time)
@@ -1038,7 +1071,11 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void ToggleMonitor()
     {
-        if (!canToggleMonitor || itsMeTime > 0f) return;
+        if (!canToggleMonitor || itsMeTime > 0f || officeState.powerLeft <= 0f)
+        {
+            return;
+        }
+            
         canToggleMonitor = false;
         monitorOpen = !monitorOpen;
         if (monitorOpen)
@@ -1049,14 +1086,13 @@ public class FNAFOffice1 : MonoBehaviour
         }
         else
         {
-            if (phoneGuySound.isPlaying && phoneGuySound.time > 10f)
+            if (Player.controlledByUser != null && phoneGuySound.isPlaying && phoneGuySound.time > 10f)
             {
                 phone.transform.position = new Vector2(Random.Range(-8f, 8f), Random.Range(-3.6f, 3.6f));
                 phone.SetActive(Random.value <= 0.5f);
             }
-            monitorSound.Stop();
-            monitor.Start();
-            monitorEnableObject.SetActive(false);
+
+            DisableMonitor();
             Invoke(nameof(ReenableMonitor), 0.25f);
         }
 
@@ -1077,6 +1113,15 @@ public class FNAFOffice1 : MonoBehaviour
         cameraSwitchSound.Play();
         cameraSwitchEffect.Play();
         canToggleMonitor = true;
+    }
+
+    private void DisableMonitor()
+    {
+        monitorOpen = false;
+        monitorSound.Stop();
+        monitor.Start();
+        monitorEnableObject.SetActive(false);
+        canToggleMonitor = false;
     }
 
     private bool CheckButton()
