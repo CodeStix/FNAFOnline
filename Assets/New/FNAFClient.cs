@@ -188,6 +188,12 @@ public class FNAFRoomChangeEvent
 }
 
 [Serializable]
+public class FNAFEditRoomRequest
+{
+    public FNAFRoom room;
+}
+
+[Serializable]
 public class FNAFReadyRequest
 {
     public bool ready;
@@ -623,6 +629,11 @@ public class FNAFClient : MonoBehaviour
     public void ReadyRequest(bool ready)
     {
         Send(nameof(FNAFReadyRequest), new FNAFReadyRequest() { ready = ready });
+    }
+
+    public void EditRoom(FNAFRoom editedRoom)
+    {
+        Send(nameof(FNAFEditRoomRequest), new FNAFEditRoomRequest() { room = editedRoom });
     }
 
     public void FNAF1RequestMove(string monster, int location, int locationState)
