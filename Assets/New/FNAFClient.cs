@@ -404,6 +404,15 @@ public class FNAFClient : MonoBehaviour
         File.WriteAllText(configPath, JsonConvert.SerializeObject(config));
     }
 
+    private string GetRandomUserName()
+    {
+        string[] prefixes = new[] { "Sneaky", "Freaky", "Skinny", "Creepy", "Dizzy",  "Fancy", "Funny", "Hungry", "Jolly", "Lucky", "Lazy", "Sleepy", "Silly" };
+        string prefix = prefixes[UnityEngine.Random.Range(0, prefixes.Length)];
+        string[] names = new[] { "Freddy", "Chica", "Bonnie", "Foxy" };
+        string name = names[UnityEngine.Random.Range(0, names.Length)];
+        return prefix + name + UnityEngine.Random.Range(1000, 10000);
+    }
+
     public void Connect()
     {
         LoadConfig();
@@ -415,7 +424,7 @@ public class FNAFClient : MonoBehaviour
             if (config.token == null)
             {
                 OnRegisterResponse += FNAFClient_OnRegisterResponse;
-                RegisterRequest("Freddy");
+                RegisterRequest(GetRandomUserName());
             }
             else
             {
