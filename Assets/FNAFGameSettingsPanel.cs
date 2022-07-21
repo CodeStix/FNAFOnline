@@ -39,7 +39,7 @@ public class FNAFGameSettingsPanel : MonoBehaviour
     private void UpdateUI(FNAFRoom room)
     {
         maxPlayerDropdown.value = room.maxPlayers - 2;
-        gameModeDropdown.value = room.game.gameMode == "fnaf1Classic" ? 0 : 1;
+        gameModeDropdown.value = room.game.gameMode == "classic" ? 0 : 1;
 
         editRoomButton.gameObject.SetActive(room.ownerId == FNAFClient.Instance.GetUser().id);
         gameDescriptionText.text = gameDescriptions[gameModeDropdown.value];
@@ -62,7 +62,7 @@ public class FNAFGameSettingsPanel : MonoBehaviour
     {
         FNAFRoom room = FNAFClient.Instance.GetRoom();
 
-        string newGameMode = gameModeIndex == 0 ? "fnaf1Classic" : "fnaf1FreeForAll";
+        string newGameMode = gameModeIndex == 0 ? "classic" : "freeForAll";
         if (room.game.gameMode != newGameMode)
         {
             room.game.gameMode = newGameMode;

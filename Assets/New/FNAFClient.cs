@@ -102,7 +102,7 @@ public class FNAFRoom
 
     public override string ToString()
     {
-        return $"Room id={id} name={name} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
+        return $"Room id={id} name={name} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} mode={game?.gameMode} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
     }
 }
 
@@ -321,6 +321,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAF1DistractEvent> OnFNAF1DistractEvent;
     public event EventHandler<FNAF1AttackEvent> OnFNAF1AttackEvent;
     public event EventHandler<FNAF1OfficeEvent> OnFNAF1OfficeEvent;
+    public event EventHandler<FNAF1OfficeEvent> OnFNAF1AttackingOfficeEvent;
     public event EventHandler OnFNAFEndEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
@@ -579,6 +580,10 @@ public class FNAFClient : MonoBehaviour
 
             case nameof(FNAF1OfficeEvent):
                 OnFNAF1OfficeEvent?.Invoke(null, JsonConvert.DeserializeObject<FNAF1OfficeEvent>(jsonText));
+                break;
+
+            case "FNAF1AttackingOfficeEvent":
+                OnFNAF1AttackingOfficeEvent?.Invoke(null, JsonConvert.DeserializeObject<FNAF1OfficeEvent>(jsonText));
                 break;
 
             case "FNAFEnd":

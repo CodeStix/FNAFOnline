@@ -128,6 +128,9 @@ public class FNAFOffice1 : MonoBehaviour
     public AudioSource phoneGuySound;
     public AudioClip[] phoneGuyClips;
     public GameObject phone;
+    public Button yourOfficeButton;
+    public Button otherOfficeButton;
+    public GameObject[] attackerMonitorObjects;
     [Range(0f, 1f)]
     public float randomStaticNoise = 0.98f;
     public float staticReturnSpeed = 1f;
@@ -140,13 +143,13 @@ public class FNAFOffice1 : MonoBehaviour
     [Space]
     public UnityEvent onMoveAnyone;
     public UnityEvent onJumpscare;
-    public UnityEvent whenGuard;
     public UnityEvent onGuardWin;
     public UnityEvent onAftonWin;
     public UnityEvent onGuardLose;
     public UnityEvent onAftonLose;
 
-    private FNAF1OfficeState officeState = new FNAF1OfficeState();
+    private FNAF1OfficeState yourOfficeState = new FNAF1OfficeState();
+    private FNAF1OfficeState attackedOfficeState = new FNAF1OfficeState(); // Used only when gamemode is free for all
 
     private bool canToggleMonitor = true;
     private bool monitorOpen = false;
@@ -163,6 +166,7 @@ public class FNAFOffice1 : MonoBehaviour
     private float itsMeTime = 0f;
     private float powerIssueTime = 0f;
     private float distractionLoadingTime = 0f;
+    private bool monitorYourOffice = true;
 
     public bool MayMove => moveTimerDone;
 
@@ -171,8 +175,8 @@ public class FNAFOffice1 : MonoBehaviour
     private FNAFGamePlayer Player => Room.game.players.First((e) => e.user.id == User.id);
 
     private readonly string[] HOUR_NAMES = new[] { "12 AM", "1 AM", "2 AM", "3 AM", "4 AM", "5 AM", "6 AM", "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM" };
-    public const string CLASSIC_GAMEMODE = "fnaf1Classic";
-    public const string FREE_FOR_ALL_GAMEMODE = "fnaf1FreeForAll";
+    public const string CLASSIC_GAMEMODE = "classic";
+    public const string FREE_FOR_ALL_GAMEMODE = "freeForAll";
 
     private void Start()
     {
@@ -221,15 +225,27 @@ public class FNAFOffice1 : MonoBehaviour
         secondNightText.text = nightString;
         nightText.text = nightString;
 
-        bool enableControlUI;
         if (Room.game.gameMode == CLASSIC_GAMEMODE)
         {
-            enableControlUI = Player.controlledByUser == null;
+            if (Player.controlledByUser == null)
+            {
+                StartTimer(Room.game.startingMoveTime);
+                SetAttackerMonitorObjects(true);
+            }
+            else
+            {
+                SetAttackerMonitorObjects(false);
+            }
+
             roleText.text = Player.controlledByUser == null ? "You control the animatronics." : "You are the guard.";
         }
         else if (Room.game.gameMode == FREE_FOR_ALL_GAMEMODE)
         {
-            enableControlUI = true;
+            yourOfficeButton.gameObject.SetActive(true);
+            otherOfficeButton.gameObject.SetActive(true);
+            StartTimer(Room.game.startingMoveTime);
+            SetAttackerMonitorObjects(false);
+
             roleText.text = "You are the guard and controller.\nSurvive and kill!";
         }
         else
@@ -237,19 +253,18 @@ public class FNAFOffice1 : MonoBehaviour
             throw new System.NotImplementedException();
         }
 
-        if (enableControlUI)
-        {
-            StartTimer(Room.game.startingMoveTime);
-            distractionLoadingTime = Room.game.startingMoveTime + 45f;
+        freddyLocations[0].SetMoveButton(true);
+        chicaLocations[0].SetMoveButton(true);
+        bonnieLocations[0].SetMoveButton(true);
+        foxyLocations[0].SetMoveButton(true);
+        distractionLoadingTime = Room.game.startingMoveTime + 45f;
+    }
 
-            freddyLocations[0].SetMoveButton(true);
-            chicaLocations[0].SetMoveButton(true);
-            bonnieLocations[0].SetMoveButton(true);
-            foxyLocations[0].SetMoveButton(true);
-        }
-        else
+    private void SetAttackerMonitorObjects(bool enabled)
+    {
+        foreach(GameObject obj in attackerMonitorObjects)
         {
-            whenGuard.Invoke();
+            obj.SetActive(enabled);
         }
     }
 
@@ -272,6 +287,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
         FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent += Instance_OnFNAF1OfficeEvent;
+        FNAFClient.Instance.OnFNAF1AttackingOfficeEvent += Instance_OnFNAF1AttackingOfficeEvent;
         FNAFClient.Instance.OnFNAFEndEvent += Instance_OnFNAFEndEvent;
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
         FNAFClient.Instance.ReadyRequest(true);
@@ -286,6 +302,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1DistractResponse += Instance_OnFNAF1DistractResponse;
         FNAFClient.Instance.OnFNAF1AttackResponse += Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent += Instance_OnFNAF1OfficeEvent;
+        FNAFClient.Instance.OnFNAF1AttackingOfficeEvent += Instance_OnFNAF1AttackingOfficeEvent;
         FNAFClient.Instance.OnFNAFEndEvent += Instance_OnFNAFEndEvent;
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
     }
@@ -298,6 +315,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAF1DistractResponse -= Instance_OnFNAF1DistractResponse;
         FNAFClient.Instance.OnFNAF1AttackResponse -= Instance_OnFNAF1AttackResponse;
         FNAFClient.Instance.OnFNAF1OfficeEvent -= Instance_OnFNAF1OfficeEvent;
+        FNAFClient.Instance.OnFNAF1AttackingOfficeEvent -= Instance_OnFNAF1AttackingOfficeEvent;
         FNAFClient.Instance.OnFNAFEndEvent -= Instance_OnFNAFEndEvent;
         FNAFClient.Instance.OnRoomChangeEvent -= Instance_OnRoomChangeEvent;
     }
@@ -398,132 +416,188 @@ public class FNAFOffice1 : MonoBehaviour
         }
     }
 
-    //private void OnControlledOfficeChange()
-    //{
-    //    // TODO
-    //    FNAF1OfficeState controlledOffice = null;
+    public void SetMonitorOffice(bool yourOffice)
+    {
+        if (monitorYourOffice == yourOffice)
+        {
+            return;
+        }
+        monitorYourOffice = yourOffice;
+        staticImage.color = Color.white;
+        cameraSwitchSound.Play();
 
-    //    // Update move buttons
-    //    for (int i = 0; i < freddyLocations.Length; i++)
-    //        freddyLocations[i].SetMoveButton(controlledOffice.freddyLocation == i);
-    //    for (int i = 0; i < chicaLocations.Length; i++)
-    //        chicaLocations[i].SetMoveButton(controlledOffice.chicaLocation == i);
-    //    for (int i = 0; i < bonnieLocations.Length; i++)
-    //        bonnieLocations[i].SetMoveButton(controlledOffice.bonnieLocation == i);
-    //    for (int i = 0; i < foxyLocations.Length; i++)
-    //        foxyLocations[i].SetMoveButton(controlledOffice.foxyLocation == i);
+        if (yourOffice)
+        {
+            // Disable movement UI
+            SetAttackerMonitorObjects(false);
+            UpdateMonitorMonsters(attackedOfficeState, yourOfficeState, false);
+        }
+        else
+        {
+            // Enable movement UI
+            SetAttackerMonitorObjects(true);
+            UpdateMonitorMonsters(yourOfficeState, attackedOfficeState, false);
+            UpdateCamerasBeingLookedAt(attackedOfficeState.camerasLookedAt);
+        }
+    }
 
-    //    // Remove previously looked at camera's, it changed
-    //    for (int i = 0; i < cameraButtons.Length; i++)
-    //        if (cameraButtons[i].sprite == cameraButtonLookedAt)
-    //            cameraButtons[i].sprite = cameraButtonNormal;
+    private void UpdateMonitorMonsters(FNAF1OfficeState previousState, FNAF1OfficeState newState, bool isOwnOffice)
+    {
+        if (previousState.freddyLocation != newState.freddyLocation || previousState.freddyLocationState != newState.freddyLocationState)
+        {
+            staticImage.color = Color.white;
+            freddyLocations[previousState.freddyLocation].SetState(-1);
+            freddyLocations[newState.freddyLocation].SetState(newState.freddyLocationState);
 
-    //    // Show the selected cameras to the controller
-    //    foreach(var camera in controlledOffice.camerasLookedAt)
-    //        cameraButtons[camera.cameraIndex].sprite = cameraButtonLookedAt;
-    //}
+            if (isOwnOffice)
+            {
+                if (freddyLocations[newState.freddyLocation].isFar)
+                {
+                    freddyMoveSounds.PlayFar();
+                }
+                else
+                {
+                    freddyMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
+            }
+        }
+
+        if (previousState.chicaLocation != newState.chicaLocation || previousState.chicaLocationState != newState.chicaLocationState)
+        {
+            staticImage.color = Color.white;
+            if (isOwnOffice)
+            {
+                sawChica = false;
+                if (isOwnOffice && previousState.chicaLocation == chicaAttackLocationIndex && previousState.rightLight)
+                {
+                    // If moved away from window, disable light
+                    FNAFClient.Instance.FNAF1RequestOfficeChange(newState.leftLight, newState.leftDoor, false, newState.rightDoor, monitorOpen ? currentCamera : -1);
+                }
+            }
+
+            chicaLocations[previousState.chicaLocation].SetState(-1);
+            chicaLocations[newState.chicaLocation].SetState(newState.chicaLocationState);
+
+            if (isOwnOffice)
+            {
+                if (chicaLocations[newState.chicaLocation].isFar)
+                {
+                    chicaMoveSounds.PlayFar();
+                }
+                else
+                {
+                    chicaMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
+            }
+        }
+
+        if (previousState.bonnieLocation != newState.bonnieLocation || previousState.bonnieLocationState != newState.bonnieLocationState)
+        {
+            staticImage.color = Color.white;
+            if (isOwnOffice)
+            {
+                sawBonnie = false;
+                if (previousState.bonnieLocation == bonnieAttackLocationIndex && previousState.leftLight)
+                {
+                    // If moved away from window, disable light
+                    FNAFClient.Instance.FNAF1RequestOfficeChange(false, newState.leftDoor, newState.rightLight, newState.rightDoor, monitorOpen ? currentCamera : -1);
+                }
+            }
+
+            bonnieLocations[previousState.bonnieLocation].SetState(-1);
+            bonnieLocations[newState.bonnieLocation].SetState(newState.bonnieLocationState);
+            
+            if (isOwnOffice)
+            {
+                if (bonnieLocations[newState.bonnieLocation].isFar)
+                {
+                    bonnieMoveSounds.PlayFar();
+                }
+                else
+                {
+                    bonnieMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
+            }
+        }
+
+        if (previousState.foxyLocation != newState.foxyLocation || previousState.foxyLocationState != newState.foxyLocationState)
+        {
+            staticImage.color = Color.white;
+            if (isOwnOffice && previousState.foxyLocation == foxyAttackLocationIndex && newState.foxyLocation != foxyAttackLocationIndex)
+            {
+                doorKnockSound.Play();
+            }
+
+            foxyLocations[previousState.foxyLocation].SetState(-1);
+            foxyLocations[newState.foxyLocation].SetState(newState.foxyLocationState);
+
+            if (isOwnOffice)
+            {
+                if (foxyLocations[newState.foxyLocation].isFar)
+                {
+                    foxyMoveSounds.PlayFar();
+                }
+                else
+                {
+                    foxyMoveSounds.PlayClose();
+                    if (Random.value > 0.75f)
+                        PowerIssue(0.5f);
+                }
+            }
+        }
+    }
+
+    private void ClearCamerasBeingLookedAt()
+    {
+        for (int i = 0; i < cameraButtons.Length; i++)
+            if (cameraButtons[i].sprite == cameraButtonLookedAt)
+                cameraButtons[i].sprite = cameraButtonNormal;
+    }
+
+    private void UpdateCamerasBeingLookedAt(List<FNAF1OfficeCameraState> camerasLookedAt)
+    {
+        ClearCamerasBeingLookedAt();
+
+        foreach (var camera in camerasLookedAt)
+            cameraButtons[camera.cameraIndex].sprite = cameraButtonLookedAt;
+    }
+
+
+    private void Instance_OnFNAF1AttackingOfficeEvent(object sender, FNAF1OfficeEvent e)
+    {
+        FNAF1OfficeState newAttackedOfficeState = e.office;
+
+        // Update the monitor monsters if the others office is selected
+        if (!monitorYourOffice)
+        {
+            UpdateMonitorMonsters(attackedOfficeState, newAttackedOfficeState, false);
+            UpdateCamerasBeingLookedAt(newAttackedOfficeState.camerasLookedAt);
+        }
+
+        attackedOfficeState = newAttackedOfficeState;
+    }
 
     private void Instance_OnFNAF1OfficeEvent(object sender, FNAF1OfficeEvent e)
     {
         // This event is received if something in this player's office should change
-        FNAF1OfficeState office = e.office;
-
-        if (officeState.freddyLocation != office.freddyLocation || officeState.freddyLocationState != office.freddyLocationState)
+        FNAF1OfficeState newOfficeState = e.office;
+        
+        // Update the monitor monsters if your office is selected
+        if (monitorYourOffice)
         {
-            staticImage.color = Color.white;
-            freddyLocations[officeState.freddyLocation].SetState(-1);
-            officeState.freddyLocation = office.freddyLocation;
-            officeState.freddyLocationState = office.freddyLocationState;
-            freddyLocations[officeState.freddyLocation].SetState(officeState.freddyLocationState);
-            if (freddyLocations[officeState.freddyLocation].isFar)
-            {
-                freddyMoveSounds.PlayFar();
-            }
-            else
-            {
-                freddyMoveSounds.PlayClose();
-                if (Random.value > 0.75f)
-                    PowerIssue(0.5f);
-            }
+            UpdateMonitorMonsters(yourOfficeState, newOfficeState, true);
         }
 
-        if (officeState.chicaLocation != office.chicaLocation || officeState.chicaLocationState != office.chicaLocationState)
-        {
-            staticImage.color = Color.white;
-            sawChica = false;
-            if (officeState.chicaLocation == chicaAttackLocationIndex && officeState.rightLight)
-            {
-                // If moved away from window, disable light
-                FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, officeState.leftDoor, false, officeState.rightDoor, monitorOpen ? currentCamera : -1);
-            }
-
-            chicaLocations[officeState.chicaLocation].SetState(-1);
-            officeState.chicaLocation = office.chicaLocation;
-            officeState.chicaLocationState = office.chicaLocationState;
-            chicaLocations[officeState.chicaLocation].SetState(officeState.chicaLocationState);
-            if (chicaLocations[officeState.chicaLocation].isFar)
-            {
-                chicaMoveSounds.PlayFar();
-            }
-            else
-            {
-                chicaMoveSounds.PlayClose();
-                if (Random.value > 0.75f)
-                    PowerIssue(0.5f);
-            }
-        }
-
-        if (officeState.bonnieLocation != office.bonnieLocation || officeState.bonnieLocationState != office.bonnieLocationState)
-        {
-            staticImage.color = Color.white;
-            sawBonnie = false;
-            if (officeState.bonnieLocation == bonnieAttackLocationIndex && officeState.leftLight)
-            {
-                // If moved away from window, disable light
-                FNAFClient.Instance.FNAF1RequestOfficeChange(false, officeState.leftDoor, officeState.rightLight, officeState.rightDoor, monitorOpen ? currentCamera : -1);
-            }
-
-            bonnieLocations[officeState.bonnieLocation].SetState(-1);
-            officeState.bonnieLocation = office.bonnieLocation;
-            officeState.bonnieLocationState = office.bonnieLocationState;
-            bonnieLocations[officeState.bonnieLocation].SetState(officeState.bonnieLocationState);
-            if (bonnieLocations[officeState.bonnieLocation].isFar)
-            {
-                bonnieMoveSounds.PlayFar();
-            }
-            else
-            {
-                bonnieMoveSounds.PlayClose();
-                if (Random.value > 0.75f)
-                    PowerIssue(0.5f);
-            }
-        }
-
-        if (officeState.foxyLocation != office.foxyLocation || officeState.foxyLocationState != office.foxyLocationState)
-        {
-            staticImage.color = Color.white;
-            if (officeState.foxyLocation == foxyAttackLocationIndex && office.foxyLocation != foxyAttackLocationIndex)
-                doorKnockSound.Play();
-            foxyLocations[officeState.foxyLocation].SetState(-1);
-            officeState.foxyLocation = office.foxyLocation;
-            officeState.foxyLocationState = office.foxyLocationState;
-            foxyLocations[officeState.foxyLocation].SetState(officeState.foxyLocationState);
-            if (foxyLocations[officeState.foxyLocation].isFar)
-            {
-                foxyMoveSounds.PlayFar();
-            }
-            else
-            {
-                foxyMoveSounds.PlayClose();
-                if (Random.value > 0.75f)
-                    PowerIssue(0.5f);
-            }
-        }
-
-        if (officeState.rightDoor != office.rightDoor)
+        if (yourOfficeState.rightDoor != newOfficeState.rightDoor)
         {
             doorSound.Play();
-            if (office.rightDoor)
+            if (newOfficeState.rightDoor)
             {
                 rightDoorButtonRenderer.sprite = rightDoorButtonOnSprite;
                 rightDoor.End();
@@ -535,10 +609,10 @@ public class FNAFOffice1 : MonoBehaviour
             }
         }
 
-        if (officeState.leftDoor != office.leftDoor)
+        if (yourOfficeState.leftDoor != newOfficeState.leftDoor)
         {
             doorSound.Play();
-            if (office.leftDoor)
+            if (newOfficeState.leftDoor)
             {
                 leftDoorButtonRenderer.sprite = leftDoorButtonOnSprite;
                 leftDoor.End();
@@ -550,23 +624,23 @@ public class FNAFOffice1 : MonoBehaviour
             }
         }
 
-        officeState.rightLight = office.rightLight;
-        officeState.leftLight = office.leftLight;
-        officeState.rightDoor = office.rightDoor;
-        officeState.leftDoor = office.leftDoor;
+        // Show cameras being looked at if this player is an attacker
+        if (Player.controlledByUser == null)
+        {
+            UpdateCamerasBeingLookedAt(newOfficeState.camerasLookedAt);
+        }
 
-     
-        powerLeftText.text = "Power left: <b>" + Mathf.Floor(office.powerLeft) + "</b>%";
+        powerLeftText.text = "Power left: <b>" + Mathf.Floor(newOfficeState.powerLeft) + "</b>%";
 
-        if (office.powerLeft <= 0f && officeState.powerLeft > 0f)
+        if (newOfficeState.powerLeft <= 0f && yourOfficeState.powerLeft > 0f)
         {
             powerDownSound.Play();
-            if (officeState.rightDoor)
+            if (newOfficeState.rightDoor)
             {
                 rightDoor.Start();
                 doorSound.Play();
             }
-            if (officeState.leftDoor)
+            if (newOfficeState.leftDoor)
             {
                 leftDoor.Start();
                 doorSound.Play();
@@ -577,28 +651,12 @@ public class FNAFOffice1 : MonoBehaviour
             //    obj.SetActive(false);
             //}
         }
-        else if (office.powerLeft > 0f && officeState.powerLeft <= 0f)
+        else if (newOfficeState.powerLeft > 0f && yourOfficeState.powerLeft <= 0f)
         {
             //foreach (GameObject obj in isAfton ? requiresPowerAfton : requiresPower)
             //{
             //    obj.SetActive(true);
             //}
-        }
-
-        officeState.powerLeft = office.powerLeft;
-        officeState.camerasLookedAt = office.camerasLookedAt;
-
-        // Show cameras being looked at
-        if (Player.controlledByUser == null)
-        {
-            // Remove previously looked at camera's, it changed
-            for (int i = 0; i < cameraButtons.Length; i++)
-                if (cameraButtons[i].sprite == cameraButtonLookedAt)
-                    cameraButtons[i].sprite = cameraButtonNormal;
-
-            // Show the selected cameras to the controller
-            foreach (var camera in office.camerasLookedAt)
-                cameraButtons[camera.cameraIndex].sprite = cameraButtonLookedAt;
         }
 
         float currentHour = e.currentHour;
@@ -611,6 +669,12 @@ public class FNAFOffice1 : MonoBehaviour
                 phoneGuySound.Stop();
                 cameraSwitchSound.Play();
             }
+        }
+
+        yourOfficeState = newOfficeState;
+        if (Room.game.gameMode == CLASSIC_GAMEMODE)
+        {
+            attackedOfficeState = newOfficeState;
         }
     }
 
@@ -737,7 +801,7 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void StopPhoneGuy()
     {
-        FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, officeState.leftDoor, officeState.rightLight, officeState.rightDoor, monitorOpen ? currentCamera : -1, true);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, monitorOpen ? currentCamera : -1, true);
     }
 
     private IEnumerator GameEndSequence()
@@ -846,20 +910,20 @@ public class FNAFOffice1 : MonoBehaviour
     private void Update()
     {
         int usage = 0;
-        if (officeState.rightDoor)
+        if (yourOfficeState.rightDoor)
             usage++;
-        if (officeState.leftDoor)
+        if (yourOfficeState.leftDoor)
             usage++;
-        if (officeState.rightLight)
+        if (yourOfficeState.rightLight)
             usage++;
-        if (officeState.leftLight)
+        if (yourOfficeState.leftLight)
             usage++;
 
         if (Room != null)
         {
             if (Room.game.gameMode == CLASSIC_GAMEMODE)
             {
-                if (officeState.camerasLookedAt.Count > 0)
+                if (yourOfficeState.camerasLookedAt.Count > 0)
                     usage++;
             }
             else if (Room.game.gameMode == FREE_FOR_ALL_GAMEMODE)
@@ -871,11 +935,11 @@ public class FNAFOffice1 : MonoBehaviour
 
         usageImage.sprite = usageSprites[usage];
 
-        officeRenderer.sprite = officeState.powerLeft > 0f ? normalOfficeSprite : darkOfficeSprite;
-        freddyAttackButton.interactable = moveTimerDone && !officeState.rightDoor && officeState.freddyLocation == freddyAttackLocationIndex;
-        chicaAttackButton.interactable = moveTimerDone && !officeState.rightDoor && officeState.chicaLocation == chicaAttackLocationIndex;
-        bonnieAttackButton.interactable = moveTimerDone && !officeState.leftDoor && officeState.bonnieLocation == bonnieAttackLocationIndex;
-        foxyAttackButton.interactable = moveTimerDone && !officeState.leftDoor && officeState.foxyLocation == foxyAttackLocationIndex;
+        officeRenderer.sprite = yourOfficeState.powerLeft > 0f ? normalOfficeSprite : darkOfficeSprite;
+        freddyAttackButton.interactable = moveTimerDone && !attackedOfficeState.rightDoor && attackedOfficeState.freddyLocation == freddyAttackLocationIndex;
+        chicaAttackButton.interactable = moveTimerDone && !attackedOfficeState.rightDoor && attackedOfficeState.chicaLocation == chicaAttackLocationIndex;
+        bonnieAttackButton.interactable = moveTimerDone && !attackedOfficeState.leftDoor && attackedOfficeState.bonnieLocation == bonnieAttackLocationIndex;
+        foxyAttackButton.interactable = moveTimerDone && !attackedOfficeState.leftDoor && attackedOfficeState.foxyLocation == foxyAttackLocationIndex;
 
         staticImage.color = Color.Lerp(staticImage.color, staticColor, Time.deltaTime * staticReturnSpeed);
 
@@ -914,7 +978,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (disableFanTime > 0f)
             disableFanTime -= Time.deltaTime;
-        fan.SetActive(disableFanTime <= 0f && officeState.powerLeft > 0f);
+        fan.SetActive(disableFanTime <= 0f && yourOfficeState.powerLeft > 0f);
 
         if (distractionLoadingTime > 0f)
             distractionLoadingTime -= Time.deltaTime;
@@ -985,16 +1049,16 @@ public class FNAFOffice1 : MonoBehaviour
             caughtMovingObject.SetActive(false);
         }
 
-        if (officeState.leftLight && officeState.powerLeft > 0f)
+        if (yourOfficeState.leftLight && yourOfficeState.powerLeft > 0f)
         {
-            if (officeState.bonnieLocation == bonnieAttackLocationIndex && !sawBonnie)
+            if (yourOfficeState.bonnieLocation == bonnieAttackLocationIndex && !sawBonnie)
             {
                 windowScareSound.Play();
                 sawBonnie = true;
             }
 
             leftOfficeRenderer.sprite = Random.value > lightRandomThreshold ? 
-                (officeState.bonnieLocation == bonnieAttackLocationIndex ? leftOfficeMonsterSprite : leftOfficeLightSprite) : leftOfficeNormalSprite;
+                (yourOfficeState.bonnieLocation == bonnieAttackLocationIndex ? leftOfficeMonsterSprite : leftOfficeLightSprite) : leftOfficeNormalSprite;
             leftLightButtonRenderer.sprite = leftLightButtonOnSprite;
         }
         else
@@ -1003,16 +1067,16 @@ public class FNAFOffice1 : MonoBehaviour
             leftLightButtonRenderer.sprite = leftLightButtonOffSprite;
         }
 
-        if (officeState.rightLight && officeState.powerLeft > 0f)
+        if (yourOfficeState.rightLight && yourOfficeState.powerLeft > 0f)
         {
-            if (officeState.chicaLocation == chicaAttackLocationIndex && !sawChica)
+            if (yourOfficeState.chicaLocation == chicaAttackLocationIndex && !sawChica)
             {
                 windowScareSound.Play();
                 sawChica = true;
             }
 
             rightOfficeRenderer.sprite = Random.value > lightRandomThreshold ? 
-                (officeState.chicaLocation == chicaAttackLocationIndex ? rightOfficeMonsterSprite : rightOfficeLightSprite) : rightOfficeNormalSprite;
+                (yourOfficeState.chicaLocation == chicaAttackLocationIndex ? rightOfficeMonsterSprite : rightOfficeLightSprite) : rightOfficeNormalSprite;
             rightLightButtonRenderer.sprite = rightLightButtonOnSprite;
         }
         else
@@ -1024,7 +1088,7 @@ public class FNAFOffice1 : MonoBehaviour
         timerSound.volume = monitorOpen ? 1f : 0f;
         timerDoneSound.volume = monitorOpen ? 0.8f : 0.4f;
 
-        if ((officeState.leftLight || officeState.rightLight) && officeState.powerLeft > 0f)
+        if ((yourOfficeState.leftLight || yourOfficeState.rightLight) && yourOfficeState.powerLeft > 0f)
         {
             if (!lightSound.isPlaying)
                 lightSound.Play();
@@ -1035,7 +1099,7 @@ public class FNAFOffice1 : MonoBehaviour
                 lightSound.Stop();
         }
 
-        if (moveTimer > 0f && officeState.powerLeft > 0f)
+        if (moveTimer > 0f && yourOfficeState.powerLeft > 0f)
         {
             moveTimer -= Time.deltaTime;
             timerText.text = "" + Mathf.Ceil(moveTimer);
@@ -1046,7 +1110,7 @@ public class FNAFOffice1 : MonoBehaviour
                 EndTimer();
         }
 
-        if (officeState.powerLeft <= 0f && monitorOpen)
+        if (yourOfficeState.powerLeft <= 0f && monitorOpen)
         {
             DisableMonitor();
         }
@@ -1071,7 +1135,7 @@ public class FNAFOffice1 : MonoBehaviour
 
     public void ToggleMonitor()
     {
-        if (!canToggleMonitor || itsMeTime > 0f || officeState.powerLeft <= 0f)
+        if (!canToggleMonitor || itsMeTime > 0f || yourOfficeState.powerLeft <= 0f)
         {
             return;
         }
@@ -1098,7 +1162,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (Player.controlledByUser != null)
         {
-            FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, officeState.leftDoor, officeState.rightLight, officeState.rightDoor, monitorOpen ? currentCamera : -1);
+            FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, monitorOpen ? currentCamera : -1);
         }
     }
 
@@ -1131,7 +1195,7 @@ public class FNAFOffice1 : MonoBehaviour
             return false;
         }
 
-        if (officeState.powerLeft <= 0f || Player.controlledByUser == null || (sabotageButtonsTime > 0f && Random.value > 0.5f))
+        if (yourOfficeState.powerLeft <= 0f || Player.controlledByUser == null || (sabotageButtonsTime > 0f && Random.value > 0.5f))
         {
             powerErrorSound.Play();
             return false;
@@ -1147,14 +1211,14 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(!officeState.leftLight, officeState.leftDoor, officeState.rightLight, officeState.rightDoor, monitorOpen ? currentCamera : -1);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(!yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, monitorOpen ? currentCamera : -1);
     }
 
     public void LeftDoorToggle()
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, !officeState.leftDoor, officeState.rightLight, officeState.rightDoor, monitorOpen ? currentCamera : -1);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, !yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, monitorOpen ? currentCamera : -1);
     }
 
 
@@ -1162,14 +1226,14 @@ public class FNAFOffice1 : MonoBehaviour
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, officeState.leftDoor, !officeState.rightLight, officeState.rightDoor, monitorOpen ? currentCamera : -1);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, !yourOfficeState.rightLight, yourOfficeState.rightDoor, monitorOpen ? currentCamera : -1);
     }
 
     public void RightDoorToggle()
     {
         if (!CheckButton()) return;
 
-        FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, officeState.leftDoor, officeState.rightLight, !officeState.rightDoor, monitorOpen ? currentCamera : -1);
+        FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, !yourOfficeState.rightDoor, monitorOpen ? currentCamera : -1);
     }
 
     public void SwitchCamera(int index)
@@ -1188,7 +1252,7 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (Player.controlledByUser != null)
         {
-            FNAFClient.Instance.FNAF1RequestOfficeChange(officeState.leftLight, officeState.leftDoor, officeState.rightLight, officeState.rightDoor, index);
+            FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, index);
         }
 
         UpdateCameras();
