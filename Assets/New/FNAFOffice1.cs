@@ -135,6 +135,9 @@ public class FNAFOffice1 : MonoBehaviour
     public float randomStaticNoise = 0.98f;
     public float staticReturnSpeed = 1f;
     public Image staticImage;
+    public float fullStaticReturnSpeed = 1f;
+    public Image fullStaticImage;
+    public AudioSource switchMonitorSound;
     public GameObject itsMe;
     public Image powerIssueOverlay;
     public AudioSource powerIssueSound;
@@ -291,7 +294,7 @@ public class FNAFOffice1 : MonoBehaviour
         FNAFClient.Instance.OnFNAFEndEvent += Instance_OnFNAFEndEvent;
         FNAFClient.Instance.OnRoomChangeEvent += Instance_OnRoomChangeEvent;
         FNAFClient.Instance.ReadyRequest(true);
-        Invoke(nameof(StartGame), 2.0f);
+        Invoke(nameof(StartGame), 4.0f);
     }
 
     private void OnEnable()
@@ -423,14 +426,20 @@ public class FNAFOffice1 : MonoBehaviour
             return;
         }
         monitorYourOffice = yourOffice;
-        staticImage.color = Color.white;
-        cameraSwitchSound.Play();
+        fullStaticImage.color = Color.white;
+        switchMonitorSound.Play();
+        switchMonitorSound.pitch = Random.Range(0.93f, 1.03f);
+        switchMonitorSound.time = Random.Range(0, 0.2f);
 
         if (yourOffice)
         {
             // Disable movement UI
             SetAttackerMonitorObjects(false);
             UpdateMonitorMonsters(attackedOfficeState, yourOfficeState, false);
+            ClearCamerasBeingLookedAt();
+
+            // Look again at current camera
+            FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, currentCamera);
         }
         else
         {
@@ -438,6 +447,9 @@ public class FNAFOffice1 : MonoBehaviour
             SetAttackerMonitorObjects(true);
             UpdateMonitorMonsters(yourOfficeState, attackedOfficeState, false);
             UpdateCamerasBeingLookedAt(attackedOfficeState.camerasLookedAt);
+
+            // Not looking at camera anymore
+            FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, -1);
         }
     }
 
@@ -871,9 +883,14 @@ public class FNAFOffice1 : MonoBehaviour
         aftonFoxyJumpScare.SetActive(false);
         aftonDeathOverlay.SetActive(true);
 
-        //yield return new WaitForSeconds(3.0f);
-        //aftonDeathOverlay.SetActive(false);
-        //aftonGuardView.SetActive(false);
+        if (Room.game.gameMode == FREE_FOR_ALL_GAMEMODE)
+        {
+            yield return new WaitForSeconds(3.0f);
+
+            aftonDeathOverlay.SetActive(false);
+            aftonGuardView.SetActive(false);
+            SetMonitorOffice(true);
+        }
     }
 
     private IEnumerator JumpscareSequence(string monster)
@@ -925,11 +942,23 @@ public class FNAFOffice1 : MonoBehaviour
             {
                 if (yourOfficeState.camerasLookedAt.Count > 0)
                     usage++;
+
+                cameraNameText.text = cameras[currentCamera].cameraName;
             }
             else if (Room.game.gameMode == FREE_FOR_ALL_GAMEMODE)
             {
                 if (currentCamera >= 0)
                     usage++;
+
+                FNAFGamePlayer attackingPlayer = Room.game.players.FirstOrDefault((e) => e.controlledByUser.id == User.id);
+                if (attackingPlayer != null)
+                {
+                    cameraNameText.text = cameras[currentCamera].cameraName + (monitorYourOffice ? " (your office)" : " (" + attackingPlayer.user.name + "'s office)");
+                }
+                else
+                {
+                    Debug.LogWarning("attackingPlayer is null");
+                }
             }
         }
 
@@ -942,6 +971,10 @@ public class FNAFOffice1 : MonoBehaviour
         foxyAttackButton.interactable = moveTimerDone && !attackedOfficeState.leftDoor && attackedOfficeState.foxyLocation == foxyAttackLocationIndex;
 
         staticImage.color = Color.Lerp(staticImage.color, staticColor, Time.deltaTime * staticReturnSpeed);
+        fullStaticImage.color = Color.Lerp(fullStaticImage.color, Color.clear, Time.deltaTime * fullStaticReturnSpeed);
+
+        yourOfficeButton.interactable = !monitorYourOffice;
+        otherOfficeButton.interactable = monitorYourOffice;
 
         if (Random.value > randomStaticNoise)
         {
@@ -1246,11 +1279,10 @@ public class FNAFOffice1 : MonoBehaviour
         cameraSwitchSound.Play();
         cameraSwitchEffect.Play();
         currentCamera = index;
-        cameraNameText.text = cameras[index].cameraName;
 
         cameraButtons[currentCamera].sprite = cameraButtonActive;
 
-        if (Player.controlledByUser != null)
+        if (Player.controlledByUser != null && monitorYourOffice)
         {
             FNAFClient.Instance.FNAF1RequestOfficeChange(yourOfficeState.leftLight, yourOfficeState.leftDoor, yourOfficeState.rightLight, yourOfficeState.rightDoor, index);
         }
