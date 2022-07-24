@@ -947,7 +947,7 @@ public class FNAFOffice1 : MonoBehaviour
             }
             else if (Room.game.gameMode == FREE_FOR_ALL_GAMEMODE)
             {
-                if (currentCamera >= 0)
+                if (currentCamera >= 0 && monitorOpen)
                     usage++;
 
                 FNAFGamePlayer attackingPlayer = Room.game.players.FirstOrDefault((e) => e.controlledByUser.id == User.id);
