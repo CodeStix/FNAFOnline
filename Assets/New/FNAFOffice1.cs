@@ -222,7 +222,7 @@ public class FNAFOffice1 : MonoBehaviour
         Debug.Log("Starting game, controlled by " + Player.controlledByUser);
 
         nightStartOverlay.SetActive(true);
-        Invoke(nameof(RemoveStartOverlay), 5.0f);
+        Invoke(nameof(RemoveStartOverlay), 8.0f);
 
         string nightString = "Night " + FNAFClient.Instance.GetUser().night;
         secondNightText.text = nightString;
@@ -230,6 +230,9 @@ public class FNAFOffice1 : MonoBehaviour
 
         if (Room.game.gameMode == CLASSIC_GAMEMODE)
         {
+            yourOfficeButton.gameObject.SetActive(false);
+            otherOfficeButton.gameObject.SetActive(false);
+
             if (Player.controlledByUser == null)
             {
                 StartTimer(Room.game.startingMoveTime);
@@ -249,7 +252,8 @@ public class FNAFOffice1 : MonoBehaviour
             StartTimer(Room.game.startingMoveTime);
             SetAttackerMonitorObjects(false);
 
-            roleText.text = "You are the guard and controller.\nSurvive and kill!";
+            FNAFGamePlayer attackingPlayer = Room.game.players.FirstOrDefault((e) => e.controlledByUser.id == User.id);
+            roleText.text = "You are a guard. But you must also control\n" + attackingPlayer.user.name + "'s animatronics.";
         }
         else
         {
@@ -922,6 +926,16 @@ public class FNAFOffice1 : MonoBehaviour
         bonnieJumpScare.SetActive(false);
         foxyJumpScare.SetActive(false);
         deathOverlay.SetActive(true);
+
+        if (Room.game.gameMode == FREE_FOR_ALL_GAMEMODE)
+        {
+            // Return to lobby early because the player would have to stare at a static noise until all other players are dead
+            yield return new WaitForSeconds(5.0f);
+            onGuardLose.Invoke();
+
+            yield return new WaitForSeconds(10.0f);
+            LoadingScreen.LoadScene("Lobby");
+        }
     }
 
     private void Update()
@@ -947,6 +961,9 @@ public class FNAFOffice1 : MonoBehaviour
             }
             else if (Room.game.gameMode == FREE_FOR_ALL_GAMEMODE)
             {
+                yourOfficeButton.interactable = !monitorYourOffice;
+                otherOfficeButton.interactable = monitorYourOffice;
+
                 if (currentCamera >= 0 && monitorOpen)
                     usage++;
 
@@ -972,9 +989,6 @@ public class FNAFOffice1 : MonoBehaviour
 
         staticImage.color = Color.Lerp(staticImage.color, staticColor, Time.deltaTime * staticReturnSpeed);
         fullStaticImage.color = Color.Lerp(fullStaticImage.color, Color.clear, Time.deltaTime * fullStaticReturnSpeed);
-
-        yourOfficeButton.interactable = !monitorYourOffice;
-        otherOfficeButton.interactable = monitorYourOffice;
 
         if (Random.value > randomStaticNoise)
         {

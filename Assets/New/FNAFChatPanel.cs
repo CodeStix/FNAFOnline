@@ -37,7 +37,7 @@ public class FNAFChatPanel : MonoBehaviour
     {
         FNAFChatMessage message = Instantiate(messagePrefab, transform);
         message.transform.SetSiblingIndex(0);
-        message.authorText.text = e.sender.name;
+        message.authorText.text = e.sender == null ? "SYSTEM" : e.sender.name;
         message.bodyText.text = e.message;
     }
 
