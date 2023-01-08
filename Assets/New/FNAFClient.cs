@@ -99,10 +99,11 @@ public class FNAFRoom
     public bool inGame;
     public List<int> readyUserIds;
     public FNAFGame game;
+    public string shortDescription;
 
     public override string ToString()
     {
-        return $"Room id={id} name={name} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} mode={game?.gameMode} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
+        return $"Room id={id} name={name} description={shortDescription} ownerId={ownerId} playerCount={playerCount}/{maxPlayers} inGame={(inGame ? "yes" : "no")} private={(isPrivate ? "yes" : "no")} mode={game?.gameMode} users=[{string.Join(",", users.Select((e) => e.ToString()))}]";
     }
 }
 

@@ -8,6 +8,7 @@ public class FNAFMatchmakingItem : MonoBehaviour
 {
     public Text nameText;
     public Text ownerText;
+    public Text shortDescriptionText;
     public Text playerCountText;
     public GameObject locked;
     public Button joinButton;
@@ -19,6 +20,7 @@ public class FNAFMatchmakingItem : MonoBehaviour
     {
         nameText.text = room.name;
         ownerText.text = room.ownerName;
+        shortDescriptionText.text = room.shortDescription;
         playerCountText.text = $"{ room.playerCount }/{ room.maxPlayers }";
         locked.SetActive(room.isPrivate);
     }
