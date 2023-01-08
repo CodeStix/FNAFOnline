@@ -21,6 +21,7 @@ public class NetworkSetup : MonoBehaviour
 
         FNAFClient.Instance.Connect();
         FNAFClient.Instance.OnConnected += FNAFClient_OnConnected;
+        FNAFClient.Instance.OnFNAFNewVersionAvailable += FNAFClient_OnNewVersionAvailable;
         //FNAFClient.Instance.OnDisconnected += FNAFClient_OnDisconnected;
     }
 
@@ -105,13 +106,13 @@ public class NetworkSetup : MonoBehaviour
     //    alertBox.Alert(message, "Server Announcement");
     //}
 
-    //private void Client_OnUpdateRequired(string updateDownloadLocation)
-    //{
-    //    loadingScreen.Progress(1f);
+    private void FNAFClient_OnNewVersionAvailable(object sender, EventArgs e)
+    {
+        loadingScreen.Progress(1f);
 
-    //    if (!dangerBox.IsShown)
-    //        dangerBox.Show("Ow snap!\nThere is a fresh new update available, to play, you NEED to download it from the link below.", updateDownloadLocation);
-    //}
+        if (!dangerBox.IsShown)
+            dangerBox.Show("Oh snap!\nThere is an update available, please download it from FNAFOnline's GameJolt page");
+    }
 
     //private void Client_OnConnected(bool firstTime)
     //{

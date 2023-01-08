@@ -16,6 +16,9 @@ public class FNAFUserText : MonoBehaviour
     void Update()
     {
         FNAFUser me = FNAFClient.Instance.GetUser();
-        text.text = string.Format(format, me.name, me.night);
+        if (me != null)
+        {
+            text.text = string.Format(format, me.name, me.night);
+        }
     }
 }

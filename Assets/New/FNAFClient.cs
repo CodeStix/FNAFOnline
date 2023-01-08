@@ -327,6 +327,7 @@ public class FNAFClient : MonoBehaviour
     public event EventHandler<FNAF1AttackEvent> OnFNAF1AttackEvent;
     public event EventHandler<FNAF1OfficeEvent> OnFNAF1OfficeEvent;
     public event EventHandler<FNAF1OfficeEvent> OnFNAF1AttackingOfficeEvent;
+    public event EventHandler OnFNAFNewVersionAvailable;
     public event EventHandler OnFNAFEndEvent;
 
     public event EventHandler<FNAFCreateRoomResponse> OnCreateRoomResponse;
@@ -476,9 +477,17 @@ public class FNAFClient : MonoBehaviour
     {
         OnLoginResponse -= FNAFClient_OnLoginResponse;
 
-        Debug.Log("Logged in: " + e.user);
+        if (e.user == null)
+        {
+            OnFNAFNewVersionAvailable?.Invoke(null, null);
+        }
+        else
+        {
+            Debug.Log("Logged in: " + e.user);
 
-        me = e.user;
+            me = e.user;
+        }
+
     }
 
     private void Socket_OnMessage(object sender, MessageEventArgs e)
