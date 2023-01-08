@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionUrl: ws://localhost:8080
+  connectionToken: 503f796ac712c79f5adfcf05325c205ef7825ed1f265d7bf66a780417a6a9ccb
   testMode: 1
 --- !u!1001 &210604290
 PrefabInstance:
@@ -332,6 +333,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1459581045}
     m_Modifications:
+    - target: {fileID: 6299082576434321667, guid: f36d1fbc7d8bd1a499118805821bec5d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6299082576689904380, guid: f36d1fbc7d8bd1a499118805821bec5d,
         type: 3}
       propertyPath: m_Name

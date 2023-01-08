@@ -35,10 +35,9 @@ public class NetworkSetup : MonoBehaviour
     {
         try
         {
-
-        FNAFClient.Instance.OnConnected -= FNAFClient_OnConnected;
-        loadingScreen.Progress(1f);
-        onConnected?.Invoke();
+            FNAFClient.Instance.OnConnected -= FNAFClient_OnConnected;
+            loadingScreen.Progress(1f);
+            onConnected?.Invoke();
         }
         catch(Exception ex)
         {

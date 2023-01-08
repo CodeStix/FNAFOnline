@@ -122,6 +122,7 @@ public class FNAFMatchmakingResponse
 public class FNAFLoginRequest
 {
     public string token;
+    public string connectionToken;
 }
 
 [Serializable]
@@ -134,6 +135,7 @@ public class FNAFLoginResponse
 public class FNAFRegisterRequest
 {
     public string name;
+    public string connectionToken;
 }
 
 [Serializable]
@@ -311,6 +313,8 @@ public class FNAFClient : MonoBehaviour
 {
     // wss://fnafws.codestix.nl
     public string connectionUrl = "ws://localhost:8080";
+    [TextArea]
+    public string connectionToken;
     public bool testMode = false;
 
     public event EventHandler OnConnected;
@@ -604,12 +608,12 @@ public class FNAFClient : MonoBehaviour
 
     public void RegisterRequest(string name)
     {
-        Send(nameof(FNAFRegisterRequest), new FNAFRegisterRequest() { name = name });
+        Send(nameof(FNAFRegisterRequest), new FNAFRegisterRequest() { name = name, connectionToken = connectionToken });
     }
 
     public void LoginRequest(string token)
     {
-        Send(nameof(FNAFLoginRequest), new FNAFLoginRequest() { token = token });
+        Send(nameof(FNAFLoginRequest), new FNAFLoginRequest() { token = token, connectionToken = connectionToken });
     }
 
     public void CreateRoom(int maxPlayers, bool isPrivate)
