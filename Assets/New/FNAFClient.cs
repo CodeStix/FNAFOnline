@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine;
 using WebSocketSharp;
 using Newtonsoft.Json;
+using System.Collections;
 
 [System.Serializable]
 public class FNAF1OfficeCameraState
@@ -444,6 +445,8 @@ public class FNAFClient : MonoBehaviour
                 OnLoginResponse += FNAFClient_OnLoginResponse;
                 LoginRequest(config.token);
             }
+
+            StartCoroutine(Pinger());
         };
         OnDisconnected += (_a, _b) =>
         {
@@ -460,6 +463,15 @@ public class FNAFClient : MonoBehaviour
         };
 
         socket.ConnectAsync();
+    }
+
+    private IEnumerator Pinger()
+    {
+        while(socket.ReadyState == WebSocketState.Open)
+        {
+            socket.Ping();
+            yield return new WaitForSeconds(10f);
+        }
     }
 
     private void FNAFClient_OnRegisterResponse(object sender, FNAFRegisterResponse e)
