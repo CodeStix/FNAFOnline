@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4463611d9242a644292ddcf4a7f0374a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectionUrl: ws://localhost:8080
+  connectionUrl: ws://localhost:1987
   connectionToken: 503f796ac712c79f5adfcf05325c205ef7825ed1f265d7bf66a780417a6a9ccb
   testMode: 1
 --- !u!1001 &210604290
